@@ -1,31 +1,31 @@
 "use client";
 import { useAuthContext } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import picture from "@/assets/img/signin_page.png";
+import picture from "/public/assets/signin_page.png";
 import Image from "next/image";
 import Link from "next/link";
 
 const SignIn = () => {
   const { signInWithGoogle, signInWithEmail, user, loading } = useAuthContext();
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   if (user) {
-    router.push("/");
+    location.href = '/';
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await signInWithEmail(email, password);
-    router.push("/");
+    location.href = '/';
   };
 
   const handleGoogleSignIn = async () => {
-    await signInWithGoogle();
-    router.push("/");
+    const result = await signInWithGoogle();
+    console.log(result);
+    if (result === undefined) return;
+    location.href = '/';
   };
 
   return (
