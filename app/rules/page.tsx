@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function Rules() {
   return (
     <div >
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="pl-16">
         <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent" style={{ fontSize: '64px' }}>RULES & GUIDELINES</h1>
         <ol className="list-decimal list-inside space-y-6 text-lg" style={{ fontSize: '20px' }}>

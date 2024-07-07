@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export default function page() {
   return (
     <div className="bg-background_black w-full min-h-screen">
-      <Navbar/>
+      {/* <Navbar/> */}
       <Home/>
       <About/>
       <Footer/>

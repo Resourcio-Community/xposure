@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
 	title: "Xposure",
-	
+
 };
 
 export default function RootLayout({
@@ -16,8 +15,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
-				<AuthProvider>{children}</AuthProvider>
+			<body className="font-poppins">
+				<AuthProvider>
+					<Navbar />
+					{children}
+				</AuthProvider>
 			</body>
 		</html>
 	);

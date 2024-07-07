@@ -14,18 +14,18 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
 
   if (user) {
-    router.push("/submission");
+    router.push("/");
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await signInWithEmail(email, password);
-    router.push("/submission");
+    router.push("/");
   };
 
   const handleGoogleSignIn = async () => {
     await signInWithGoogle();
-    router.push("/submission");
+    router.push("/");
   };
 
   return (
