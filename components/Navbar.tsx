@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-const Navbar: React.FC = () => {
+
+export default function Navbar() {
   return (
     <div className="flex w-full justify-between ">
       <div className="px-10 py-5">
@@ -26,15 +27,13 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
       <div className="flex gap-5 px-10 py-7 ">
-        <button className="bg-transparent  text-white px-10 py-3 h-fit  font-Poppins align-middle  flex justify-center border-[0.5px] border-text_yellow text-nowrap">
+        <Link href='/signup' className="bg-transparent  text-white px-10 py-3 h-fit  font-Poppins align-middle  flex justify-center border-[0.5px] border-text_yellow text-nowrap">
           Register
-        </button>
-        <button className="bg-text_yellow  text-black px-10 py-3 h-fit  font-Poppins align-middle  flex justify-center border-none text-nowrap">
+        </Link>
+        <Link href='/signin' className="bg-text_yellow  text-black px-10 py-3 h-fit  font-Poppins align-middle  flex justify-center border-none text-nowrap">
           Login
-        </button>
+        </Link>
       </div>
     </div>
   );
 };
-
-export default Navbar;

@@ -1,15 +1,14 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
-import React from 'react';
 
-const Rules = () => {
+export default function Rules() {
   return (
     <div >
-    <Navbar/>
-    <div className="pl-16">
-      <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent" style={{ fontSize: '64px'  }}>RULES & GUIDELINES</h1>
-        <ol className="list-decimal list-inside space-y-6 text-lg" style={{ fontSize: '20px'  }}>
+      <Navbar />
+      <div className="pl-16">
+        <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent" style={{ fontSize: '64px' }}>RULES & GUIDELINES</h1>
+        <ol className="list-decimal list-inside space-y-6 text-lg" style={{ fontSize: '20px' }}>
           <li>Categories: <b>Mobile Photography, Camera Photography, Reel Making.</b></li>
           <li>Photo Dimensions (Mobile & Camera Photography):<b> 3:4, 3:2, 2:3, or 4:3.</b></li>
           <li>Reel Dimensions: <b>9:16</b>.</li>
@@ -20,7 +19,7 @@ const Rules = () => {
             <ul className="space-y-6 list-inside ml-10" style={{ listStyleType: 'lower-alpha' }}>
               <li>
                 <>Mobile & Camera Photography:</> (Max 3 photos, total fee: Rs. 50):
-                <ul className="space-y-2 list-inside ml-10"style={{ listStyleType: 'lower-roman' }}>
+                <ul className="space-y-2 list-inside ml-10" style={{ listStyleType: 'lower-roman' }}>
                   <li>1st Photo: Rs. 25</li>
                   <li>2nd Photo: Rs. 15</li>
                   <li>3rd Photo: Rs. 10</li>
@@ -56,9 +55,7 @@ const Rules = () => {
           <li>Judges' Decision: Final and not subject to correspondence.</li>
         </ol>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
-
-export default Rules;
