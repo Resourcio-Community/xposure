@@ -43,7 +43,7 @@ export default function Navbar() {
           photo ?
             <Image src={photo} width={39} height={39} alt="user" className="rounded-full"></Image>
             : 
-            <div className="flex gap-5 px-10 py-7 ">
+            <div className="flex gap-5 py-7 ">
               <Link href='/signup' className="bg-transparent  text-white px-10 py-3 h-fit  font-Poppins align-middle  flex justify-center border-[0.5px] border-text_yellow text-nowrap">
                 Register
               </Link>
