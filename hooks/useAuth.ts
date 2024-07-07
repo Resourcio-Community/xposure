@@ -1,5 +1,4 @@
 "use client";
-// src/useAuth.ts
 import { useState, useEffect } from "react";
 import {
 	User,
@@ -9,7 +8,7 @@ import {
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { auth, googleProvider } from "@/lib/firebase/index";
+import { auth, googleProvider } from "@/lib/firebase/auth";
 
 export const useAuth = () => {
 	const [user, setUser] = useState<User | null>(null);
