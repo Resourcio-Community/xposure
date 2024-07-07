@@ -38,21 +38,21 @@ export default function Rules() {
           <li><b>Authenticity</b>: Only original works. No plagiarism.</li>
           <li><b>Device Information</b>: Mention device name and model in the caption.</li>
           <li><b>No AI-generated Works</b>: Not accepted.</li>
-          <li><b>Submission: Upload on Instagram, likes will determine the Viewer's Choice Award (Photography only)</b>.</li>
+          <li><b>Submission: Upload on Instagram, likes will determine the Viewer&apos;s Choice Award (Photography only)</b>.</li>
           <li><b>Winners: One Winner per Photography and Reel theme, selected by judges</b>.</li>
           <li><b>
-            Viewer's Choice Award and Eligibility Criteria:</b>
+            Viewer&apos;s Choice Award and Eligibility Criteria:</b>
             <ul className="space-y-2 list-inside ml-10" style={{ listStyleType: 'lower-alpha' }}>
               <li>Photo must have a watermark.</li>
               <li>Tag Resourcio Community on social media (<Link href="https://linktr.ee/resourciocommunity22" className="underline" target="_blank" rel="noopener noreferrer">https://linktr.ee/resourciocommunity22</Link>)</li>
               <li>Submit photo via Submission Form on the website.</li>
-              <li>Most reactions will win the Viewer's Choice Photo Award.</li>
+              <li>Most reactions will win the Viewer&apos;s Choice Photo Award.</li>
               <li>Tagging Resourcio Community on Instagram (<Link href="https://www.instagram.com/resourciocommunity/" className="underline" target="_blank" rel="noopener noreferrer">@resourciocommunity</Link>) is mandatory.</li>
             </ul>
           </li>
           <li><b>Submission Format</b>: Photos must be in <b>JPEG format</b>, highest possible resolution.</li>
           <li><b>Disqualification</b>: Any misleading information or religious hatred symbols will lead to direct disqualification.</li>
-          <li>Judges' Decision: Final and not subject to correspondence.</li>
+          <li>Judges&apos; Decision: Final and not subject to correspondence.</li>
         </ol>
       </div>
       <Footer />
