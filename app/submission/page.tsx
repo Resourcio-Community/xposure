@@ -2,6 +2,7 @@
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from 'next/image';
 
 const Submission = () => {
 	const { user, logOut } = useAuthContext();
@@ -25,10 +26,13 @@ const Submission = () => {
 						Submission Page
 					</h2>
 					{user.photoURL && (
-						<img
-							className="mx-auto h-12 w-12 rounded-full mt-6"
+						<Image
+							className="mx-auto h-16 w-16 rounded-full mt-6"
 							src={user.photoURL}
+							width={15}
+							height={15}
 							alt="User Profile"
+							unoptimized
 						/>
 					)}
 				</div>

@@ -2,7 +2,7 @@
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import picture from "@/assets/img/signup_page.png";
+import picture from "/public/assets/signup_page.png";
 import Image from "next/image";
 import Link from "next/link";
 
