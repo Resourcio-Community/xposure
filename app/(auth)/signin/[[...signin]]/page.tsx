@@ -2,6 +2,7 @@
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { redirect } from "next/navigation";
 
 import picture from "@/assets/img/signin_page.png";
 import Image from "next/image";
@@ -14,18 +15,20 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
 
   if (user) {
-    router.push("/");
+    redirect("/");
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await signInWithEmail(email, password);
-    router.push("/");
+    redirect("/");
   };
 
   const handleGoogleSignIn = async () => {
-    await signInWithGoogle();
-    router.push("/");
+    const result = await signInWithGoogle();
+    console.log(result);
+    if (result === undefined) return;
+    redirect('/');
   };
 
   return (

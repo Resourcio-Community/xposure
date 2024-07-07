@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import {
+	GoogleAuthProvider,
 	User,
 	onAuthStateChanged,
 	signInWithPopup,
@@ -24,19 +25,41 @@ export const useAuth = () => {
 	}, []);
 
 	const signInWithGoogle = async () => {
-		await signInWithPopup(auth, googleProvider);
+		try {
+			const result = await signInWithPopup(auth, googleProvider);
+			// const user = GoogleAuthProvider.credentialFromResult(result);
+
+			return result;
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const signInWithEmail = async (email: string, password: string) => {
-		await signInWithEmailAndPassword(auth, email, password);
+		try {
+			await signInWithEmailAndPassword(auth, email, password);
+		}
+		catch (error) {
+			console.error(error);
+		}
 	};
 
 	const signUpWithEmail = async (email: string, password: string) => {
-		await createUserWithEmailAndPassword(auth, email, password);
+		try {
+			await createUserWithEmailAndPassword(auth, email, password);
+		}
+		catch (error) {
+			console.error(error);
+		}
 	};
 
 	const logOut = async () => {
-		await signOut(auth);
+		try {
+			await signOut(auth);
+		}
+		catch (error) {
+			console.error(error);
+		}
 	};
 
 	return {
