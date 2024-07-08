@@ -12,11 +12,11 @@ export default function Navbar() {
   const [photo, setPhoto] = useState("");
   const { signInWithGoogle, user } = useAuthContext();
 
-  useEffect(() => {
-    if (user) {
-      setPhoto(user.photoURL || "")
-    }
-  }, [user || path]);
+  // useEffect(() => {
+  //   if (user) {
+  //     setPhoto(user.photoURL || "")
+  //   }
+  // }, [user || path]);
 
   const handleGoogleSignIn = async () => {
     const result = await signInWithGoogle();
@@ -53,7 +53,7 @@ export default function Navbar() {
       <div className=" flex items-center">
         {
           user ?
-            <Image src={photo} width={39} height={39} alt="user" className="rounded-full" unoptimized />
+            <Image src={user.photoURL || ''} width={39} height={39} alt="user" className="rounded-full" unoptimized />
             :
             <button
               type="button"
