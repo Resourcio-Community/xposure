@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
-export default function Rules() {
+export default function RulesPage() {
   return (
-
       <div className=" bg-background_black text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
         <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl" >RULES & GUIDELINES</h1>
         <ol className="list-decimal list-inside space-y-8 text-lg max-w-[50rem]" style={{ fontSize: '20px' }}>
