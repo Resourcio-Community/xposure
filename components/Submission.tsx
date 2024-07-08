@@ -19,54 +19,42 @@ export default function Submission() {
     const [images, setImages] = useState<uploadType>();
     const [uploaded, setUploaded] = useState(0);
 
-    // useEffect(() => {
-    //     if (!user) {
-    //         router.push("/");
-    //     }
-    // }, [user, router]);
-
-
 
     const upload = (items: any) => {
-        try {
-            items.forEach((item: any) => {
-                const fileName = new Date().getTime() + item.file.name
-                if (user && user.email) {
-                    const storageRef = imageRef(user.email, fileName)
-                    const uploadTask = uploadBytesResumable(storageRef, item.file)
+        items.forEach((item: any) => {
+            const fileName = item.label + '_' + new Date().getTime()
+            if (user && user.email) {
+                const storageRef = imageRef(user.email, fileName)
+                const uploadTask = uploadBytesResumable(storageRef, item.file)
 
-                    uploadTask.on(
-                        'state_changed',
-                        (snapshot) => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                            console.log(progress);
-                        },
-                        (err) => {
-                            console.log(err)
-                        },
-                        () => {
-                            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                                console.log('File available at', downloadURL);
-                                setUploaded(prev => prev + 1);
-                            });
-                        }
-                    )
-                }
-            })
-        }
-        catch (err) {
-            alert('Provide a proper Movie title, then try again')
-        }
+                uploadTask.on(
+                    'state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                        console.log(progress);
+                    },
+                    (err) => {
+                        console.log(err)
+                    },
+                    () => {
+                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                            console.log('File available at', downloadURL);
+                            setUploaded(prev => prev + 1);
+                        });
+                    }
+                )
+            }
+        })
     }
 
     const handleUpload = (e: MouseEvent) => {
         e.preventDefault()
         if (images === undefined) return;
-        let temp: any = []
+        let imageArr: any = []
         Object.entries(images).forEach(([key, val]) => {
-            temp.push({ label: key, file: val })
+            imageArr.push({ label: key, file: val })
         })
-        upload(temp)
+        upload(imageArr)
     }
 
     const handleSubmit = (e: FormEvent) => {
