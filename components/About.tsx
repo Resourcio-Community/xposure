@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import ArrowDotted from '@/public/assets/arrow.svg'
 import Link from "next/link";
 const About: React.FC = () => {
   return (
-    <div className="flex flex-col pt-40 w-full justify-center items-center gap-20">
+    <div className="flex flex-col pt-60 w-full justify-center items-center gap-20">
       <div className="italic ">
-        <div className="flex flex-col justify-center items-center pt-2 text-white text-lg font-light tracking-widest">
+        <div className="flex flex-col justify-center items-center pt-2 text-white text-base md:text-lg font-light tracking-widest text-center">
           “Photography is a Love affair with life”
         </div>
         <div className="flex flex-col justify-center items-center pt-2 text-white text-lg pb-20">
@@ -27,20 +28,14 @@ const About: React.FC = () => {
           modi sint est!
         </div>
       </div>
-      <div className="flex gap-96 w-[70%] text-white">
+      <div className="flex justify-between w-[70%] text-white md:flex-row flex-col items-center">
         <div className="flex flex-col justify-start items-center border-b-[0.5px] py-2 border-white">
           Date of event : 18 - 20th July
         </div>
-        <Link href="/rules" className="flex flex-row justify-end ml-auto items-center border-b-[0.5px] py-2 border-white">
+        <Link href="/rules" className="flex flex-row justify-end items-center border-b-[0.5px] py-2 border-white">
 
           Rules and Guidelines
-          <Image
-            src="/assets/arrow.svg"
-            alt="arrow"
-            width={28}
-            height={28}
-            className="ml-3"
-          />
+          <ArrowDotted className="ml-3"/>
         </Link>
       </div>
     </div>
