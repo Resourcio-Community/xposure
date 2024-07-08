@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const router = useRouter()
-  const { signInWithGoogle, user } = useAuthContext();
+  const { signInWithGoogle, user, logOut } = useAuthContext();
 
   const handleGoogleSignIn = async () => {
     const result = await signInWithGoogle();
@@ -43,7 +43,14 @@ export default function Navbar() {
       <div className=" flex items-center">
         {
           user ?
-            <Image src={user.photoURL || ''} width={39} height={39} alt="user" className="rounded-full" unoptimized />
+            <div className="relative group">
+              <Image src={user.photoURL || ''} width={39} height={39} alt="user" className="rounded-full" unoptimized />
+              <div className="absolute group-hover:scale-100 top-[110%] scale-0 bg-text_yellow/90 px-1 w-[10rem] right-0 duration-300 origin-top-right flex flex-col items-center gap-2 py-4">
+                <Image src={user.photoURL || ''} width={60} height={60} alt="user" className="rounded-full" unoptimized />
+                <a href="/profile" className="px-12 py-2 hover:bg-neutral-200 duration-300">Profile</a>
+                <button onClick={logOut} className="px-12 py-2 hover:bg-red-400 duration-300">Logout</button>
+              </div>
+            </div>
             :
             <button
               type="button"

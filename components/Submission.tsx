@@ -3,9 +3,9 @@ import { useAuthContext } from "@/context/AuthContext";
 import { imageRef } from "@/lib/firebase/storage";
 import { getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { FormEvent, MouseEvent } from "@/types";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
+import UploadForm from "./UploadForm";
 
 interface uploadType {
     image_1?: File | null;
@@ -14,7 +14,7 @@ interface uploadType {
 }
 
 export default function Submission() {
-    const { user, logOut } = useAuthContext();
+    const { user } = useAuthContext();
     const router = useRouter();
     const [images, setImages] = useState<uploadType>();
     const [uploaded, setUploaded] = useState(0);
@@ -63,9 +63,9 @@ export default function Submission() {
 
 
     return (
-        <div className="min-h-screen bg-background_black text-neutral-200 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-background_black text-neutral-200 py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
 
-            <form className="">
+            {/* <form className="">
                 <div className="">
                     <label>Image-1</label>
                     <input
@@ -110,34 +110,21 @@ export default function Submission() {
                     <button className="bg-indigo-600 px-3" onClick={handleUpload}>Upload</button>
                     <button type="submit" className="bg-indigo-600 px-3" disabled={uploaded >= 1 ? false : true}>Submit</button>
                 </div>
-            </form>
+            </form> */}
+            <form action="" className=" flex flex-col gap-8 justify-center items-center">
+                <div className=" flex gap-8">
+                    <UploadForm />
+                    <UploadForm />
+                    <UploadForm />
+                </div>
+                <button
+                    onClick={() => { }}
+                    className="border px-6 py-2 bg-text_yellow text-black hover:bg-text_yellow/70 duration-300 relative w-fit">
 
-            <div className="max-w-md w-full space-y-8">
-                <div className="text-center">
-                    <h2 className="mt-6 text-3xl font-extrabold">
-                        Submission Page
-                    </h2>
-                    {user && (
-                        <Image
-                            className="mx-auto h-16 w-16 rounded-full mt-6"
-                            src={user.photoURL || ''}
-                            width={15}
-                            height={15}
-                            alt="User Profile"
-                            unoptimized
-                        />
-                    )}
-                </div>
-                <div className="flex justify-center">
-                    <button
-                        type="button"
-                        onClick={logOut}
-                        className="mt-6 w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Sign Out
-                    </button>
-                </div>
-            </div>
+                    <h1 className="relative z-20">Submit</h1>
+                    <div className="w-1/2 h-10 absolute bg-green-400  top-0 left-0 z-10 animate-pulse"></div>
+                </button>
+            </form>
         </div>
     );
 };
