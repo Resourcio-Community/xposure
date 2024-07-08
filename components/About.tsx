@@ -1,8 +1,7 @@
-import React from "react";
-import Image from "next/image";
 import ArrowDotted from '@/public/assets/arrow.svg'
 import Link from "next/link";
-const About: React.FC = () => {
+
+export default function About() {
   return (
     <div className="flex flex-col pt-60 w-full justify-center items-center gap-20">
       <div className="italic ">
@@ -35,11 +34,9 @@ const About: React.FC = () => {
         <Link href="/rules" className="flex flex-row justify-end items-center border-b-[0.5px] py-2 border-white">
 
           Rules and Guidelines
-          <ArrowDotted className="ml-3"/>
+          <ArrowDotted className="ml-3" />
         </Link>
       </div>
     </div>
   );
 };
-
-export default About;

@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
 	title: "Xposure",
-
 };
 
 export default function RootLayout({
