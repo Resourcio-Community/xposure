@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from 'next/image';
 
-export default function Submission() {
+const Submission = () => {
 	const { user, logOut } = useAuthContext();
 	const router = useRouter();
 
@@ -49,3 +49,5 @@ export default function Submission() {
 		</div>
 	);
 };
+
+export default Submission;
