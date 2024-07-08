@@ -1,23 +1,16 @@
 "use client"
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const router = useRouter()
-  const { signInWithGoogle, user, logOut } = useAuthContext();
-  const [photo, setPhoto] = useState("")
-  const path = usePathname()
-  useEffect(() => {
-    if (user) {
-      setPhoto(user.photoURL || "")
-    }
-  }, [user || path]);
+  const router = useRouter();
+  const { signInWithGoogle, user } = useAuthContext();
+
   const handleGoogleSignIn = async () => {
-    await signInWithGoogle();
+    const result = await signInWithGoogle();
+    if (result === undefined) return;
     router.push("/");
   };
 
@@ -49,10 +42,9 @@ export default function Navbar() {
       </div>
       <div className=" flex items-center">
         {
-          user?
-            <Image src={photo} width={39} height={39} alt="user" className="rounded-full"></Image>
+          user ?
+            <Image src={user.photoURL || ''} width={39} height={39} alt="user" className="rounded-full" unoptimized />
             :
-            // 
             <button
               type="button"
               onClick={handleGoogleSignIn}
@@ -60,14 +52,6 @@ export default function Navbar() {
             >
               Sign in with Google
             </button>
-          //   <div className="flex gap-5 py-7 ">
-          //   <Link href='/signup' className="bg-transparent  text-white px-10 py-3 h-fit  font-Poppins align-middle  flex justify-center border-[0.5px] border-text_yellow text-nowrap">
-          //     Register
-          //   </Link>
-          //   <Link href='/signin' className="bg-text_yellow  text-black px-10 py-3 h-fit  font-Poppins align-middle  flex justify-center border-none text-nowrap">
-          //     Login
-          //   </Link>
-          // </div>
         }
       </div>
     </div>
