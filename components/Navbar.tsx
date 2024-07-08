@@ -1,22 +1,12 @@
 "use client"
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const path = usePathname();
   const router = useRouter();
-  const [photo, setPhoto] = useState("");
   const { signInWithGoogle, user } = useAuthContext();
-
-  // useEffect(() => {
-  //   if (user) {
-  //     setPhoto(user.photoURL || "")
-  //   }
-  // }, [user || path]);
 
   const handleGoogleSignIn = async () => {
     const result = await signInWithGoogle();
