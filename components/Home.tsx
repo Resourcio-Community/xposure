@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         <div className='flex font-Cinzel_Decorative text-text_yellow text-[8vmax] items-center justify-center font-bold tracking-widest'>
           XPOSURE
         </div>
-        <div className='flex justify-between'>
+        <div className='flex justify-between animate-fade-up animate-delay-500 animate-ease-out'>
           <Image src='/assets/camera.svg' alt='hero' width={434} height={576} className='z-10 -mt-16 w-[22vmax]' />
         </div>
 

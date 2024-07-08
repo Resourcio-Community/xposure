@@ -4,11 +4,10 @@ import Link from 'next/link';
 
 export default function Rules() {
   return (
-    <div >
-      {/* <Navbar /> */}
-      <div className="pl-16">
-        <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent" style={{ fontSize: '64px' }}>RULES & GUIDELINES</h1>
-        <ol className="list-decimal list-inside space-y-6 text-lg" style={{ fontSize: '20px' }}>
+
+      <div className=" bg-background_black text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
+        <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl" >RULES & GUIDELINES</h1>
+        <ol className="list-decimal list-inside space-y-8 text-lg max-w-[50rem]" style={{ fontSize: '20px' }}>
           <li>Categories: <b>Mobile Photography, Camera Photography, Reel Making.</b></li>
           <li>Photo Dimensions (Mobile & Camera Photography):<b> 3:4, 3:2, 2:3, or 4:3.</b></li>
           <li>Reel Dimensions: <b>9:16</b>.</li>
@@ -55,7 +54,5 @@ export default function Rules() {
           <li>Judges&apos; Decision: Final and not subject to correspondence.</li>
         </ol>
       </div>
-      <Footer />
-    </div>
   );
 };

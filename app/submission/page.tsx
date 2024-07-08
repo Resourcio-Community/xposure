@@ -9,7 +9,7 @@ const Submission = () => {
 
 	useEffect(() => {
 		if (!user) {
-			router.push("/signin");
+			router.push("/");
 		}
 	}, [user, router]);
 
