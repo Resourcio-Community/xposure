@@ -18,7 +18,7 @@ export default function About() {
           ABOUT
         </div>
         <div className="flex text-md w-[70%] justify-center items-center text-white">
-          Welcome to Xposure, an exhilarating event hosted by Resourcio Community from July 18-20, where creativity meets competition! Dive into our diverse categories of Mobile and Camera Photography, as well as Reel Making, and capture the magic of nature, travel, and technology. With themes like "Nature in Night," "Travel & Tourist Photography," and "Explore Your City/Village," there's something for every visual storyteller. Join us for a chance to win amazing prizes and showcase your talent. Participate, create, and let your work shine on the grand stage of Xposure!
+          Welcome to Xposure, an exhilarating event hosted by Resourcio Community from July 18-20, where creativity meets competition! Dive into our diverse categories of Mobile and Camera Photography, as well as Reel Making, and capture the magic of nature, travel, and technology. With themes like &quot;Nature in Night,&quot; &quot;Travel & Tourist Photography,&quot; and &quot;Explore Your City/Village,&quot; there&apos;s something for every visual storyteller. Join us for a chance to win amazing prizes and showcase your talent. Participate, create, and let your work shine on the grand stage of Xposure!
         </div>
       </div>
       <div className="flex justify-between w-[70%] text-white md:flex-row flex-col items-center">
