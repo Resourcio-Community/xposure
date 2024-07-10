@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className="font-poppins">
+			<body className="font-poppins bg-background_black">
 				<AuthProvider>
 					<Navbar />
 					{children}

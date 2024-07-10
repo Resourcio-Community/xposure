@@ -63,7 +63,7 @@ export default function Submission() {
 
 
     return (
-        <div className="min-h-screen bg-background_black text-neutral-200 py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+        <div className="min-h-screen text-neutral-200 py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
 
             {/* <form className="">
                 <div className="">

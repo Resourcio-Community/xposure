@@ -25,7 +25,7 @@ export default function Navbar() {
           Home
         </Link>
         <Link href="" className="hover:text-text_yellow">
-          Leader Board
+          Leaderboard
         </Link>
         <Link href="/rules" className="hover:text-text_yellow">
           Rules
