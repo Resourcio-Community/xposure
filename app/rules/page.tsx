@@ -121,7 +121,7 @@ export default function Rules() {
                   </Link>
                   ) is mandatory.
                 </li>
-                <li>Submissions only through the website's <b>Submission Form</b> will be considered eligible.</li>
+                <li>Submissions only through the website&apos;s <b>Submission Form</b> will be considered eligible.</li>
               </ul>
             </li>
             <li><b>Submission Format</b>: Photos must be in <b>JPEG format</b>,highest possible resolution.</li>
@@ -182,7 +182,7 @@ export default function Rules() {
                   </Link>
                   ).</li>
                   <li>Submit the posted reel <b>Link</b> via Submission Form on the website.</li>
-                  <li>Submissions only through the website's <b>Submission Form</b> will be considered eligible.</li>
+                  <li>Submissions only through the website&apos;s <b>Submission Form</b> will be considered eligible.</li>
                   </ul></li>
             <li><b>Winners</b>: One Winner per Reel theme, selected by judges.</li>
             <li><b>Submission Format</b>: Reels must be in the highest possible resolution.</li>
