@@ -5,6 +5,11 @@ const Leaderboard = () => {
       <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl">
         LEADER BOARD
       </h1>
+      <div className="flex w-full h-[50vh] justify-center text-center items-center">
+        <h1 className=" text-text_yellow font-bold mb-8 text-accent text-3xl">
+          Coming Soon...
+        </h1>
+      </div>
     </div>
   );
 };
