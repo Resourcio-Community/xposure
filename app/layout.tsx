@@ -2,24 +2,26 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-	title: "Xposure",
+  title: "Xposure",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en">
-			<body className="font-poppins bg-background_black">
-				<AuthProvider>
-					<Navbar />
-					{children}
-				</AuthProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body className="font-poppins bg-background_black">
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </AuthProvider>
+      </body>
+    </html>
+  );
 }
