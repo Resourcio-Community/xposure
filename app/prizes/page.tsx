@@ -1,6 +1,4 @@
-// TODO: After Abhraneel or any of the other member of the design team gives a card based design,
-// and our BOSS decides which prizes should be given to the paricipants then this page shall be updated.
-const Prizes = () => {
+export default function PrizesPage() {
   return (
     <div className=" bg-background_black min-h-screen text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
       <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl">
@@ -21,5 +19,3 @@ const Prizes = () => {
     </div>
   );
 };
-
-export default Prizes;

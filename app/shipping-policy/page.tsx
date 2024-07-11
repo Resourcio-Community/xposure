@@ -1,6 +1,4 @@
-import React from "react";
-
-const page = () => {
+export default function ShippingPage() {
   return (
     <div className="text-white/60 pt-28 px-[10%] space-y-3 pb-16 min-h-[80vh]">
       <h1 className="text-[2.25vmax] font-bold">Shipping & Delivery Policy</h1>
@@ -9,5 +7,3 @@ const page = () => {
     </div>
   );
 };
-
-export default page;

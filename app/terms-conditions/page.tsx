@@ -1,6 +1,4 @@
-import React from "react";
-
-const page = () => {
+export default function TermsPage() {
   return (
     <div className="text-white/60 pt-28 px-[10%] space-y-3 pb-16">
       <h1 className="text-[2.25vmax] font-bold">Terms and Condition</h1>
@@ -103,5 +101,3 @@ const page = () => {
     </div>
   );
 };
-
-export default page;

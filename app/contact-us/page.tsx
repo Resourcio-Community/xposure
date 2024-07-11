@@ -1,6 +1,4 @@
-import React from 'react'
-
-const page = () => {
+export default function ContactPage() {
     return (
         <div className='space-y-3 text-white/70 pt-28 px-[10%] min-h-[80vh]'>
             <h1 className='text-[2.25vmax] font-bold'>
@@ -28,5 +26,3 @@ const page = () => {
         </div>
     )
 }
-
-export default page
