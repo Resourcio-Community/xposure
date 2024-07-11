@@ -14,34 +14,19 @@ export default function Footer() {
   return (
     <div className="bg-background_black w-full pt-6 justify-between space-x-5 border-t-[0.5px] border-text_yellow bottom-0 flex-col md:flex-row items-center">
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-6">
-        <a
-          href="/privacy-policy"
-          className="underline text-text_yellow/70"
-        >
+        <a href="/privacy-policy" className="underline text-text_yellow/70">
           Privacy Policy
         </a>
-        <a
-          href="https://merchant.razorpay.com/policy/OWf9snkSTasueA/terms"
-          className="underline text-text_yellow/70"
-        >
+        <a href="terms-conditions" className="underline text-text_yellow/70">
           Terms & conditions
         </a>
-        <a
-          href="https://merchant.razorpay.com/policy/OWf9snkSTasueA/refund"
-          className="underline text-text_yellow/70"
-        >
+        <a href="/refund-policy" className="underline text-text_yellow/70">
           Refund policy
         </a>
-        <a
-          href="https://merchant.razorpay.com/policy/OWf9snkSTasueA/shipping"
-          className="underline text-text_yellow/70"
-        >
+        <a href="/shipping-policy" className="underline text-text_yellow/70">
           Shipping policy
         </a>
-        <a
-          href="https://merchant.razorpay.com/policy/OWf9snkSTasueA/contact_us"
-          className="underline text-text_yellow/70"
-        >
+        <a href="/contact-us" className="underline text-text_yellow/70">
           Contact us
         </a>
       </div>
