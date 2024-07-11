@@ -6,27 +6,30 @@ const page = () => {
       <h1 className="text-[2.25vmax] font-bold">Terms and Condition</h1>
       <p>Last updated on Jul 10th 2024</p>
       <p>
-        The Website Owner, including subsidiaries and affiliates (“Website” or
-        “Website Owner” or “we” or “us” or “our”) provides the information
-        contained on the website or any of the pages comprising the website
-        (“website”) to visitors (“visitors”) (cumulatively referred to as “you”
-        or “your” hereinafter) subject to the terms and conditions set out in
-        these website terms and conditions, the privacy policy and any other
-        relevant terms and conditions, policies and notices which may be
-        applicable to a specific section or module of the website.
+        The Website Owner, including subsidiaries and affiliates
+        (&quot;Website&quot; or &quot;Website Owner&quot; or &quot;we&quot; or
+        &quot;us&quot; or &quot;our&quot;) provides the information contained on
+        the website or any of the pages comprising the website
+        (&quot;website&quot;) to visitors (&quot;visitors&quot;) (cumulatively
+        referred to as &quot;you&quot; or &quot;your&quot; hereinafter) subject
+        to the terms and conditions set out in these website terms and
+        conditions, the privacy policy and any other relevant terms and
+        conditions, policies and notices which may be applicable to a specific
+        section or module of the website.
       </p>
       <p>
         Welcome to our website. If you continue to browse and use this website
         you are agreeing to comply with and be bound by the following terms and
         conditions of use, which together with our privacy policy govern
-        Resourcio Community''s relationship with you in relation to this
+        Resourcio Community&apos;s relationship with you in relation to this
         website.
       </p>
       <p>
-        The term 'Resourcio Community' or 'us' or 'we' refers to the owner of
-        the website whose registered/operational office is Satgachia,purba
-        bardhaman Purba Bardhaman WEST BENGAL 713422. The term 'you' refers to
-        the user or viewer of our website.
+        The term &apos;Resourcio Community&apos; or &apos;us&apos; or
+        &apos;we&apos; refers to the owner of the website whose
+        registered/operational office is Satgachia,purba bardhaman Purba
+        Bardhaman WEST BENGAL 713422. The term &apos;you&apos; refers to the
+        user or viewer of our website.
       </p>
       <p>The use of this website is subject to the following terms of use:</p>
       <ul>
@@ -76,7 +79,7 @@ const page = () => {
         </li>
         <li>
           8. You may not create a link to this website from another website or
-          document without Resourcio Community’s prior written consent.
+          document without Resourcio Community&apos;s prior written consent.
         </li>
         <li>
           9. Your use of this website and any dispute arising out of such use of
@@ -92,10 +95,10 @@ const page = () => {
         from time to time
       </p>
       <p className="italic">
-        Disclaimer: The above content is created at Soumyajit Mondal's sole
+        Disclaimer: The above content is created at Soumyajit Mondal&apos;s sole
         discretion. Razorpay shall not be liable for any content provided here
         and shall not be responsible for any claims and liability that may arise
-        due to merchant’s non-adherence to it.
+        due to merchant&apos;s non-adherence to it.
       </p>
     </div>
   );
