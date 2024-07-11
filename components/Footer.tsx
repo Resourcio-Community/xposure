@@ -15,7 +15,7 @@ export default function Footer() {
     <div className="bg-background_black w-full pt-6 justify-between space-x-5 border-t-[0.5px] border-text_yellow bottom-0 flex-col md:flex-row items-center">
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-6">
         <a
-          href="https://merchant.razorpay.com/policy/OWf9snkSTasueA/privacy"
+          href="/privacy-policy"
           className="underline text-text_yellow/70"
         >
           Privacy Policy
