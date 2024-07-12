@@ -3,7 +3,7 @@ import ArrowDotted from "@/public/assets/arrow.svg";
 
 export default function Home() {
   return (
-    <div className="flex w-full flex-col py-18">
+    <div className="flex w-full flex-col py-28">
       <div className="flex font-poppins text-white text-sm md:text-xl items-center justify-center pt-20 font-light tracking-widest">
         A photography & reel making contest
       </div>
