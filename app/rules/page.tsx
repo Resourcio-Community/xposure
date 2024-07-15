@@ -7,11 +7,11 @@ export default function Rules() {
 
   return (
     <div className="text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8 px-4 sm:px-0">
-      <h1 className="text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl text-center">
+      <h1 className="text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-5xl md:text-6xl text-center">
         RULES & GUIDELINES
       </h1>
 
-      <div className="flex space-x-8 text-lg">
+      <div className="flex space-x-4 px-7 md:px-0 md:space-x-8 text-lg">
         <button
           className={`${
             activeTab === "themes" ? "border-b-4 border-text_yellow" : ""
@@ -75,8 +75,8 @@ export default function Rules() {
       )}
 
       {activeTab === "photography" && (
-        <div className="text-lg max-w-[50rem] space-y-4 px-2 sm:px-0">
-          <h2 className="text-2xl font-bold mb-4 text-text_yellow">
+        <div className="md:text-lg text-sm max-w-[50rem] space-y-4  md:px-2  ">
+          <h2 className="md:text-2xl text-xl font-bold mb-4  text-text_yellow">
             Photography Guidelines
           </h2>
           <ol className="list-decimal list-inside space-y-2">
@@ -201,11 +201,11 @@ export default function Rules() {
       )}
 
       {activeTab === "reels" && (
-        <div className="text-lg max-w-[50rem] space-y-4 px-2 sm:px-0">
-          <h2 className="text-2xl font-bold mb-4 text-text_yellow">
+        <div className="md:text-lg text-sm max-w-[50rem] space-y-4 px-2 sm:px-0">
+          <h2 className="md:text-2xl text-xl font-bold mb-4  text-text_yellow">
             Reels Guidelines
           </h2>
-          <ol className="list-decimal list-inside space-y-2">
+          <ol className="list-decimal list-inside space-y-2 ">
             <li>
               Reel Dimensions: <b>9:16</b>.
             </li>

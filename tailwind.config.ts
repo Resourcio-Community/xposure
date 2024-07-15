@@ -12,6 +12,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "prizebg":"url(/assets/prizebg.svg)"
       },
       colors:{
         background_black:"#0B0B0B",
