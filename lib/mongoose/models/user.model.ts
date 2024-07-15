@@ -3,11 +3,13 @@ import mongoose, { Schema } from "mongoose";
 const ImageSchema: Schema = new mongoose.Schema({
     url: {
         type: String,
-        default: null
+        default: null,
+        required: true
     },
     theme: {
         type: String,
-        default: null
+        default: null,
+        required: true
     }
 })
 
@@ -17,17 +19,15 @@ const UserSchema: Schema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-    image_1: ImageSchema,
-    image_2: ImageSchema,
-    image_3: ImageSchema,
+    images: [ImageSchema],
     reel: {
         type: String,
         default: null
     },
-    payments: {
+    payments: [{
         type: String,
         default: null
-    }
+    }]
 },
     {
         toJSON: {
@@ -42,6 +42,10 @@ const UserSchema: Schema = new mongoose.Schema({
 );
 
 UserSchema.index({ email: 1 })
+
+UserSchema.path('images').validate(function(v){
+    return v.length <= 3;
+}, 'Max 3 images can be uploaded')
 
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 
