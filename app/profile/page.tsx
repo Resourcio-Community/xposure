@@ -104,7 +104,7 @@ const Pf = () => {
         <div className="flex-col lg:hidden font-thin border-l-2 border-white border-dotted  text-[0.75rem] italic">
           <div className="tracking-[0.16rem] text-center ">
             {" "}
-            " A good photograph is knowing where to stand.”
+            &quot; A good photograph is knowing where to stand.”
           </div>
           <div className="pb-12 flex justify-center tracking-[0.3rem]">
             - Ansel Adams
@@ -116,7 +116,7 @@ const Pf = () => {
           <div className="flex-col small:hidden lg:inline-block font-thin lg:border-none border-l-2 border-white border-dotted L15:text-[1.5rem] text-[0.75rem] italic">
             <div className="tracking-[0.16rem] text-center ">
               {" "}
-              " A good photograph is knowing where to stand.”
+              &quot; A good photograph is knowing where to stand.”
             </div>
             <div className="pb-12 lg:pb-0 flex justify-center tracking-[0.3rem]">
               - Ansel Adams
