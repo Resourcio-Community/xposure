@@ -12,6 +12,7 @@
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.7.2",
     "firebase": "^10.12.3",
+    "mongoose": "^8.5.1",
     "next": "14.2.4",
     "next-svgr": "^0.0.2",
     "razorpay": "^2.9.4",
