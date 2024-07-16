@@ -6,8 +6,8 @@ export async function createOrder(
   receipt: string
 ) {
   const instance = new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_KEY_ID as string,
-    key_secret: process.env.NEXT_PUBLIC_KEY_SECRET as string,
+    key_id: process.env.NEXT_PUBLIC_RAZORPAY_ID as string,
+    key_secret: process.env.NEXT_PUBLIC_RAZORPAY_SECRET as string,
   })
   const data = await instance.orders.create({amount:amount,currency:currency,receipt:receipt})
   // console.log(data.id);
