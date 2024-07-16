@@ -12,7 +12,7 @@ const logoStyle = "h-6 w-6 text-text_yellow hover:text-white";
 
 export default function Footer() {
   return (
-    <div className="bg-background_black w-full pt-6 justify-between space-x-5 border-t-[0.5px] border-text_yellow bottom-0 flex-col md:flex-row items-center">
+    <div className="w-full pt-6 justify-between space-x-5 border-t-[0.5px] border-text_yellow bottom-0 flex-col md:flex-row items-center">
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-6">
         <a href="/privacy-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
           Privacy Policy
@@ -33,7 +33,7 @@ export default function Footer() {
       <div className="flex justify-between space-x-5 w-full bottom-0 flex-col md:flex-row items-center md:items-end">
         <div className="flex justify-start mx-5 my-2">
           <Image
-            src="/assets/Resourcio.png"
+            src="/assets/resourcio.png"
             alt="logo"
             width={180}
             height={40}

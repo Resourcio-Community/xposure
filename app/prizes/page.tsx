@@ -2,7 +2,7 @@ import ArrowDotted from "@/public/assets/arrow.svg";
 
 export default function PrizesPage() {
   return (
-    <div className="w-full bg-background_black min-h-80 text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
+    <div className="w-full min-h-80 text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
       <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl">
         PRIZES
       </h1>

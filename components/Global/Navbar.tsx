@@ -59,12 +59,12 @@ export default function Navbar() {
                 className="rounded-full"
                 unoptimized
               />
-              <a
+              <Link
                 href="/profile"
                 className="px-12 py-2 hover:bg-neutral-200 duration-300"
               >
                 Profile
-              </a>
+              </Link>
               <button
                 onClick={logOut}
                 className="px-12 py-2 hover:bg-red-400 duration-300"

@@ -77,32 +77,6 @@ export default function Submission() {
                         }}
                     />
                 </div>
-                <div className="">
-                    <label>Image-2</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        name="image_2"
-                        className=""
-                        onChange={(e) => {
-                            if (!e.target.files) return
-                            setImages({ ...images, [e.target.name]: e.target.files[0] })
-                        }}
-                    />
-                </div>
-                <div className="">
-                    <label>Image-3</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        name="image_3"
-                        className=""
-                        onChange={(e) => {
-                            if (!e.target.files) return
-                            setImages({ ...images, [e.target.name]: e.target.files[0] })
-                        }}
-                    />
-                </div>
 
                 <div className="flex gap-4">
                     <button className="bg-indigo-600 px-3" onClick={handleUpload}>Upload</button>
@@ -119,7 +93,7 @@ export default function Submission() {
           <UploadForm />
         </div>
         <button
-          onClick={() => {}}
+          onClick={() => { }}
           className="border px-6 py-2 bg-text_yellow text-black hover:bg-text_yellow/70 duration-300 relative w-fit"
         >
           <h1 className="relative z-20">Submit</h1>
