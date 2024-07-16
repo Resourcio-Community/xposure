@@ -9,7 +9,7 @@ export async function createOrder(
     key_id: process.env.NEXT_PUBLIC_RAZORPAY_ID as string,
     key_secret: process.env.NEXT_PUBLIC_RAZORPAY_SECRET as string,
   })
-  const data = await instance.orders.create({amount:amount,currency:currency,receipt:receipt})
+  const data = await instance.orders.create({ amount: amount, currency: currency, receipt: receipt })
   // console.log(data.id);
   return data.id
 }
