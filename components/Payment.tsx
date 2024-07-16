@@ -15,7 +15,7 @@ const processPayment = async () => {
   try {
    const orderId= await createOrder(2500,"INR","receipt#3");
    const options = {
-    key: process.env.NEXT_PUBLIC_KEY_ID,
+    key: process.env.NEXT_PUBLIC_RAZORPAY_ID,
     amount: 2500,
     currency: currency,
     name: name,
