@@ -3,6 +3,7 @@ import { DBUser, ILeaderBoard } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 import { Document } from "mongoose";
+import { revalidatePath } from "next/cache";
 
 
 export async function fetchUser(email: string): Promise<Document | null> {
@@ -118,7 +119,7 @@ export async function getLeaderboard(): Promise<Array<ILeaderBoard> | []> {
                 }
             },
         ])
-        
+        revalidatePath('/leaderboard')
         return leaderboardData
     }
     catch (error: any) {
