@@ -4,8 +4,9 @@ import Table from "./Table";
 import Image from "next/image"; // Import the Image component from the correct module
 
 export default async function Leaderboard() {
-    const data: Array<ILeaderBoard> = await getLeaderboard()
+    const data: Array<ILeaderBoard> = await getLeaderboard();
     console.log(data);
+    
     const renderTicks = (count:number) => {
         const ticks = [];
         for (let i = 0; i < 3; i++) {
@@ -17,10 +18,10 @@ export default async function Leaderboard() {
         }
         return <div className="flex">{ticks}</div>;
     };
+
     return (
         <div className="flex overflow-scroll">
-            
-                <Table
+            <Table
                 label="Placement Details"
                 columns={[
                   "Sl.No",
@@ -28,20 +29,15 @@ export default async function Leaderboard() {
                   "Participant Name",
                   "Photographs",
                   "Reels",
-                  
                 ]}
                 rows={data.map((item, idx) => [
                   idx + 1,
-                  <Image src="/assets/user.svg" alt="" width={30} height={30} className="ml-0 md:ml-2"/>,
+                  <Image key={`user-${idx}`} src="/assets/user.svg" alt="" width={30} height={30} className="ml-0 md:ml-2"/>,
                   "John Doe",
-                  renderTicks(item.imageCount),
-                  renderTicks(item.reelCount),
-                  
+                  <div key={`images-${idx}`}>{renderTicks(item.imageCount)}</div>,
+                  <div key={`reels-${idx}`}>{renderTicks(item.reelCount)}</div>,
                 ])}
-              />
-                
-            
-            
+            />
         </div>
-    )
+    );
 }
