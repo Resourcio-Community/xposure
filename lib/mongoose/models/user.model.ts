@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const ImageSchema: Schema = new mongoose.Schema({
+const ImageReelSchema: Schema = new mongoose.Schema({
     url: {
         type: String,
         default: null,
@@ -19,14 +19,12 @@ const UserSchema: Schema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-    images: [ImageSchema],
-    reel: {
-        type: String,
-        default: null
-    },
+    images: [ImageReelSchema],
+    reels: [ImageReelSchema],
     payments: [{
         type: String,
-        default: null
+        default: null,
+        required: true
     }]
 },
     {
@@ -43,9 +41,9 @@ const UserSchema: Schema = new mongoose.Schema({
 
 UserSchema.index({ email: 1 })
 
-UserSchema.path('images').validate(function(v){
-    return v.length <= 3;
-}, 'Max 3 images can be uploaded')
+// UserSchema.path('images').validate(function(v){
+//     return v.length <= 3;
+// }, 'Max 3 images can be uploaded')
 
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 

@@ -2,19 +2,14 @@ import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { MdOutlineFileDownload } from "react-icons/md";
+import ImageBox from "./ImageBox";
+import VideoBox from "./VideoBox";
 
 
 interface ProfileProps {
     source: string;
     title: string;
     description: string;
-}
-
-interface ImageProps {
-    image: string[];
-}
-interface VidProps {
-    reel: string[];
 }
 
 const Data: any = [
@@ -55,7 +50,7 @@ export default function Profile() {
                             <div className="w-full h-[3rem]"></div>
                             <div className=" justify-center flex w-full">
                                 {Data.map((data: any, idx: number) => (
-                                    <VidBox key={idx} reel={data.reel} />
+                                    <VideoBox key={idx} reel={data.reel} />
                                 ))}
                             </div>
                         </div>
@@ -73,7 +68,7 @@ export default function Profile() {
 };
 
 
-const Pf = () => {
+function Pf() {
     return (
         <div className="w-full flex mb-8 justify-center font-poppins h-fit ">
             <div className=" w-[23rem] md:w-[43.5rem] lg:h-fit lg:w-[60rem] xl:h-fit xl:w-full md:h-fit  h-fit ">
@@ -104,14 +99,9 @@ const Pf = () => {
     );
 };
 
-const Head: React.FC<ProfileProps> = ({ source, title, description }) => {
+function Head({ source, title, description }: ProfileProps) {
     return (
         <div className=" ml-0 flex items-center  w-full h-full">
-            {/* <div className=' flex items-center rounded-full justify-center w-[8.7rem] h-[8.5rem]  border-dotted border-[#ffe39c] border-2 '>
-                  <div className='relative rounded-full w-[.2rem] h-[6rem]  pr-[6rem]'>
-                      <Image className='rounded-full' fill={true} alt='' src={source} />
-                  </div>
-              </div> */}
             <div className="flex items-center rounded-full justify-center xxl:p-[0.85rem] md:w-[6.5rem] md:h-[6.5rem] xxl:w-[11rem] xxl:h-[11rem] w-[4.5rem] h-[4.5rem] border-dotted border-[#ffe39c] border-2">
                 <div className="relative rounded-full xxl:w-[9.3rem] xxl:h-[9.3rem] md:w-[5rem] md:h-[5rem] w-[3.5rem] md:p-8 h-[3.5rem]">
                     <Image className="rounded-full" fill={true} alt="" src={source} />
@@ -127,19 +117,13 @@ const Head: React.FC<ProfileProps> = ({ source, title, description }) => {
                         {description}
                     </p>
                 </div>
-                <div className="flex justify-between items-center">
+                {/* <div className="flex justify-between items-center">
                     <div className="ml-4 flex xxl:text-[4.5rem] xl:text-[3.8rem] md:text-[2.65rem] text-[1.5rem]  w-fit h-fit ">
                         <FaInstagram />
                         <CiLinkedin />
                     </div>
                     <div>
                         <div className="mr-8 w-full  flex items-center justify-center ">
-                            {/* <button  className=' flex justify-center border p-[1.2rem]  w-full  border-[#ffe39c] text-[#ffe39c] text-[.6rem]' type="button">
-                                      <div className='flex gap-2 text-[1.3rem] '>
-                                      <div>Certificate </div>
-                                      <div className='text-[#ffe39c] flex items-center'><MdOutlineFileDownload /></div>
-                                      </div>
-                                  </button> */}
                             <div className=" w-full h-fit flex justify-center">
                                 <button
                                     type="button"
@@ -153,74 +137,8 @@ const Head: React.FC<ProfileProps> = ({ source, title, description }) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
-        </div>
-    );
-};
-
-const ImageBox: React.FC<ImageProps> = ({ image }) => {
-    const imgs = image.slice(0, 3);
-    const [img1, img2, img3] = imgs;
-    return (
-        <>
-            <div className="flex lg:hidden w-fit lg:gap-[4rem] md:gap-[2rem] gap-[0.4rem] h-fit">
-                {imgs.map((img, idx) => (
-                    <div
-                        key={idx}
-                        className="relative lg:w-[16rem] lg:h-[16rem] xl:w-[18.75rem] xl:h-[18.75rem] md:w-[13.1rem] md:h-[13.1rem] w-[7.5rem] h-[7.5rem] border border-box_yellow"
-                    >
-                        <Image
-                            key={idx}
-                            src={img}
-                            alt=""
-                            fill={true}
-                            className="object-cover  "
-                        />
-                    </div>
-                ))}
-            </div>
-            <div className="flex small:hidden lg:flex L15:w- xxl:w-[93rem] xl:w-[60rem] xxl:gap-16 gap-8 w-fit  h-fit">
-                <div className=" relative L15:w-[40rem] L15:h-[32rem] xxl:w-[48rem] xxl:h-[38rem] w-[18.8rem] h-[18.8rem] flex items-center border border-box_yellow ">
-                    <div className=" relative w-full h-[14.9rem]">
-                        <Image src={img1} fill={true} alt="" className="object-cover " />
-                    </div>
-                </div>
-                <div className=" relative L15:w-[40rem] L15:h-[32rem] xxl:w-[48rem] xxl:h-[38rem] w-[18.8rem] flex justify-center h-[18.8rem] border border-box_yellow ">
-                    <div className="relative w-[14.9rem] h-full">
-                        <Image src={img2} fill={true} alt="" className="object-cover " />
-                    </div>
-                </div>
-                <div className=" relative L15:w-[40rem] L15:h-[32rem] xxl:w-[58rem] xxl:h-[38rem] w-[18.8rem] h-[18.8rem] flex justify-center border border-box_yellow ">
-                    <div className="relative w-[14.9rem] h-full">
-                        <Image src={img3} fill={true} alt="" className="object-cover " />
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-};
-
-const VidBox: React.FC<VidProps> = ({ reel }) => {
-
-    const vids = reel.slice(0, 2);
-
-    return (
-        <div className="flex xxl:gap-8 xl:gap-0 gap-8 w-fit h-fit">
-            {vids.map((vid, idx) => (
-                <div
-                    key={idx}
-                    className=" xl:ml-4 relative L15:w-[18rem] L15:h-[32rem] xxl:h-[38rem] xxl:w-[20rem]  lg:w-[10.54rem] md:w-[10.42rem] md:h-[17rem] lg:h-[18.75rem] w-[6.3rem] h-[11.25rem] border border-box_yellow "
-                >
-                    <iframe
-                        className="object-cover  "
-                        key={idx}
-                        width="100%"
-                        height="100%"
-                        src={vid}
-                    />
-                </div>
-            ))}
         </div>
     );
 };
