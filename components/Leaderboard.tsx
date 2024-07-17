@@ -2,9 +2,11 @@ import { getLeaderboard } from "@/lib/actions/user.action";
 import { ILeaderBoard } from "@/types";
 import Table from "./Table";
 import Image from "next/image";
+import { revalidateTag } from "next/cache";
 
 export default async function Leaderboard() {
     const data: Array<ILeaderBoard> = await getLeaderboard();
+    revalidateTag('leaderboard')
 
     const renderTicks = (count: number) => {
         const ticks = [];
