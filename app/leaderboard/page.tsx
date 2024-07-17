@@ -1,11 +1,31 @@
 import Leaderboard from "@/components/Leaderboard";
+import { FaSearch } from 'react-icons/fa';
 
 export default function LeaderboardPage() {
+  
   return (
-    <div className="min-h-screen text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
-      <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl">
+    <div className="min-h-screen text-neutral-200 flex flex-col pt-28 pb-20 gap-8">
+      <div className="flex flex-col md:flex-row px-2 md:px-20">
+      <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-3 md:mb-8 text-accent text-4xl md:text-6xl">
         LEADER BOARD
       </h1>
+      <div className="flex h-12  md:justify-end md:ml-auto border-b-text_yellow border-b-[0.5px] bg-transparent">
+      <button
+        className="flex items-center justify-center px-4 "
+       
+      >
+        <FaSearch className="h-5 w-5 text-text_yellow" />
+      </button>
+      <input
+        type="text"
+        placeholder="Search..."
+        className="px-4 w-full bg-transparent focus:outline-none"
+        
+        
+      />
+      
+    </div>
+      </div>
       <div className="flex w-full h-[50vh] justify-center text-center items-center">
         <Leaderboard />
       </div>

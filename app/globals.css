@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 /* To Hide the Scroll Bar */
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
 }
 
