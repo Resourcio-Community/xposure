@@ -18,8 +18,6 @@ type DBUser = {
 }
 
 type ILeaderBoard = {
-    name:string;
-    image:string;
     email: string;
     imageCount: number;
     reelCount: number;
