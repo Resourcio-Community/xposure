@@ -1,11 +1,13 @@
 interface TableProps {
-    label: string;
-    columns: Array<string>;
-    rows: Array<Array<any>>;
+  label: string;
+  columns: Array<string>;
+  rows: Array<Array<any>>;
 }
-const Table = ({ label, columns, rows }: TableProps) => (
+
+export default function Table({ label, columns, rows }: TableProps) {
+  return (
     <div className="overflow-scroll shadow-md rounded-lg px-2">
-      
+
       <div className="overflow-scroll w-full rounded-b-lg">
         <table className="border-collapse border-spacing-0 bg-pure-white shadow-lg text-xs sm:text-base">
           <thead>
@@ -34,5 +36,5 @@ const Table = ({ label, columns, rows }: TableProps) => (
         </table>
       </div>
     </div>
-  );
-  export default Table;
+  )
+}
