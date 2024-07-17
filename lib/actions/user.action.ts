@@ -1,8 +1,9 @@
 'use server'
-import { DBUser } from "@/types";
+import { DBUser, ILeaderBoard } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 import { Document } from "mongoose";
+
 
 export async function fetchUser(email: string): Promise<Document | null> {
     try {
@@ -103,7 +104,7 @@ export async function getImageReelCountForAnUser(email: string): Promise<Array<D
 }
 
 
-export async function leaderboard(): Promise<Array<Document>> {
+export async function getLeaderboard(): Promise<Array<ILeaderBoard> | []> {
     try {
         await ConnectDB();
 
@@ -117,10 +118,11 @@ export async function leaderboard(): Promise<Array<Document>> {
                 }
             },
         ])
-
+        
         return leaderboardData
     }
     catch (error: any) {
         throw new Error(error.message)
     }
+
 }

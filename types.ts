@@ -17,4 +17,10 @@ type DBUser = {
     txn: string;
 }
 
-export type { FormEvent, MouseEvent, ChangeEvent, DBUser };
+type ILeaderBoard = {
+    email: string;
+    imageCount: number;
+    reelCount: number;
+}
+
+export type { FormEvent, MouseEvent, ChangeEvent, DBUser, ILeaderBoard };
