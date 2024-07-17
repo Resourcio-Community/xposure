@@ -3,6 +3,7 @@ import { DBUser, ILeaderBoard, imageCountType } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 import { Document } from "mongoose";
+import { revalidateTag } from "next/cache";
 
 
 export async function fetchUser(email: string): Promise<Document | null> {
@@ -80,7 +81,7 @@ export async function manipulateUser({ email, img_1, imgTheme_1, img_2, imgTheme
 }
 
 
-export async function getImageReelCountForAnUser(email: string): Promise<Array<imageCountType>|[]> {
+export async function getImageReelCountForAnUser(email: string): Promise<Array<imageCountType> | []> {
     try {
         await ConnectDB();
 
@@ -95,7 +96,7 @@ export async function getImageReelCountForAnUser(email: string): Promise<Array<i
                 }
             },
         ])
-
+        revalidateTag('leaderboard')
         return imageReel
     }
     catch (error: any) {
