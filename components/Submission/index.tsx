@@ -2,10 +2,12 @@
 import { useAuthContext } from "@/context/AuthContext";
 import { imageRef } from "@/lib/firebase/storage";
 import { getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { FormEvent, MouseEvent } from "@/types";
+import { FormEvent, MouseEvent, imageCountType } from "@/types";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UploadForm from "./UploadForm";
+import { getImageReelCountForAnUser } from "@/lib/actions/user.action";
+import { Document } from "mongoose";
 
 interface uploadType {
   image_1?: File | null;
@@ -13,13 +15,15 @@ interface uploadType {
   image_3?: File | null;
 }
 
+
 export default function Submission() {
   const { user } = useAuthContext();
   const router = useRouter();
   const [images, setImages] = useState<uploadType>();
   const [uploaded, setUploaded] = useState(0);
+  
 
-  const upload = (items: any) => {
+  const upload: any = (items: any) => {
     items.forEach((item: any) => {
       const fileName = item.label + "_" + new Date().getTime();
       if (user && user.email) {
@@ -63,43 +67,9 @@ export default function Submission() {
 
   return (
     <div className="min-h-screen text-neutral-200 py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-      {/* <form className="">
-                <div className="">
-                    <label>Image-1</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        name="image_1"
-                        className=""
-                        onChange={(e) => {
-                            if (!e.target.files) return
-                            setImages({ ...images, [e.target.name]: e.target.files[0] })
-                        }}
-                    />
-                </div>
-
-                <div className="flex gap-4">
-                    <button className="bg-indigo-600 px-3" onClick={handleUpload}>Upload</button>
-                    <button type="submit" className="bg-indigo-600 px-3" disabled={uploaded >= 1 ? false : true}>Submit</button>
-                </div>
-            </form> */}
-      <form
-        action=""
-        className=" flex flex-col gap-8 justify-center items-center"
-      >
-        <div className=" flex gap-8">
-          <UploadForm />
-          <UploadForm />
-          <UploadForm />
-        </div>
-        <button
-          onClick={() => { }}
-          className="border px-6 py-2 bg-text_yellow text-black hover:bg-text_yellow/70 duration-300 relative w-fit"
-        >
-          <h1 className="relative z-20">Submit</h1>
-          <div className="w-1/2 h-10 absolute bg-green-400  top-0 left-0 z-10 animate-pulse"></div>
-        </button>
-      </form>
+      <div className=" flex gap-8">
+        <UploadForm />
+      </div>
     </div>
   );
 }
