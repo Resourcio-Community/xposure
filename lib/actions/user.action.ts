@@ -1,13 +1,14 @@
 'use server'
-
+import { DBUser } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
+import { Document } from "mongoose";
 
-export async function fetchUser(email: string) {
+export async function fetchUser(email: string): Promise<Document | null> {
     try {
         await ConnectDB();
 
-        return await User.findOne({ email });
+        return await User.findOne({ email }, { _id: 0 });
     }
     catch (error: any) {
         throw new Error(`Failed to fetch user: ${error.message}`);
@@ -15,61 +16,60 @@ export async function fetchUser(email: string) {
 }
 
 
-interface Params {
-    email: string,
-    url_1: string,
-    theme_1: string,
-    url_2: string,
-    theme_2: string,
-    url_3: string,
-    theme_3: string,
-    reel: string,
-    txn: string
-}
+export async function manipulateUser({ email, img_1, imgTheme_1, img_2, imgTheme_2, img_3, imgTheme_3, reel_1, reelTheme_1, reel_2, reelTheme_2, txn }: DBUser): Promise<string> {
 
-export async function manipulateUser({ email, url_1, theme_1, url_2, theme_2, url_3, theme_3, reel, txn }: Params): Promise<void | string> {
+    let temp, images = [], reels = [], payments = []
+
+    if (img_1 && imgTheme_1) {
+        temp = { url: img_1, theme: imgTheme_1 }
+        images.push(temp)
+    }
+
+    if (img_2 && imgTheme_2) {
+        temp = { url: img_2, theme: imgTheme_2 }
+        images.push(temp)
+    }
+
+    if (img_3 && imgTheme_3) {
+        temp = { url: img_3, theme: imgTheme_3 }
+        images.push(temp)
+    }
+
+    if (reel_1 && reelTheme_1) {
+        temp = { url: reel_1, theme: reelTheme_1 }
+        reels.push(temp)
+    }
+
+    if (reel_2 && reelTheme_2) {
+        temp = { url: reel_2, theme: reelTheme_2 }
+        reels.push(temp)
+    }
+
+    if (txn) payments.push(txn)
+
     try {
         await ConnectDB();
-
-        let temp
-        let images = []
-        if (url_1 && theme_1) {
-            temp = { url: url_1, theme: theme_1 }
-            images.push(temp)
-        }
-
-        if (url_2 && theme_2) {
-            temp = { url: url_2, theme: theme_2 }
-            images.push(temp)
-        }
-
-        if (url_3 && theme_3) {
-            temp = { url: url_3, theme: theme_3 }
-            images.push(temp)
-        }
-
 
         const existingUser = await User.findOne({ email })
 
         if (!existingUser) {
-            const details = {
-                email,
-                images,
-                reel,
-                payments: [txn]
-            }
+            const details = { email, images, reels, payments }
 
-            return await User.create(details)
+            const user = await User.create(details)
+
+            console.log(user)
+            return "User Created"
         }
 
         else {
-            const user = await User.findOneAndUpdate(
+            const updatedUser = await User.findOneAndUpdate(
                 { email },
-                { $push: { images } },
+                { $push: { images, reels, payments } },
                 { new: true }
             )
-            console.log(user);
-            return "User updated"
+
+            console.log(updatedUser)
+            return "User Updated"
         }
 
     }
@@ -79,18 +79,48 @@ export async function manipulateUser({ email, url_1, theme_1, url_2, theme_2, ur
 }
 
 
-export async function getImageCount(email: string) {
+export async function getImageReelCountForAnUser(email: string): Promise<Array<Document>> {
     try {
         await ConnectDB();
 
-        const imageCount = await User.aggregate([
+        const imageReel = await User.aggregate([
             { $match: { email } },
-            { $project: { count: { $size: '$images' } } }
+            {
+                $project: {
+                    _id: 0,
+                    email: 1,
+                    imageCount: { $size: '$images' },
+                    reelCount: { $size: '$reels' }
+                }
+            },
         ])
 
-        return imageCount
+        return imageReel
     }
     catch (error: any) {
         throw new Error(error.message);
+    }
+}
+
+
+export async function leaderboard(): Promise<Array<Document>> {
+    try {
+        await ConnectDB();
+
+        const leaderboardData = await User.aggregate([
+            {
+                $project: {
+                    _id: 0,
+                    email: 1,
+                    imageCount: { $size: '$images' },
+                    reelCount: { $size: '$reels' }
+                }
+            },
+        ])
+
+        return leaderboardData
+    }
+    catch (error: any) {
+        throw new Error(error.message)
     }
 }
