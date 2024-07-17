@@ -1,5 +1,5 @@
 'use server'
-import { DBUser, ILeaderBoard } from "@/types";
+import { DBUser, ILeaderBoard, imageCountType } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 import { Document } from "mongoose";
@@ -80,7 +80,7 @@ export async function manipulateUser({ email, img_1, imgTheme_1, img_2, imgTheme
 }
 
 
-export async function getImageReelCountForAnUser(email: string): Promise<Array<Document>> {
+export async function getImageReelCountForAnUser(email: string): Promise<Array<imageCountType>|[]> {
     try {
         await ConnectDB();
 
