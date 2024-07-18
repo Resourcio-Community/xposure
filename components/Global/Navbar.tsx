@@ -65,6 +65,40 @@ export default function Navbar() {
               >
                 Profile
               </Link>
+              <div className="md:hidden flex flex-col items-center gap-2 mt-4">
+                <Link
+                  href="/"
+                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/leaderboard"
+                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
+                >
+                  Leaderboard
+                </Link>
+                <Link
+                  href="/rules"
+                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
+                >
+                  Rules
+                </Link>
+                <Link
+                  href="/prizes"
+                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
+                >
+                  Prizes
+                </Link>
+                {user && (
+                  <Link
+                    href="/submission"
+                    className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
+                  >
+                    Submission
+                  </Link>
+                )}
+              </div>
               <button
                 onClick={logOut}
                 className="px-12 py-2 hover:bg-red-400 duration-300"
