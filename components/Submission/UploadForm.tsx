@@ -22,11 +22,10 @@ export default function UploadForm() {
 
   useEffect(() => {
     async function imageCount() {
-      if (user) {
-        const photoReelCount = await getImageReelCountForAnUser(user.email as string);
-        if (photoReelCount.length !== 0) {
-          console.log(photoReelCount[0]);
-        }
+      if (!user) return
+      const photoReelCount = await getImageReelCountForAnUser(user.email as string);
+      if (photoReelCount.length !== 0) {
+        console.log(photoReelCount[0]);
       }
     }
     imageCount()
