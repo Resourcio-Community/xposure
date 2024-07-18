@@ -1,5 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 
+function imageLimit(val: Array<Object>) {
+    return val.length <= 3;
+}
+
+function reelLimit(val: Array<Object>) {
+    return val.length <= 2;
+}
+
 const ImageReelSchema: Schema = new mongoose.Schema({
     url: {
         type: String,
@@ -27,8 +35,14 @@ const UserSchema: Schema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-    images: [ImageReelSchema],
-    reels: [ImageReelSchema],
+    images: {
+        type: [ImageReelSchema],
+        validate: [imageLimit, '{PATH} exceeds the limit of 3']
+    },
+    reels: {
+        type: [ImageReelSchema],
+        validate: [reelLimit, '{PATH} exceeds the limit of 2']
+    },
     payments: [{
         type: String,
         default: null,
