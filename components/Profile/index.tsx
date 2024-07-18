@@ -1,144 +1,157 @@
+"use client";
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { MdOutlineFileDownload } from "react-icons/md";
-import ImageBox from "./ImageBox";
-import VideoBox from "./VideoBox";
-
+import { useAuthContext } from "@/context/AuthContext";
 
 interface ProfileProps {
-    source: string;
-    title: string;
-    description: string;
+	source: string;
+	title: string;
+	description: string;
 }
 
 const Data: any = [
-    {
-        id: "1",
-        image: ["/assets/placeholder.jpg", "/assets/placeholder.jpg", "/assets/placeholder.jpg", "/assets/placeholder.jpg"],
-        reel: ["https://www.youtube.com/embed/OBqw818mQ1E?si=NthCyKdicnO85tmt", "https://www.youtube.com/embed/OBqw818mQ1E?si=NthCyKdicnO85tmt"],
-        profileImg: '/assets/placeholder.jpg',
-        name: "John Doe",
-        description: "#photographer #content creator",
-    },
+	{
+		id: "1",
+		image: [
+			"/assets/placeholder.jpg",
+			"/assets/placeholder.jpg",
+			"/assets/placeholder.jpg",
+			"/assets/placeholder.jpg",
+		],
+		reel: [
+			"https://www.youtube.com/embed/OBqw818mQ1E?si=NthCyKdicnO85tmt",
+			"https://www.youtube.com/embed/OBqw818mQ1E?si=NthCyKdicnO85tmt",
+		],
+		profileImg: "/assets/placeholder.jpg",
+		name: "John Doe",
+		description: "#photographer #content creator",
+	},
 ];
 
 export default function Profile() {
-    return (
-        <div className="text-white w-screen h-fit min-h-screen flex flex-col items-center pt-28 pb-20 gap-8 ">
-            <div className="md:w-full xl:h-[3rem]"></div>
-            <div className="w-full h-full flex justify-center">
-                <div className="w-fit  h-fit">
-                    <div className="xxl:w-[137rem] xxl:h-fit">
-                        <div className="xxl:w-[95rem] xxl:h-fit lg:w-[63rem] xl:pl-0 lg:pl-[1.4rem] pr-8 w-[24rem] h-fit">
-                            {Data.map((data: any, idx: number) => (
-                                <Head
-                                    key={idx}
-                                    source={data.profileImg}
-                                    title={data.name}
-                                    description={data.description}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div className="  flex justify-center xl:mr-[0.8rem] mt-[3rem] mb-4 ">
-                        <div className=" xl:flex  w-fit h-fit">
-                            {Data.map((data: any, idx: number) => (
-                                <ImageBox key={idx} image={data.image} />
-                            ))}
+	const { user } = useAuthContext();
 
-                            <div className="w-full h-[3rem]"></div>
-                            <div className=" justify-center flex w-full">
-                                {Data.map((data: any, idx: number) => (
-                                    <VideoBox key={idx} reel={data.reel} />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="xl:w-full xl:h-[4.941rem]"></div>
-                    <div className="xl:w-full xl:h-fit mt-[12rem]   xl:flex xl:justify-center ">
-                        <div className="xl:w-full  xl:h-fit">
-                            <Pf />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
+	return (
+		<div className="text-white w-full min-h-screen flex flex-col items-center pt-28 pb-20 gap-8">
+			<div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+				{Data.map((data: any, idx: number) => (
+					<Head
+						key={idx}
+						source={data.profileImg}
+						title={data.name}
+						description={data.description}
+					/>
+				))}
 
+				<div className="mt-16">
+					<h2 className="text-3xl font-bold mb-8 text-center sm:text-left">
+						Images
+					</h2>
+					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+						{Data[0].image.map((img: string, idx: number) => (
+							<div
+								key={idx}
+								className="aspect-square relative w-full max-w-[200px] mx-auto"
+							>
+								<Image
+									src={img}
+									alt={`Image ${idx + 1}`}
+									layout="fill"
+									objectFit="cover"
+									className="rounded-lg"
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div className="mt-16">
+					<h2 className="text-3xl font-bold mb-8 text-center sm:text-left">
+						Videos
+					</h2>
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+						{Data[0].reel.map((videoUrl: string, idx: number) => (
+							<div
+								key={idx}
+								className="aspect-video w-full max-w-[400px] mx-auto"
+							>
+								<iframe
+									src={videoUrl}
+									title={`Video ${idx + 1}`}
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+									allowFullScreen
+									className="w-full h-full rounded-lg"
+								></iframe>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<div className="mt-24">
+					<Pf />
+				</div>
+			</div>
+		</div>
+	);
+}
 
 function Pf() {
-    return (
-        <div className="w-full flex mb-8 justify-center font-poppins h-fit ">
-            <div className=" w-[23rem] md:w-[43.5rem] lg:h-fit lg:w-[60rem] xl:h-fit xl:w-full md:h-fit  h-fit ">
-                <div className="flex-col lg:hidden font-thin border-l-2 border-white border-dotted  text-[0.75rem] italic">
-                    <div className="tracking-[0.16rem] text-center ">
-                        {" "}
-                        &quot; A good photograph is knowing where to stand.”
-                    </div>
-                    <div className="pb-12 flex justify-center tracking-[0.3rem]">
-                        - Ansel Adams
-                    </div>
-                </div>
-                <div className="lg:w-full lg:h-[4rem] lg:border-l-2 lg:border-white lg:border-dotted"></div>
-                <div className=" flex pt-[4rem] laptop:w-full laptop:h-fit  border-l-2 border-white justify-between items-center w-full L15:text-[2rem] text-[0.81rem] h-fit ">
-                    <div className="pl-2">Unleash your creative vision</div>
-                    <div className="flex-col small:hidden lg:inline-block font-thin lg:border-none border-l-2 border-white border-dotted L15:text-[1.5rem] text-[0.75rem] italic">
-                        <div className="tracking-[0.16rem] text-center ">
-                            {" "}
-                            &quot; A good photograph is knowing where to stand.”
-                        </div>
-                        <div className="pb-12 lg:pb-0 flex justify-center tracking-[0.3rem]">
-                            - Ansel Adams
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
+	return (
+		<div className="font-poppins">
+			<div className="border-l-2 border-white border-dotted py-8 px-4">
+				<p className="italic text-sm tracking-wider text-center">
+					&quot;A good photograph is knowing where to stand.&quot;
+				</p>
+				<p className="italic text-sm tracking-wider text-center mt-2">
+					- Ansel Adams
+				</p>
+			</div>
+			<div className="mt-16 border-l-2 border-white py-8 px-4">
+				<p className="text-xl sm:text-2xl lg:text-3xl">
+					Unleash your creative vision
+				</p>
+			</div>
+		</div>
+	);
+}
 
 function Head({ source, title, description }: ProfileProps) {
-    return (
-        <div className=" ml-0 flex items-center  w-full h-full">
-            <div className="flex items-center rounded-full justify-center xxl:p-[0.85rem] md:w-[6.5rem] md:h-[6.5rem] xxl:w-[11rem] xxl:h-[11rem] w-[4.5rem] h-[4.5rem] border-dotted border-[#ffe39c] border-2">
-                <div className="relative rounded-full xxl:w-[9.3rem] xxl:h-[9.3rem] md:w-[5rem] md:h-[5rem] w-[3.5rem] md:p-8 h-[3.5rem]">
-                    <Image className="rounded-full" fill={true} alt="" src={source} />
-                </div>
-            </div>
+	const { user } = useAuthContext();
 
-            <div className="  lg:flex xl:w-full xl:h-fit  h-fit w-fit  items-center ">
-                <div className="  w-full h-full flex  flex-col justify-center pl-4">
-                    <h2 className="text-white xxl:text-[3rem] xl:text-[2.6rem] md:text-[1.8rem] text-[0.9em]">
-                        {title}
-                    </h2>
-                    <p className="text-[#8E6F57] xxl:text-[2rem] xl:text-[1.5rem] md:text-[1.05rem] text-[0.8rem]">
-                        {description}
-                    </p>
-                </div>
-                {/* <div className="flex justify-between items-center">
-                    <div className="ml-4 flex xxl:text-[4.5rem] xl:text-[3.8rem] md:text-[2.65rem] text-[1.5rem]  w-fit h-fit ">
-                        <FaInstagram />
-                        <CiLinkedin />
-                    </div>
-                    <div>
-                        <div className="mr-8 w-full  flex items-center justify-center ">
-                            <div className=" w-full h-fit flex justify-center">
-                                <button
-                                    type="button"
-                                    className="flex items-center xxl:text-[2rem] xxl:w-[15rem] xxl:h-[4rem] xl:w-[13.78rem] xl:h-[3.8rem] md:w-[10.5rem] md:h-[2.75rem] w-[6.3rem] h-[1.7rem] justify-center border-[#ffe39c] border text-[#ffe39c] text-[0.58rem] md:text-[0.94rem] xl:text-[1.3rem] "
-                                >
-                                    <div className="">Certificate</div>
-                                    <div className=" text-[1.4rem] ">
-                                        <MdOutlineFileDownload />
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-            </div>
-        </div>
-    );
-};
+	return (
+		<div className="flex flex-col sm:flex-row items-center gap-8">
+			<div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-dotted border-[#ffe39c] p-1">
+				<Image
+					src={user?.photoURL || source}
+					alt={title}
+					layout="fill"
+					objectFit="cover"
+					className="rounded-full"
+				/>
+			</div>
+			<div className="text-center sm:text-left flex-grow">
+				<h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">
+					{user?.displayName}
+				</h1>
+				<p className="text-[#8E6F57] mt-2 text-sm sm:text-base">
+					{description}
+				</p>
+			</div>
+			<div className="flex flex-col sm:flex-row items-center gap-4 mt-4 sm:mt-0">
+				<div className="flex gap-4">
+					<FaInstagram className="text-3xl sm:text-4xl" />
+					<CiLinkedin className="text-3xl sm:text-4xl" />
+				</div>
+				<button
+					type="button"
+					className="flex items-center justify-center gap-2 border border-[#ffe39c] text-[#ffe39c] px-3 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base transition-colors hover:bg-[#ffe39c] hover:text-black"
+				>
+					<span>Certificate</span>
+					<MdOutlineFileDownload className="text-lg sm:text-xl" />
+				</button>
+			</div>
+		</div>
+	);
+}
