@@ -20,7 +20,7 @@ export default function Navbar() {
         <Image src="/assets/logo.svg" alt="logo" width={60} height={60} />
       </div>
 
-      <div className=" gap-7 text-sm font-poppins font-light text-white pl-28 items-center tracking-wide md:flex hidden">
+      <div className={`gap-7 text-sm font-poppins font-light text-white ${user ? 'pl-0' : 'pl-28'} items-center tracking-wide md:flex hidden`}>
         <Link href="/" className="hover:text-text_yellow">
           Home
         </Link>
@@ -39,7 +39,7 @@ export default function Navbar() {
           </Link>
         )}
       </div>
-      <div className=" flex items-center">
+      <div className="flex items-center">
         {user ? (
           <div className="relative group">
             <Image
@@ -100,7 +100,10 @@ export default function Navbar() {
                 )}
               </div>
               <button
-                onClick={logOut}
+                onClick={() => {
+                  logOut()
+                  router.push('/')
+                }}
                 className="px-12 py-2 hover:bg-red-400 duration-300"
               >
                 Logout

@@ -7,6 +7,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { UserFetched } from "@/types";
 import { fetchUser } from "@/lib/actions/user.action";
+import Preloader from "../Global/Preloader";
 
 interface ProfileProps {
 	source: string;
@@ -17,23 +18,29 @@ interface ProfileProps {
 export default function Profile() {
 	const { user, authLoading } = useAuthContext();
 	const [profile, setProfile] = useState<UserFetched | null>(null)
+	const [isLoading, setLoading] = useState(false)
 
 	useEffect(() => {
 		async function getProfile() {
+			setLoading(true)
 			if (!user) return
 			const data = await fetchUser(user.email as string)
-			console.log(data);
 			setProfile(data)
 		}
 		getProfile()
+		setLoading(false)
 	}, [authLoading])
+
+
+	if (isLoading) return <Preloader width="5rem" height="5rem" color="#FFE39C" />
+	if (!profile) return <div className="text-white text-xl w-full h-[80vh] flex items-center justify-center">Submit to initiate your profile</div>
 
 	return (
 		<div className="text-white w-full min-h-screen flex flex-col items-center pt-28 pb-20 gap-8">
 			<div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 				<Head
-					source={profile?.photoURL!}
-					title={profile?.name!}
+					source={profile.photoURL}
+					title={profile.name}
 					description="#photographer #content creator"
 				/>
 
@@ -42,7 +49,7 @@ export default function Profile() {
 						Images
 					</h2>
 					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-						{profile?.images.map((img, idx) => (
+						{profile.images.map((img, idx) => (
 							<div
 								key={idx}
 								className="aspect-square relative w-full max-w-[200px] mx-auto"
@@ -64,7 +71,7 @@ export default function Profile() {
 						Videos
 					</h2>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-						{profile?.reels.map((reel, idx) => (
+						{profile.reels.map((reel, idx) => (
 							<div
 								key={idx}
 								className="aspect-video w-full max-w-[400px] mx-auto"
@@ -129,7 +136,7 @@ function Head({ source, title, description }: ProfileProps) {
 					{description}
 				</p>
 			</div>
-			<div className="flex flex-col sm:flex-row items-center gap-4 mt-4 sm:mt-0">
+			{/* <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 sm:mt-0">
 				<div className="flex gap-4">
 					<FaInstagram className="text-3xl sm:text-4xl" />
 					<CiLinkedin className="text-3xl sm:text-4xl" />
@@ -141,7 +148,7 @@ function Head({ source, title, description }: ProfileProps) {
 					<span>Certificate</span>
 					<MdOutlineFileDownload className="text-lg sm:text-xl" />
 				</button>
-			</div>
+			</div> */}
 		</div>
 	);
 }

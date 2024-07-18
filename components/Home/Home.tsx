@@ -17,6 +17,7 @@ export default function Home() {
             alt="hero"
             width={435}
             height={576}
+            priority
             className="z-10 -mt-10 lg:-mt-20 w-[28vmax]"
           />
         </div>

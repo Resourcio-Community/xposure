@@ -19,7 +19,7 @@ export default function Table({ label, columns, rows }: TableProps) {
               ))}
             </tr>
           </thead>
-          <tbody className=" text-white">
+          <tbody className="text-white">
             {rows.map((r, i) => (
               <tr
                 key={i}
