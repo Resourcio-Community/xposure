@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 export default function Payment() {
   const { user } = useAuth()
-  const name = user?.displayName
+  const name = user?.name
   const email = user?.email;
   const [currency, setCurrency] = useState('INR');
   const [loading, setLoading] = useState(false);
