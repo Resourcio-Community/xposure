@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { UserFetched } from "@/types";
 import { fetchUser } from "@/lib/actions/user.action";
 import Preloader from "../Global/Preloader";
+import { rgbDataURL } from "@/utils/blurryImage";
 
 interface ProfileProps {
 	source: string;
@@ -60,6 +61,8 @@ export default function Profile() {
 									layout="fill"
 									objectFit="cover"
 									className="rounded-lg"
+									placeholder="blur"
+									blurDataURL={rgbDataURL(128, 128, 128)}
 								/>
 							</div>
 						))}
@@ -82,7 +85,7 @@ export default function Profile() {
 									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 									allowFullScreen
 									className="w-full h-full rounded-lg"
-								></iframe>
+								/>
 							</div>
 						))}
 					</div>
