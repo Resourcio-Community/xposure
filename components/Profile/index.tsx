@@ -102,7 +102,7 @@ function Pf() {
 		<div className="font-poppins">
 			<div className="border-l-2 border-white border-dotted py-8 px-4">
 				<p className="italic text-sm tracking-wider text-center">
-					"A good photograph is knowing where to stand."
+					&quot;A good photograph is knowing where to stand.&quot;
 				</p>
 				<p className="italic text-sm tracking-wider text-center mt-2">
 					- Ansel Adams
