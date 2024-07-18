@@ -59,12 +59,26 @@ export default function Navbar() {
                 className="rounded-full"
                 unoptimized
               />
-              <Link
-                href="/profile"
-                className="px-12 py-2 hover:bg-neutral-200 duration-300"
-              >
+              <Link href="/profile" className="px-12 py-2 hover:bg-neutral-200 duration-300">
                 Profile
               </Link>
+              <Link href="/" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center">
+                  Home
+              </Link>
+              <Link href="/leaderboard" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center">
+                  Leaderboard
+              </Link>
+              <Link href="/rules" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center">
+                  Rules
+              </Link>
+              <Link href="/prizes" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center">
+                  Prizes
+              </Link>
+              {user && (
+                <Link href="/submission" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center">
+                   Submission
+                </Link>
+              )}
               <button
                 onClick={logOut}
                 className="px-12 py-2 hover:bg-red-400 duration-300"
