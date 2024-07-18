@@ -2,12 +2,10 @@
 import { useAuthContext } from "@/context/AuthContext";
 import { imageRef } from "@/lib/firebase/storage";
 import { getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { FormEvent, MouseEvent, imageCountType } from "@/types";
+import { FormEvent, MouseEvent } from "@/types";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import UploadForm from "./UploadForm";
-import { getImageReelCountForAnUser } from "@/lib/actions/user.action";
-import { Document } from "mongoose";
 
 interface uploadType {
   image_1?: File | null;
@@ -51,19 +49,19 @@ export default function Submission() {
     });
   };
 
-  const handleUpload = (e: MouseEvent) => {
-    e.preventDefault();
-    if (images === undefined) return;
-    let imageArr: any = [];
-    Object.entries(images).forEach(([key, val]) => {
-      imageArr.push({ label: key, file: val });
-    });
-    upload(imageArr);
-  };
+  // const handleUpload = (e: MouseEvent) => {
+  //   e.preventDefault();
+  //   if (images === undefined) return;
+  //   let imageArr: any = [];
+  //   Object.entries(images).forEach(([key, val]) => {
+  //     imageArr.push({ label: key, file: val });
+  //   });
+  //   upload(imageArr);
+  // };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-  };
+  // const handleSubmit = (e: FormEvent) => {
+  //   e.preventDefault();
+  // };
 
   return (
     <div className="min-h-screen text-neutral-200 py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center">

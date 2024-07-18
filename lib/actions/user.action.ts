@@ -1,9 +1,8 @@
 'use server'
-import { DBUser, ILeaderBoard, imageCountType } from "@/types";
+import { DBUser, ILeaderBoard, ImageReelCount } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 import { Document } from "mongoose";
-import { revalidateTag } from "next/cache";
 
 
 export async function fetchUser(email: string): Promise<Document | null> {
@@ -18,7 +17,7 @@ export async function fetchUser(email: string): Promise<Document | null> {
 }
 
 
-export async function manipulateUser({ email, img_1, imgTheme_1, img_2, imgTheme_2, img_3, imgTheme_3, reel_1, reelTheme_1, reel_2, reelTheme_2, txn }: DBUser): Promise<string> {
+export async function manipulateUser({ name, photoURL, email, img_1, imgTheme_1, img_2, imgTheme_2, img_3, imgTheme_3, reel_1, reelTheme_1, reel_2, reelTheme_2, txn }: DBUser): Promise<string> {
 
     let temp, images = [], reels = [], payments = []
 
@@ -55,7 +54,7 @@ export async function manipulateUser({ email, img_1, imgTheme_1, img_2, imgTheme
         const existingUser = await User.findOne({ email })
 
         if (!existingUser) {
-            const details = { email, images, reels, payments }
+            const details = { name, photoURL, email, images, reels, payments }
 
             const user = await User.create(details)
 
@@ -81,7 +80,7 @@ export async function manipulateUser({ email, img_1, imgTheme_1, img_2, imgTheme
 }
 
 
-export async function getImageReelCountForAnUser(email: string): Promise<Array<imageCountType> | []> {
+export async function getImageReelCountForAnUser(email: string): Promise<Array<ImageReelCount> | []> {
     try {
         await ConnectDB();
 
@@ -96,7 +95,7 @@ export async function getImageReelCountForAnUser(email: string): Promise<Array<i
                 }
             },
         ])
-        revalidateTag('leaderboard')
+
         return imageReel
     }
     catch (error: any) {
@@ -113,7 +112,8 @@ export async function getLeaderboard(): Promise<Array<ILeaderBoard> | []> {
             {
                 $project: {
                     _id: 0,
-                    email: 1,
+                    name: 1,
+                    photoURL: 1,
                     imageCount: { $size: '$images' },
                     reelCount: { $size: '$reels' }
                 }

@@ -15,28 +15,22 @@ type FormData = {
   section3: SectionData;
 };
 
-const UploadForm = () => {
+export default function UploadForm() {
 
   const [photoCount, setPhotoCount] = useState(0);
-  const { user } = useAuthContext();
-  const email = user?.email;
+  const { user, authLoading } = useAuthContext();
 
   useEffect(() => {
     async function imageCount() {
-      const photoCountLocal = await getImageReelCountForAnUser(email as string);
-      if (photoCountLocal.length !== 0) {
-        setPhotoCount(photoCountLocal[0].imageCount)
-        // console.log(photoCountLocal[0]);
+      if (user) {
+        const photoReelCount = await getImageReelCountForAnUser(user.email as string);
+        if (photoReelCount.length !== 0) {
+          console.log(photoReelCount[0]);
+        }
       }
-      // console.log(photoCountLocal);
     }
     imageCount()
-  }, [])
-  useEffect(() => {
-    
-      console.log(photoCount);
-  }, [])
-
+  }, [authLoading])
 
 
 
@@ -133,5 +127,3 @@ const UploadForm = () => {
     </form>
   );
 };
-
-export default UploadForm;

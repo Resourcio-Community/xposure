@@ -5,7 +5,7 @@ import Image from "next/image";
 import { revalidateTag } from "next/cache";
 
 export default async function Leaderboard() {
-    const data: Array<ILeaderBoard> = await getLeaderboard();
+    const data = await getLeaderboard();
     revalidateTag('leaderboard')
 
     const renderTicks = (count: number) => {
@@ -31,12 +31,12 @@ export default async function Leaderboard() {
                     "Photographs",
                     "Reels",
                 ]}
-                rows={data.map((item, idx) => [
+                rows={data.map((user, idx) => [
                     idx + 1,
-                    <Image key={`user-${idx}`} src="/assets/user.svg" alt="" width={30} height={30} className="ml-0 md:ml-2" />,
-                    "John Doe",
-                    <div key={`images-${idx}`}>{renderTicks(item.imageCount)}</div>,
-                    <div key={`reels-${idx}`}>{renderTicks(item.reelCount)}</div>,
+                    <Image key={`user-${idx}`} src={user.photoURL} alt="" width={30} height={30} className="ml-0 md:ml-2" />,
+                    <span key={`name-${idx}`}>{user.name}</span>,
+                    <div key={`images-${idx}`}>{renderTicks(user.imageCount)}</div>,
+                    <div key={`reels-${idx}`}>{renderTicks(user.reelCount)}</div>,
                 ])}
             />
         </div>

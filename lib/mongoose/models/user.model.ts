@@ -14,6 +14,14 @@ const ImageReelSchema: Schema = new mongoose.Schema({
 })
 
 const UserSchema: Schema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    photoURL: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         unique: true,
@@ -40,10 +48,6 @@ const UserSchema: Schema = new mongoose.Schema({
 );
 
 UserSchema.index({ email: 1 })
-
-// UserSchema.path('images').validate(function(v){
-//     return v.length <= 3;
-// }, 'Max 3 images can be uploaded')
 
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 

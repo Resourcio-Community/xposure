@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import {
-	GoogleAuthProvider,
 	User,
 	onAuthStateChanged,
 	signInWithPopup,
@@ -11,23 +10,43 @@ import {
 } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase/auth";
 
+interface AuthUser {
+	name: string | null;
+	email: string | null;
+	photoURL: string | null;
+}
+
+const formatAuthUser = (user: User) => ({
+	name: user.displayName,
+	email: user.email,
+	photoURL: user.photoURL
+});
+
 export const useAuth = () => {
-	const [user, setUser] = useState<User | null>(null);
-	const [loading, setLoading] = useState(true);
+	const [user, setUser] = useState<AuthUser | null>(null);
+	const [authLoading, setAuthLoading] = useState(true);
+
+	const authStateChanged = async (authState: any) => {
+		if (!authState) {
+			setUser(null)
+			setAuthLoading(false)
+			return;
+		}
+
+		setAuthLoading(true)
+		const formattedUser = formatAuthUser(authState); 
+		setUser(formattedUser);
+		setAuthLoading(false);
+	};
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, (user) => {
-			setUser(user);
-			setLoading(false);
-		});
-
+		const unsubscribe = auth.onAuthStateChanged(authStateChanged)
 		return () => unsubscribe();
 	}, []);
 
 	const signInWithGoogle = async () => {
 		try {
 			const result = await signInWithPopup(auth, googleProvider);
-			// const user = GoogleAuthProvider.credentialFromResult(result);
 
 			return result;
 		} catch (error) {
@@ -64,10 +83,8 @@ export const useAuth = () => {
 
 	return {
 		user,
-		loading,
+		authLoading,
 		signInWithGoogle,
-		signInWithEmail,
-		signUpWithEmail,
 		logOut,
 	};
 };

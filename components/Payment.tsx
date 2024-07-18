@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import { createOrder } from '@/lib/payment/createOrder'
 import Script from 'next/script';
 import { useAuth } from '@/hooks/useAuth';
+import Image from 'next/image';
 // import { calculatePrice } from '@/utils/calculatePrice';
 
 
-const Payment = () => {
+export default function Payment() {
   const { user } = useAuth()
   const name = user?.displayName
   const email = user?.email;
@@ -76,7 +77,7 @@ const Payment = () => {
 
         <button onClick={processPayment} className='bg-text_yellow text-black w-fit px-16 py-2'>
           {
-            loading ? <img className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/448500/loading.svg" alt="Loading icon"></img> : "Pay"
+            loading ? <Image className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/448500/loading.svg" alt="Loading icon"></Image> : "Pay"
           }
         </button>
         {/* <button onClick={() => console.log(calculatePrice(1, 2))} className='bg-text_yellow text-black w-fit px-16 py-2'>Price?</button> */}
@@ -84,5 +85,3 @@ const Payment = () => {
     </>
   );
 }
-
-export default Payment
