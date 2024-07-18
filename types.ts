@@ -32,4 +32,12 @@ type ImageReelCount = {
   reelCount: number;
 };
 
-export type { FormEvent, MouseEvent, ChangeEvent, DBUser, ILeaderBoard, ImageReelCount };
+type UserFetched = {
+  name: string;
+  photoURL: string;
+  email: string;
+  images: [{ url: string, theme: string }];
+  reels: [{ url: string, theme: string }];
+}
+
+export type { FormEvent, MouseEvent, ChangeEvent, DBUser, ILeaderBoard, ImageReelCount, UserFetched };

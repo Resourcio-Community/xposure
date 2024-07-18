@@ -1,15 +1,15 @@
 'use server'
-import { DBUser, ILeaderBoard, ImageReelCount } from "@/types";
+import { DBUser, ILeaderBoard, ImageReelCount, UserFetched } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
-import { Document } from "mongoose";
 
 
-export async function fetchUser(email: string): Promise<Document | null> {
+export async function fetchUser(email: string): Promise<UserFetched | null> {
     try {
         await ConnectDB();
 
-        return await User.findOne({ email }, { _id: 0 });
+        const user = await User.findOne({ email }, { _id: 0, payments: 0 });
+        return JSON.parse(JSON.stringify(user))
     }
     catch (error: any) {
         throw new Error(`Failed to fetch user: ${error.message}`);

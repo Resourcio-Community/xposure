@@ -4,6 +4,9 @@ import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { useAuthContext } from "@/context/AuthContext";
+import { useEffect, useState } from "react";
+import { UserFetched } from "@/types";
+import { fetchUser } from "@/lib/actions/user.action";
 
 interface ProfileProps {
 	source: string;
@@ -11,52 +14,41 @@ interface ProfileProps {
 	description: string;
 }
 
-const Data: any = [
-	{
-		id: "1",
-		image: [
-			"/assets/placeholder.jpg",
-			"/assets/placeholder.jpg",
-			"/assets/placeholder.jpg",
-			"/assets/placeholder.jpg",
-		],
-		reel: [
-			"https://www.youtube.com/embed/OBqw818mQ1E?si=NthCyKdicnO85tmt",
-			"https://www.youtube.com/embed/OBqw818mQ1E?si=NthCyKdicnO85tmt",
-		],
-		profileImg: "/assets/placeholder.jpg",
-		name: "John Doe",
-		description: "#photographer #content creator",
-	},
-];
-
 export default function Profile() {
-	const { user } = useAuthContext();
+	const { user, authLoading } = useAuthContext();
+	const [profile, setProfile] = useState<UserFetched | null>(null)
+
+	useEffect(() => {
+		async function getProfile() {
+			if (!user) return
+			const data = await fetchUser(user.email as string)
+			console.log(data);
+			setProfile(data)
+		}
+		getProfile()
+	}, [authLoading])
 
 	return (
 		<div className="text-white w-full min-h-screen flex flex-col items-center pt-28 pb-20 gap-8">
 			<div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-				{Data.map((data: any, idx: number) => (
-					<Head
-						key={idx}
-						source={data.profileImg}
-						title={data.name}
-						description={data.description}
-					/>
-				))}
+				<Head
+					source={profile?.photoURL!}
+					title={profile?.name!}
+					description="#photographer #content creator"
+				/>
 
 				<div className="mt-16">
 					<h2 className="text-3xl font-bold mb-8 text-center sm:text-left">
 						Images
 					</h2>
 					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-						{Data[0].image.map((img: string, idx: number) => (
+						{profile?.images.map((img, idx) => (
 							<div
 								key={idx}
 								className="aspect-square relative w-full max-w-[200px] mx-auto"
 							>
 								<Image
-									src={img}
+									src={img.url}
 									alt={`Image ${idx + 1}`}
 									layout="fill"
 									objectFit="cover"
@@ -72,13 +64,13 @@ export default function Profile() {
 						Videos
 					</h2>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-						{Data[0].reel.map((videoUrl: string, idx: number) => (
+						{profile?.reels.map((reel, idx) => (
 							<div
 								key={idx}
 								className="aspect-video w-full max-w-[400px] mx-auto"
 							>
 								<iframe
-									src={videoUrl}
+									src={reel.url}
 									title={`Video ${idx + 1}`}
 									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 									allowFullScreen
@@ -118,13 +110,11 @@ function Pf() {
 }
 
 function Head({ source, title, description }: ProfileProps) {
-	const { user } = useAuthContext();
-
 	return (
 		<div className="flex flex-col sm:flex-row items-center gap-8">
 			<div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-dotted border-[#ffe39c] p-1">
 				<Image
-					src={user?.photoURL || source}
+					src={source}
 					alt={title}
 					layout="fill"
 					objectFit="cover"
@@ -133,7 +123,7 @@ function Head({ source, title, description }: ProfileProps) {
 			</div>
 			<div className="text-center sm:text-left flex-grow">
 				<h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">
-					{user?.displayName}
+					{title}
 				</h1>
 				<p className="text-[#8E6F57] mt-2 text-sm sm:text-base">
 					{description}
