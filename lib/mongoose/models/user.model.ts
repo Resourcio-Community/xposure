@@ -18,6 +18,11 @@ const ImageReelSchema: Schema = new mongoose.Schema({
         type: String,
         default: null,
         required: true
+    },
+    category: {
+        type: String,
+        default: null,
+        required: true
     }
 })
 

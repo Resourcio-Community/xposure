@@ -16,35 +16,31 @@ export async function fetchUser(email: string): Promise<UserFetched | null> {
     }
 }
 
+interface ImageReel {
+    url: string;
+    category: string;
+    theme: string;
+}
 
-export async function manipulateUser({ name, photoURL, email, img_1, imgTheme_1, img_2, imgTheme_2, img_3, imgTheme_3, reel_1, reelTheme_1, reel_2, reelTheme_2, txn }: DBUser): Promise<string> {
-
-    let temp, images = [], reels = [], payments = []
-
-    if (img_1 && imgTheme_1) {
-        temp = { url: img_1, theme: imgTheme_1 }
-        images.push(temp)
+function validateObject(url: string, category: string, theme: string, data: Array<Object>) {
+    let temp: ImageReel
+    if (url && category && theme) {
+        temp = { url, category, theme }
+        data.push(temp)
+        return data
     }
+    return data
+}
 
-    if (img_2 && imgTheme_2) {
-        temp = { url: img_2, theme: imgTheme_2 }
-        images.push(temp)
-    }
+export async function manipulateUser({ name, photoURL, email, img_1, imgCategory_1, imgTheme_1, img_2, imgCategory_2, imgTheme_2, img_3, imgCategory_3, imgTheme_3, reel_1, reelCategory_1, reelTheme_1, reel_2, reelCategory_2, reelTheme_2, txn }: DBUser): Promise<string> {
 
-    if (img_3 && imgTheme_3) {
-        temp = { url: img_3, theme: imgTheme_3 }
-        images.push(temp)
-    }
+    let images: any = [], reels: any = [], payments = []
 
-    if (reel_1 && reelTheme_1) {
-        temp = { url: reel_1, theme: reelTheme_1 }
-        reels.push(temp)
-    }
-
-    if (reel_2 && reelTheme_2) {
-        temp = { url: reel_2, theme: reelTheme_2 }
-        reels.push(temp)
-    }
+    validateObject(img_1, imgCategory_1, imgTheme_1, images)
+    validateObject(img_2, imgCategory_2, imgTheme_2, images)
+    validateObject(img_3, imgCategory_3, imgTheme_3, images)
+    validateObject(reel_1, reelCategory_1, reelTheme_1, reels)
+    validateObject(reel_2, reelCategory_2, reelTheme_2, reels)
 
     if (txn) payments.push(txn)
 
