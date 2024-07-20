@@ -41,8 +41,31 @@ type UserFetched = {
   name: string;
   photoURL: string;
   email: string;
-  images: [{ url: string, theme: string }];
-  reels: [{ url: string, theme: string }];
-}
+  images: [{ url: string; theme: string }];
+  reels: [{ url: string; theme: string }];
+};
 
-export type { FormEvent, MouseEvent, ChangeEvent, DBUser, ILeaderBoard, ImageReelCount, UserFetched };
+type SectionData = {
+  section: string;
+  image: File | string;
+  category: string;
+  theme: string;
+  url?:string;
+};
+
+type FormDataObject = {
+  section1: SectionData;
+  section2: SectionData;
+  section3: SectionData;
+};
+
+export type {
+  FormEvent,
+  MouseEvent,
+  ChangeEvent,
+  DBUser,
+  ILeaderBoard,
+  ImageReelCount,
+  UserFetched,
+  FormDataObject,
+};

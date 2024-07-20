@@ -12,7 +12,7 @@ const logoStyle = "h-6 w-6 text-text_yellow hover:text-white";
 
 export default function Footer() {
   return (
-    <div className="w-full pt-6 justify-between space-x-5 border-t-[0.5px] border-text_yellow bottom-0 flex-col md:flex-row items-center">
+    <div className="w-full pt-6 justify-between border-t-[0.5px] border-text_yellow bottom-0 flex-col md:flex-row items-center overflow-hidden">
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-6">
         <a href="/privacy-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
           Privacy Policy
