@@ -5,6 +5,7 @@ import { FormDataObject } from '@/types';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { finalObjectFormat, imageObjectFormat } from '@/utils/imageObjectFormat';
 import { upload } from '@/utils/uploadFile';
+import { calculatePrice } from '@/utils/calculatePrice';
 
 
 export default function UploadForm() {
@@ -59,6 +60,7 @@ export default function UploadForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const arr = imageObjectFormat(formData);
+    // console.log(calculatePrice(photoCount, arr.length))
     if (user && user.name && user.email && user.email) {
       const downloadUrls = await upload(arr, user.email);
 

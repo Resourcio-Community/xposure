@@ -1,7 +1,7 @@
 
-export function calculatePrice(prevUploads:number,numOfDoc:number){
-    const total= 50;
-    
+export function calculatePrice(prevUploads: number, numOfDoc: number) {
+    const total = 50;
+
     switch (prevUploads) {
         case 0:
             switch (numOfDoc) {
@@ -18,7 +18,7 @@ export function calculatePrice(prevUploads:number,numOfDoc:number){
         case 1:
             switch (numOfDoc) {
                 case 1:
-                    return 20;
+                    return 15;
                 case 2:
                     return 25;
                 default:
@@ -26,7 +26,7 @@ export function calculatePrice(prevUploads:number,numOfDoc:number){
             }
         default:
             break;
-        
+
         case 2:
             switch (numOfDoc) {
                 case 1:
