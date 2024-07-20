@@ -46,10 +46,10 @@ type UserFetched = {
 };
 
 type SectionData = {
-  section: string;
-  image: File | string;
-  category: string;
-  theme: string;
+  section: string|null;
+  image: File | string |null;
+  category: string|null;
+  theme: string|null;
   url?:string;
 };
 
