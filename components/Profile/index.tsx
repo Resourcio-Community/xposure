@@ -9,6 +9,7 @@ import { UserFetched } from "@/types";
 import { fetchUser } from "@/lib/actions/user.action";
 import Preloader from "../Global/Preloader";
 import { rgbDataURL } from "@/utils/blurryImage";
+import { useRouter } from "next/navigation";
 
 interface ProfileProps {
 	source: string;
@@ -17,23 +18,28 @@ interface ProfileProps {
 }
 
 export default function Profile() {
+	const router = useRouter();
 	const { user, authLoading } = useAuthContext();
+
+	const [isLoading, setLoading] = useState(true)
 	const [profile, setProfile] = useState<UserFetched | null>(null)
-	const [isLoading, setLoading] = useState(false)
+
+	if (!authLoading && !user) {
+		router.push('/')
+	}
 
 	useEffect(() => {
 		async function getProfile() {
-			setLoading(true)
 			if (!user) return
 			const data = await fetchUser(user.email as string)
 			setProfile(data)
 		}
-		getProfile()
-		setLoading(false)
+		!authLoading && getProfile()
+		!authLoading && setLoading(false)
 	}, [authLoading])
 
 
-	if (isLoading) return <Preloader width="5rem" height="5rem" color="#FFE39C" />
+	if (isLoading && !profile) return <Preloader width="5rem" height="5rem" color="#FFE39C" />
 	if (!profile) return <div className="text-white text-xl w-full h-[80vh] flex items-center justify-center">Submit to initiate your profile</div>
 
 	return (

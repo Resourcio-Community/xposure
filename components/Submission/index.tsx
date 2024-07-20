@@ -15,10 +15,14 @@ interface uploadType {
 
 
 export default function Submission() {
-  const { user } = useAuthContext();
+  const { user, authLoading } = useAuthContext();
   const router = useRouter();
   const [images, setImages] = useState<uploadType>();
   const [uploaded, setUploaded] = useState(0);
+
+  if (!authLoading && !user) {
+		router.push('/')
+	}
   
 
   const upload: any = (items: any) => {
