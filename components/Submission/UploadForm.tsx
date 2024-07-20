@@ -28,7 +28,7 @@ export default function UploadForm() {
         console.log(photoReelCount[0]);
       }
     }
-    imageCount()
+    !authLoading && imageCount()
   }, [authLoading])
 
 
