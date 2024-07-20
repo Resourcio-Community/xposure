@@ -24,20 +24,20 @@ export default function Navbar() {
         <Link href="/" className="hover:text-text_yellow">
           Home
         </Link>
-        <Link href="/leaderboard" className="hover:text-text_yellow">
+        {/* <Link href="/leaderboard" className="hover:text-text_yellow">
           Leaderboard
-        </Link>
+        </Link> */}
         <Link href="/rules" className="hover:text-text_yellow">
           Rules
         </Link>
         <Link href="/prizes" className="hover:text-text_yellow">
           Prizes
         </Link>
-        {user && (
+        {/* {user && (
           <Link href="/submission" className="hover:text-text_yellow">
             Submission
           </Link>
-        )}
+        )} */}
       </div>
       <div className="flex items-center">
         {user ? (
