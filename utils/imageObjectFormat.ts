@@ -4,11 +4,10 @@ export function imageObjectFormat(data: FormDataObject) {
   let imageArray: any = [];
   Object.values(data).map((item) => {
     const tempArr = Object.values(item);
-    if (tempArr.some((elem) => elem !== "")) {
+    if (tempArr.some((elem) => elem !== null)) {
       imageArray.push({ label: item.section, file: item.image });
     }
   });
-
   return imageArray;
 }
 

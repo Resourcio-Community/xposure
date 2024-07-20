@@ -1,13 +1,11 @@
 'use client'
 import { useAuthContext } from '@/context/AuthContext';
-import { getImageReelCountForAnUser } from '@/lib/actions/user.action';
+import { getImageReelCountForAnUser, manipulateUser } from '@/lib/actions/user.action';
 import { FormDataObject } from '@/types';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { finalObjectFormat, imageObjectFormat } from '@/utils/imageObjectFormat';
-import { imageRef } from '@/lib/firebase/storage';
-import { UploadMetadata, getDownloadURL, uploadBytesResumable, getMetadata } from 'firebase/storage';
+import { upload } from '@/utils/uploadFile';
 
-interface denajakhusi { metadata: string, url: string }
 
 export default function UploadForm() {
 
@@ -20,13 +18,11 @@ export default function UploadForm() {
       const photoReelCount = await getImageReelCountForAnUser(user.email as string);
       if (photoReelCount.length !== 0) {
         setPhotoCount(photoReelCount[0].imageCount);
-        console.log(photoReelCount[0]);
       }
     }
     !authLoading && imageCount()
   }, [authLoading])
 
-  // const [uploadUrls, setUploadUrls] = useState<denajakhusi[]>([{ metadata: "", url: "" }])
 
   const [formData, setFormData] = useState<FormDataObject>({
     section1: { section: null, image: null, category: null, theme: null },
@@ -63,61 +59,24 @@ export default function UploadForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const arr = imageObjectFormat(formData);
-    const downloadUrls = await upload(arr);
-    const updatedFormData = { ...formData };
-    downloadUrls.forEach((item) => {
-      const key = item.metadata as keyof FormDataObject;
-      updatedFormData[key] = {
-        ...updatedFormData[key],
-        url: item.url
-      };
-    });
-    if (user?.name && user.email && user.photoURL) {
-      const res = finalObjectFormat(updatedFormData, user?.name, user?.email, user?.photoURL)
-      console.log(res);
+    if (user && user.name && user.email && user.email) {
+      const downloadUrls = await upload(arr, user.email);
+
+      const updatedFormData = { ...formData };
+      downloadUrls.forEach((item) => {
+        const key = item.metadata as keyof FormDataObject;
+        updatedFormData[key] = {
+          ...updatedFormData[key],
+          url: item.url
+        };
+      });
+      const data = finalObjectFormat(updatedFormData, user.name, user.email, user.photoURL!)
+      const res = await manipulateUser(data)
+      alert(res)
+      location.reload()
     }
-    // setFormData(updatedFormData);
-    console.log('Merged Data:', updatedFormData);
   };
 
-  const upload = async (items: any) => {
-    const imageArr: denajakhusi[] = [];
-    const promises = items.map((item: any) => {
-      const metaData: UploadMetadata = { customMetadata: { name: item.label } };
-      const fileName = new Date().getTime().toString();
-      if (user && user.email) {
-        const storageRef = imageRef(user.email, fileName);
-        const uploadTask = uploadBytesResumable(storageRef, item.file, metaData);
-
-        return new Promise<void>((resolve, reject) => {
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              const progress =
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log(progress);
-            },
-            (err) => {
-              console.log(err);
-              reject(err);
-            },
-            async () => {
-              try {
-                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                const metaData = await getMetadata(uploadTask.snapshot.ref);
-                imageArr.push({ metadata: metaData.customMetadata?.name || "", url: downloadURL });
-                resolve();
-              } catch (err) {
-                reject(err);
-              }
-            }
-          );
-        });
-      }
-    });
-    await Promise.all(promises);
-    return imageArr;
-  };
 
   return (
     <div className=' pt-10 space-y-12'>
@@ -177,9 +136,9 @@ export default function UploadForm() {
                 onChange={(e) => handleChange(e, `section${section}` as keyof FormDataObject)}
               >
                 <option value="">Select an category</option>
-                <option value="option1">Nature in night</option>
-                <option value="option2">Travel and tourist photography</option>
-                <option value="option3">Tech in nature</option>
+                <option value="Nature in night">Nature in night</option>
+                <option value="Travel and Tourist Photography">Travel and Tourist Photography</option>
+                <option value="Tech in Nature">Tech in Nature</option>
               </select>
             </div>
           ))}
