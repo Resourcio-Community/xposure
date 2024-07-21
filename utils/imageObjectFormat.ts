@@ -1,7 +1,7 @@
-import { DBUser, FormDataObject } from "@/types";
+import { DBUser, FormDataObject, ImageUploadFormat } from "@/types";
 
 export function imageObjectFormat(data: FormDataObject) {
-  let imageArray: any = [];
+  let imageArray: ImageUploadFormat[] = [];
   Object.values(data).map((item) => {
     const tempArr = Object.values(item);
     if (tempArr.some((elem) => elem !== null)) {

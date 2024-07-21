@@ -46,11 +46,11 @@ type UserFetched = {
 };
 
 type SectionData = {
-  section: string|null;
-  image: File | string |null;
-  category: string|null;
-  theme: string|null;
-  url?:string;
+  section: string | null;
+  image: File | null;
+  category: string | null;
+  theme: string | null;
+  url?: string;
 };
 
 type FormDataObject = {
@@ -58,6 +58,11 @@ type FormDataObject = {
   section2: SectionData;
   section3: SectionData;
 };
+
+type ImageUploadFormat = {
+  label: string | null;
+  file: File | null;
+}
 
 export type {
   FormEvent,
@@ -68,4 +73,5 @@ export type {
   ImageReelCount,
   UserFetched,
   FormDataObject,
+  ImageUploadFormat
 };

@@ -1,4 +1,5 @@
 import { imageRef } from '@/lib/firebase/storage';
+import { ImageUploadFormat } from '@/types';
 import { UploadMetadata, getDownloadURL, uploadBytesResumable, getMetadata } from 'firebase/storage';
 
 interface UploadedFile {
@@ -6,14 +7,14 @@ interface UploadedFile {
     url: string;
 }
 
-export async function upload(items: any, email: string) {
+export async function upload(items: ImageUploadFormat[], email: string) {
     const imageArr: UploadedFile[] = [];
-    const promises = items.map((item: any) => {
-        const metaData: UploadMetadata = { customMetadata: { name: item.label } };
+    const promises = items.map((item) => {
+        const metaData: UploadMetadata = { customMetadata: { name: item.label! } };
         const fileName = new Date().getTime().toString();
         if (email) {
             const storageRef = imageRef(email, fileName);
-            const uploadTask = uploadBytesResumable(storageRef, item.file, metaData);
+            const uploadTask = uploadBytesResumable(storageRef, item.file!, metaData);
 
             return new Promise<void>((resolve, reject) => {
                 uploadTask.on(
@@ -30,9 +31,9 @@ export async function upload(items: any, email: string) {
                     async () => {
                         try {
                             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                            const metaData = await getMetadata(uploadTask.snapshot.ref);
+                            const metadata = await getMetadata(uploadTask.snapshot.ref);
                             imageArr.push({
-                                metadata: metaData.customMetadata?.name || "",
+                                metadata: metadata.customMetadata?.name || "",
                                 url: downloadURL
                             });
                             resolve();

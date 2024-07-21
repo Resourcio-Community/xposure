@@ -59,13 +59,13 @@ export default function UploadForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const arr = imageObjectFormat(formData);
-    // console.log(calculatePrice(photoCount, arr.length))
+    const resultArr = imageObjectFormat(formData);
+    // console.log(calculatePrice(photoCount, resultArr.length))
     if (user && user.name && user.email && user.email) {
-      const downloadUrls = await upload(arr, user.email);
+      const downloadURLs = await upload(resultArr, user.email);
 
       const updatedFormData = { ...formData };
-      downloadUrls.forEach((item) => {
+      downloadURLs.forEach((item) => {
         const key = item.metadata as keyof FormDataObject;
         updatedFormData[key] = {
           ...updatedFormData[key],
