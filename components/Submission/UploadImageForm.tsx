@@ -14,6 +14,8 @@ export default function UploadImageForm() {
   const { user, authLoading } = useAuthContext();
   const [photoCount, setPhotoCount] = useState(0);
   const [submissionStart, setSubmissionStart] = useState(false);
+  const [amount, setAmount] = useState(0)
+  const [paymentID, setPaymentID] = useState<string>('')
 
   const [formData, setFormData] = useState<ImageFormDataObject>({
     section1: { section: null, image: null, category: null, theme: null },
@@ -61,28 +63,31 @@ export default function UploadImageForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmissionStart(true)
-
+    
     const resultArr = imageObjectFormat(formData);
     const toBePaid = calculateImagePrice(photoCount, resultArr.length)
-    // console.log(toBePaid);
-
-    if (user && user.name && user.email && user.email && toBePaid) {
-      const downloadURLs = await upload(resultArr, user.email);
-
-      const updatedFormData = { ...formData };
-      downloadURLs.forEach((item) => {
-        const key = item.metadata as keyof ImageFormDataObject;
-        updatedFormData[key] = {
-          ...updatedFormData[key],
-          url: item.url
-        };
-      });
-      const data = finalImageObjectFormat(updatedFormData, user.name, user.email, user.photoURL!)
-      const res = await manipulateUser(data)
-      alert(res)
-      location.reload()
+    console.log(toBePaid);
+    if (toBePaid) {
+      setAmount(toBePaid)
+      setSubmissionStart(true)
     }
+    // setSubmissionStart(false)
+    // if (user && user.name && user.email && user.email && toBePaid) {
+    //   const downloadURLs = await upload(resultArr, user.email);
+
+    //   const updatedFormData = { ...formData };
+    //   downloadURLs.forEach((item) => {
+    //     const key = item.metadata as keyof ImageFormDataObject;
+    //     updatedFormData[key] = {
+    //       ...updatedFormData[key],
+    //       url: item.url
+    //     };
+    //   });
+    //   const data = finalImageObjectFormat(updatedFormData, user.name, user.email, user.photoURL!)
+    //   const res = await manipulateUser(data)
+    //   alert(res)
+    //   location.reload()
+    // }
   };
 
 
@@ -152,6 +157,16 @@ export default function UploadImageForm() {
           ))}
         </div>
         <button type="submit" className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
+
+        <Payment
+          isOpen={submissionStart}
+          onRequestClose={() => setSubmissionStart(!submissionStart)}
+          name={user?.name}
+          email={user?.email}
+          amount={amount}
+          setPaymentID={setPaymentID}
+        />
+
       </form>
     </div>
   );

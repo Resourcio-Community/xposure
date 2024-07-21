@@ -1,20 +1,26 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createOrder } from '@/lib/payment/createOrder'
 import Script from 'next/script';
-import Image from 'next/image';
+import ReactModal from 'react-modal';
 
 interface PaymentProps {
   name: string | null | undefined;
   email: string | null | undefined;
-  amount: number
+  amount: number;
+  isOpen: boolean;
+  onRequestClose: () => void;
+  setPaymentID: (payment: string) => void;
 }
 
-export default function Payment({ name, email, amount }: PaymentProps) {
-  const [loading, setLoading] = useState(false);
+export default function Payment({ name, email, amount, isOpen, onRequestClose, setPaymentID }: PaymentProps) {
 
-  const processPayment = async () => {
-    setLoading(true);
+
+  useEffect(() => {
+    ReactModal.setAppElement('body')
+  }, [])
+
+  async function processPayment() {
     try {
       const orderId = await createOrder(amount, 'INR');
       const options = {
@@ -40,7 +46,6 @@ export default function Payment({ name, email, amount }: PaymentProps) {
           const res = await result.json();
           if (res.isOk) {
             alert("payment succeed");
-            setLoading(false);
           }
           else {
             alert(res.message);
@@ -66,18 +71,37 @@ export default function Payment({ name, email, amount }: PaymentProps) {
 
 
   return (
-    <>
+    <ReactModal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel='Pay Kar Laude'
+      style={{
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, 0.92)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        content: {
+          backgroundColor: 'rgba(223, 229, 226)',
+          color: 'black',
+          borderRadius: '12px',
+          width: '80%',
+          maxWidth: '420px',
+          margin: 'auto',
+          maxHeight: '45vh',
+          border: '3px solid rgb(var(--yellow))',
+          overflowY: 'auto',
+        },
+      }}
+    >
       <Script id="razorpay-checkout-js" src="https://checkout.razorpay.com/v1/checkout.js" />
       <section className="min-h-[94vh] flex flex-col gap-6 h-14 mx-5 sm:mx-10 2xl:mx-auto 2xl:w-[1400px] items-center pt-36 text-white">
 
         <button onClick={processPayment} className='bg-text_yellow text-black w-fit px-16 py-2'>
-          {
-            loading
-              ? <Image className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/448500/loading.svg" alt="Loading icon" />
-              : "Pay"
-          }
+          Pay Rs. {amount}
         </button>
       </section>
-    </>
+    </ReactModal>
   );
 }
