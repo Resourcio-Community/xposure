@@ -1,8 +1,5 @@
 "use client";
 import Image from "next/image";
-import { FaInstagram } from "react-icons/fa";
-import { CiLinkedin } from "react-icons/ci";
-import { MdOutlineFileDownload } from "react-icons/md";
 import { useAuthContext } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { UserFetched } from "@/types";
