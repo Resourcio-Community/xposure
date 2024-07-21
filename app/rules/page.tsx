@@ -63,7 +63,7 @@ export default function Rules() {
               special moments with your city life.
             </li>
             <li>
-              <b>B roll of any Nature Element - Cinematics Shot</b>: The term
+              <b>B roll of any Nature Element - Cinematic Shot</b>: The term
               B-roll originates from the early days of film, when editors
               inserted supplemental footage or B-roll, into the main footage or
               A-roll, to hide visible lines where two pieces of film were

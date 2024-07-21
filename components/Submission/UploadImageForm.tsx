@@ -1,17 +1,25 @@
 'use client'
 import { useAuthContext } from '@/context/AuthContext';
 import { getImageReelCountForAnUser, manipulateUser } from '@/lib/actions/user.action';
-import { FormDataObject } from '@/types';
+import { ImageFormDataObject } from '@/types';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { finalObjectFormat, imageObjectFormat } from '@/utils/imageObjectFormat';
+import { finalImageObjectFormat, imageObjectFormat } from '@/utils/objectFormat';
 import { upload } from '@/utils/uploadFile';
-import { calculatePrice } from '@/utils/calculatePrice';
+import { calculateImagePrice } from '@/utils/price';
+import Payment from '../Payment';
 
 
-export default function UploadForm() {
+export default function UploadImageForm() {
 
-  const [photoCount, setPhotoCount] = useState(0);
   const { user, authLoading } = useAuthContext();
+  const [photoCount, setPhotoCount] = useState(0);
+  const [submissionStart, setSubmissionStart] = useState(false);
+
+  const [formData, setFormData] = useState<ImageFormDataObject>({
+    section1: { section: null, image: null, category: null, theme: null },
+    section2: { section: null, image: null, category: null, theme: null },
+    section3: { section: null, image: null, category: null, theme: null },
+  });
 
   useEffect(() => {
     async function imageCount() {
@@ -25,14 +33,8 @@ export default function UploadForm() {
   }, [authLoading])
 
 
-  const [formData, setFormData] = useState<FormDataObject>({
-    section1: { section: null, image: null, category: null, theme: null },
-    section2: { section: null, image: null, category: null, theme: null },
-    section3: { section: null, image: null, category: null, theme: null },
-  });
 
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, section: keyof FormDataObject) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, section: keyof ImageFormDataObject) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -43,7 +45,7 @@ export default function UploadForm() {
     });
   };
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>, sectionNum: keyof FormDataObject, name: string) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>, sectionNum: keyof ImageFormDataObject, name: string) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setFormData({
@@ -59,20 +61,24 @@ export default function UploadForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmissionStart(true)
+
     const resultArr = imageObjectFormat(formData);
-    // console.log(calculatePrice(photoCount, resultArr.length))
-    if (user && user.name && user.email && user.email) {
+    const toBePaid = calculateImagePrice(photoCount, resultArr.length)
+    // console.log(toBePaid);
+    
+    if (user && user.name && user.email && user.email && toBePaid) {
       const downloadURLs = await upload(resultArr, user.email);
 
       const updatedFormData = { ...formData };
       downloadURLs.forEach((item) => {
-        const key = item.metadata as keyof FormDataObject;
+        const key = item.metadata as keyof ImageFormDataObject;
         updatedFormData[key] = {
           ...updatedFormData[key],
           url: item.url
         };
       });
-      const data = finalObjectFormat(updatedFormData, user.name, user.email, user.photoURL!)
+      const data = finalImageObjectFormat(updatedFormData, user.name, user.email, user.photoURL!)
       const res = await manipulateUser(data)
       alert(res)
       location.reload()
@@ -103,7 +109,7 @@ export default function UploadForm() {
                     accept='image/*'
                     id={`section${section}`} type="file"
                     name={`section`}
-                    onChange={(e) => handleFileChange(e, `section${section}` as keyof FormDataObject, e.target.id)} className="hidden disabled:"
+                    onChange={(e) => handleFileChange(e, `section${section}` as keyof ImageFormDataObject, e.target.id)} className="hidden disabled:"
                   />
                 </label>
               </div>
@@ -115,7 +121,7 @@ export default function UploadForm() {
                     type="radio"
                     name={`category`}
                     value="mobile"
-                    onChange={(e) => handleChange(e, `section${section}` as keyof FormDataObject)}
+                    onChange={(e) => handleChange(e, `section${section}` as keyof ImageFormDataObject)}
                   />
                   <h1>Mobile</h1>
                 </div>
@@ -126,7 +132,7 @@ export default function UploadForm() {
                     type="radio"
                     name={`category`}
                     value="camera"
-                    onChange={(e) => handleChange(e, `section${section}` as keyof FormDataObject)}
+                    onChange={(e) => handleChange(e, `section${section}` as keyof ImageFormDataObject)}
                   />
                   <h1>Camera</h1>
                 </div>
@@ -135,7 +141,7 @@ export default function UploadForm() {
               <select
                 disabled={section <= photoCount}
                 name="theme"
-                onChange={(e) => handleChange(e, `section${section}` as keyof FormDataObject)}
+                onChange={(e) => handleChange(e, `section${section}` as keyof ImageFormDataObject)}
               >
                 <option value="">Select an category</option>
                 <option value="Nature in night">Nature in night</option>
@@ -146,6 +152,8 @@ export default function UploadForm() {
           ))}
         </div>
         <button type="submit" className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
+
+
       </form>
     </div>
   );

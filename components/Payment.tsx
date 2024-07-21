@@ -1,27 +1,26 @@
-"use client"
-import React, { useState } from 'react'
+'use client'
+import { useState } from 'react'
 import { createOrder } from '@/lib/payment/createOrder'
 import Script from 'next/script';
-import { useAuth } from '@/hooks/useAuth';
 import Image from 'next/image';
-// import { calculatePrice } from '@/utils/calculatePrice';
 
+interface PaymentProps {
+  name: string | null | undefined;
+  email: string | null | undefined;
+  amount: number
+}
 
-export default function Payment() {
-  const { user } = useAuth()
-  const name = user?.name
-  const email = user?.email;
-  const [currency, setCurrency] = useState('INR');
+export default function Payment({ name, email, amount }: PaymentProps) {
   const [loading, setLoading] = useState(false);
 
   const processPayment = async () => {
     setLoading(true);
     try {
-      const orderId = await createOrder(2500, "INR", "receipt#3");
+      const orderId = await createOrder(amount, 'INR');
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_ID,
-        amount: 2500,
-        currency: currency,
+        amount: amount * 100,
+        currency: 'INR',
         name: name,
         description: 'This is submission/maintainance fee for the event.',
         order_id: orderId,
@@ -68,19 +67,16 @@ export default function Payment() {
 
   return (
     <>
-      <Script
-        id="razorpay-checkout-js"
-        src="https://checkout.razorpay.com/v1/checkout.js"
-      />
-
+      <Script id="razorpay-checkout-js" src="https://checkout.razorpay.com/v1/checkout.js" />
       <section className="min-h-[94vh] flex flex-col gap-6 h-14 mx-5 sm:mx-10 2xl:mx-auto 2xl:w-[1400px] items-center pt-36 text-white">
 
         <button onClick={processPayment} className='bg-text_yellow text-black w-fit px-16 py-2'>
           {
-            loading ? <Image className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/448500/loading.svg" alt="Loading icon"></Image> : "Pay"
+            loading
+              ? <Image className="w-10 h-10 animate-spin" src="https://www.svgrepo.com/show/448500/loading.svg" alt="Loading icon" />
+              : "Pay"
           }
         </button>
-        {/* <button onClick={() => console.log(calculatePrice(1, 2))} className='bg-text_yellow text-black w-fit px-16 py-2'>Price?</button> */}
       </section>
     </>
   );

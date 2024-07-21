@@ -45,7 +45,7 @@ type UserFetched = {
   reels: [{ url: string; theme: string }];
 };
 
-type SectionData = {
+type ImageSectionData = {
   section: string | null;
   image: File | null;
   category: string | null;
@@ -53,16 +53,29 @@ type SectionData = {
   url?: string;
 };
 
-type FormDataObject = {
-  section1: SectionData;
-  section2: SectionData;
-  section3: SectionData;
+type ImageFormDataObject = {
+  section1: ImageSectionData;
+  section2: ImageSectionData;
+  section3: ImageSectionData;
 };
 
 type ImageUploadFormat = {
   label: string | null;
   file: File | null;
 }
+
+
+type ReelSectionData = {
+  section: string | null;
+  reel: string | null;
+  category: string | null;
+  theme: string | null;
+};
+
+type ReelFormDataObject = {
+  section1: ReelSectionData;
+  section2: ReelSectionData;
+};
 
 export type {
   FormEvent,
@@ -72,6 +85,7 @@ export type {
   ILeaderBoard,
   ImageReelCount,
   UserFetched,
-  FormDataObject,
+  ImageFormDataObject,
+  ReelFormDataObject,
   ImageUploadFormat
 };

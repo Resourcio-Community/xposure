@@ -22,7 +22,7 @@ interface ImageReel {
     theme: string;
 }
 
-function validateObject(url: string, category: string, theme: string, data: Array<Object>) {
+function validateObject(url: string, category: string, theme: string, data: Array<ImageReel>) {
     let temp: ImageReel
     if (url && category && theme) {
         temp = { url, category, theme }
@@ -34,7 +34,7 @@ function validateObject(url: string, category: string, theme: string, data: Arra
 
 export async function manipulateUser({ name, photoURL, email, img_1, imgCategory_1, imgTheme_1, img_2, imgCategory_2, imgTheme_2, img_3, imgCategory_3, imgTheme_3, reel_1, reelCategory_1, reelTheme_1, reel_2, reelCategory_2, reelTheme_2, txn }: DBUser): Promise<string> {
 
-    let images: any = [], reels: any = [], payments = []
+    let images: ImageReel[] = [], reels: ImageReel[] = [], payments = []
 
     validateObject(img_1, imgCategory_1, imgTheme_1, images)
     validateObject(img_2, imgCategory_2, imgTheme_2, images)
