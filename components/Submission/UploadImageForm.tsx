@@ -6,16 +6,13 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { finalImageObjectFormat, imageObjectFormat } from '@/utils/objectFormat';
 import { upload } from '@/utils/uploadFile';
 import { calculateImagePrice } from '@/utils/price';
-import Payment from '../Payment';
+import { processPayment } from '@/utils/payment';
 
 
 export default function UploadImageForm() {
 
   const { user, authLoading } = useAuthContext();
   const [photoCount, setPhotoCount] = useState(0);
-  const [submissionStart, setSubmissionStart] = useState(false);
-  const [amount, setAmount] = useState(0)
-  const [paymentID, setPaymentID] = useState<string>('')
 
   const [formData, setFormData] = useState<ImageFormDataObject>({
     section1: { section: null, image: null, category: null, theme: null },
@@ -63,31 +60,29 @@ export default function UploadImageForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     const resultArr = imageObjectFormat(formData);
     const toBePaid = calculateImagePrice(photoCount, resultArr.length)
-    console.log(toBePaid);
-    if (toBePaid) {
-      setAmount(toBePaid)
-      setSubmissionStart(true)
-    }
-    // setSubmissionStart(false)
-    // if (user && user.name && user.email && user.email && toBePaid) {
-    //   const downloadURLs = await upload(resultArr, user.email);
 
-    //   const updatedFormData = { ...formData };
-    //   downloadURLs.forEach((item) => {
-    //     const key = item.metadata as keyof ImageFormDataObject;
-    //     updatedFormData[key] = {
-    //       ...updatedFormData[key],
-    //       url: item.url
-    //     };
-    //   });
-    //   const data = finalImageObjectFormat(updatedFormData, user.name, user.email, user.photoURL!)
-    //   const res = await manipulateUser(data)
-    //   alert(res)
-    //   location.reload()
-    // }
+    if (user && user.name && user.email && user.email && toBePaid) {
+      const paymentID = await processPayment(user.name, user.email, toBePaid)
+      if (!paymentID) return
+      else {
+        const downloadURLs = await upload(resultArr, user.email);
+        const updatedFormData = { ...formData };
+        downloadURLs.forEach((item) => {
+          const key = item.metadata as keyof ImageFormDataObject;
+          updatedFormData[key] = {
+            ...updatedFormData[key],
+            url: item.url
+          };
+        });
+        const data = finalImageObjectFormat(updatedFormData, user.name, user.email, user.photoURL!, paymentID)
+        const res = await manipulateUser(data)
+        alert(res)
+        location.reload()
+      }
+    }
   };
 
 
@@ -157,16 +152,6 @@ export default function UploadImageForm() {
           ))}
         </div>
         <button type="submit" className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
-
-        <Payment
-          isOpen={submissionStart}
-          onRequestClose={() => setSubmissionStart(!submissionStart)}
-          name={user?.name}
-          email={user?.email}
-          amount={amount}
-          setPaymentID={setPaymentID}
-        />
-
       </form>
     </div>
   );

@@ -27,7 +27,8 @@ export function finalImageObjectFormat(
   data: ImageFormDataObject,
   name: string,
   email: string,
-  photoURL: string
+  photoURL: string,
+  paymentID: string
 ) {
   let finalObject: DBUser = {
     name,
@@ -48,7 +49,7 @@ export function finalImageObjectFormat(
     reel_2: null!,
     reelCategory_2: null!,
     reelTheme_2: null!,
-    txn: "ABCDEFGH",
+    txn: paymentID,
   }
   return finalObject;
 }
@@ -57,7 +58,8 @@ export function finalReelObjectFormat(
   data: ReelFormDataObject,
   name: string,
   email: string,
-  photoURL: string
+  photoURL: string,
+  paymentID: string
 ) {
   let finalObject: DBUser = {
     name,
@@ -78,7 +80,7 @@ export function finalReelObjectFormat(
     reel_2: data.section2.reel!,
     reelCategory_2: data.section2.category!,
     reelTheme_2: data.section2.theme!,
-    txn: "ABCDEFGH",
+    txn: paymentID,
   }
   return finalObject;
 }

@@ -5,8 +5,7 @@ import { ReelFormDataObject } from '@/types';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { finalReelObjectFormat, reelObjectFormat } from '@/utils/objectFormat';
 import { calculateReelPrice } from '@/utils/price';
-import Payment from '../Payment';
-
+import { processPayment } from '@/utils/payment';
 
 export default function UploadReelForm() {
 
@@ -49,10 +48,14 @@ export default function UploadReelForm() {
         const toBePaid = calculateReelPrice(reelCount, resultArr.length)
 
         if (user && user.name && user.email && user.email && toBePaid) {
-            const data = finalReelObjectFormat(formData, user.name, user.email, user.photoURL!)
-            const res = await manipulateUser(data)
-            alert(res)
-            location.reload()
+            const paymentID = await processPayment(user.name, user.email, toBePaid)
+            if (!paymentID) return
+            else {
+                const data = finalReelObjectFormat(formData, user.name, user.email, user.photoURL!, paymentID)
+                const res = await manipulateUser(data)
+                alert(res)
+                location.reload()
+            }
         }
     };
 
