@@ -66,7 +66,6 @@ type ImageUploadFormat = {
 
 
 type ReelSectionData = {
-  section: string | null;
   reel: string | null;
   category: string | null;
   theme: string | null;

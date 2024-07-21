@@ -14,8 +14,8 @@ export default function UploadReelForm() {
     const [reelCount, setReelCount] = useState(0);
 
     const [formData, setFormData] = useState<ReelFormDataObject>({
-        section1: { section: null, reel: null, category: null, theme: null },
-        section2: { section: null, reel: null, category: null, theme: null },
+        section1: { reel: null, category: null, theme: null },
+        section2: { reel: null, category: null, theme: null },
     });
 
     useEffect(() => {
@@ -45,15 +45,14 @@ export default function UploadReelForm() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        console.log(formData);
         const resultArr = reelObjectFormat(formData);
-        console.log(resultArr);
-        // const toBePaid = calculateReelPrice(reelCount, resultArr.length)
-        if (user && user.name && user.email && user.email) {
-            // const data = finalReelObjectFormat(formData, user.name, user.email, user.photoURL!)
-            // const res = await manipulateUser(data)
-            // alert(res)
-            // location.reload()
+        const toBePaid = calculateReelPrice(reelCount, resultArr.length)
+
+        if (user && user.name && user.email && user.email && toBePaid) {
+            const data = finalReelObjectFormat(formData, user.name, user.email, user.photoURL!)
+            const res = await manipulateUser(data)
+            alert(res)
+            location.reload()
         }
     };
 
@@ -66,10 +65,9 @@ export default function UploadReelForm() {
                     {[1, 2].map((section) => (
                         <div key={section} className={`${section <= reelCount && "opacity-30"} flex flex-col items-center gap-4`}>
                             <h3>Section {section}</h3>
-
                             <div>
                                 <input
-                                    name={`category`}
+                                    name={`reel`}
                                     placeholder='Enter reel link'
                                     onChange={(e) => handleChange(e, `section${section}` as keyof ReelFormDataObject)}
                                 />
@@ -101,7 +99,7 @@ export default function UploadReelForm() {
 
                             <select
                                 disabled={section <= reelCount}
-                                name="theme"
+                                name={`theme`}
                                 onChange={(e) => handleChange(e, `section${section}` as keyof ReelFormDataObject)}
                             >
                                 <option value="">Select an category</option>
@@ -112,8 +110,6 @@ export default function UploadReelForm() {
                     ))}
                 </div>
                 <button type="submit" className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
-
-
             </form>
         </div>
     );

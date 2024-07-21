@@ -66,7 +66,7 @@ export default function UploadImageForm() {
     const resultArr = imageObjectFormat(formData);
     const toBePaid = calculateImagePrice(photoCount, resultArr.length)
     // console.log(toBePaid);
-    
+
     if (user && user.name && user.email && user.email && toBePaid) {
       const downloadURLs = await upload(resultArr, user.email);
 
@@ -140,7 +140,7 @@ export default function UploadImageForm() {
 
               <select
                 disabled={section <= photoCount}
-                name="theme"
+                name={`theme`}
                 onChange={(e) => handleChange(e, `section${section}` as keyof ImageFormDataObject)}
               >
                 <option value="">Select an category</option>
@@ -152,8 +152,6 @@ export default function UploadImageForm() {
           ))}
         </div>
         <button type="submit" className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
-
-
       </form>
     </div>
   );

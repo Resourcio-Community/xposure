@@ -46,7 +46,7 @@ export function calculateReelPrice(prevUploads: number, numOfDoc: number): numbe
                 case 1:
                     return 40;
                 case 2:
-                    return 20;
+                    return 60;
                 default:
                     break;
             }
