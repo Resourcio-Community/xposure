@@ -6,7 +6,7 @@ export default function PrizesPage() {
       <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl">
         PRIZES
       </h1>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap justify-center">
         <div className="border w-80 h-32 p-4 flex justify-center text-center items-center border-dashed border-text_yellow">
           Winners from each of the 3 themes in photography and each of the 2
           themes in reel making are eligible for prizes.
@@ -15,7 +15,7 @@ export default function PrizesPage() {
           Prizes worth Rs 4k to be distributed.
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap justify-center">
         <div className="border w-80 h-32 p-4 flex justify-center text-center items-center border-dashed border-text_yellow">
           Special prizes for viewers choice winners.
         </div>
