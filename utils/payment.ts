@@ -33,6 +33,11 @@ export async function processPayment(name: string, email: string, amount: number
                     reject(null)
                 }
             },
+            modal:{
+                ondismiss:()=>{
+                    window.location.replace('/submission');
+                }
+            },
             prefill: {
                 name: name,
                 email: email,

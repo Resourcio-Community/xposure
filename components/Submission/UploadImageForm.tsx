@@ -195,7 +195,7 @@ export default function UploadImageForm() {
               </div>
             ))}
           </div>
-          <button type="submit" disabled={photoCount>=3} className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
+          <button type="submit" disabled={photoCount>=3} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 rounded-md`}>Submit</button>
         </form>
       </div>
       :

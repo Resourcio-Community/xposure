@@ -16,7 +16,7 @@ export default function UploadReelForm() {
     const [reelCount, setReelCount] = useState<number | null>(null);
     const [eligible, setEligible] = useState<string[]>([]);
     const [loading, setLoading] = useState<boolean>();
-    const [error, setError] = useState<string | undefined>();
+    const [error, setError] = useState<string[]>([]);
 
     const [formData, setFormData] = useState<ReelFormDataObject>({
         section1: { reel: null, category: null, theme: null },
@@ -42,11 +42,13 @@ export default function UploadReelForm() {
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, section: keyof ReelFormDataObject) => {
         let { id, name, value } = e.target;
         if (name === 'reel' && !value.includes('youtube')) {
-            setError(id);
+            setError([...error, id]);
             return;
-        } else {
-            setError(undefined);
-        }
+        }else{
+            if(error.includes(id)){
+                setError(error.filter(item=>item!==id)) 
+            }
+        } 
         if (section) {
             setEligible([...eligible, section]);
         }
@@ -112,9 +114,9 @@ export default function UploadReelForm() {
                                             name={`reel`}
                                             placeholder='Enter youtube shorts link'
                                             onChange={(e) => handleChange(e, `section${section}` as keyof ReelFormDataObject)}
-                                            className={`bg-gray-50 border text-gray-900 text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white  ${error === `section${section}` ? "border-red-500" : "border-gray-300"} focus:ring-text_yellow outline-none`} />
+                                            className={`bg-gray-50 border text-gray-900 text-sm rounded-lg  block w-full ps-10 p-2.5  dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white  ${error.includes(`section${section}`) ? "border-red-500" : "border-gray-300"} focus:ring-text_yellow outline-none`} />
                                     </div>
-                                    {error === `section${section}` && <h1 className='text-red-500 animate-fade absolute -translate-y-4'>Only Youtube shorts allowed</h1>}
+                                    {error.includes(`section${section}`) && <h1 className='text-red-500 animate-fade absolute -translate-y-4'>Only Youtube shorts allowed</h1>}
                                 </div>
                                 <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white divide-y-2 sm:divide-x-2 sm:divide-y-0 divide-gray-500">
                                     <li className="w-full">
@@ -156,7 +158,7 @@ export default function UploadReelForm() {
                             </div>
                         ))}
                     </div>
-                    <button type="submit" disabled={error !== undefined ||reelCount>=2} className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300 disabled:bg-text_yellow/30`}>Submit</button>
+                    <button type="submit" disabled={error.length!==0 ||reelCount>=2} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 disabled:bg-text_yellow/30 rounded-md`}>Submit</button>
                 </form >
             </div >
             :
