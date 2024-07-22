@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^2.1.5",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.7.2",
     "firebase": "^10.12.3",

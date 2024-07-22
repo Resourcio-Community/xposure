@@ -3,23 +3,21 @@ import Table from "./Table";
 import Image from "next/image";
 import { revalidateTag } from "next/cache";
 
-export default async function Leaderboard() {
+export default async function ActivityLog() {
     const data = await getLeaderboard();
-    revalidateTag('leaderboard')
+    revalidateTag('activity-log')
 
     return (
         <div className="flex overflow-scroll">
             <Table
                 label="Placement Details"
                 columns={[
-                    "Sl.No",
-                    "User",
+                    "Avatar",
                     "Participant Name",
                     "Photographs",
                     "Reels",
                 ]}
                 rows={data.map((user, idx) => [
-                    idx + 1,
                     <Image key={`user-${idx}`} src={user.photoURL} alt="photo" width={30} height={30} className="ml-0 mb-[-9px] md:ml-2 rounded-full" />,
                     <span key={`name-${idx}`}>{user.name}</span>,
                     <div key={`images-${idx}`} className="flex justify-center">{renderTicks(user.imageCount, 'image')}</div>,

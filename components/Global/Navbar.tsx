@@ -25,8 +25,8 @@ export default function Navbar() {
         <Link href="/" className="hover:text-text_yellow">
           Home
         </Link>
-        <Link href="/leaderboard" className="hover:text-text_yellow">
-          Leaderboard
+        <Link href="/activity-log" className="hover:text-text_yellow">
+          Activity Log
         </Link>
         <Link href="/rules" className="hover:text-text_yellow">
           Rules
@@ -52,7 +52,7 @@ export default function Navbar() {
               unoptimized
             />
             <div className="absolute group-hover:scale-100 top-[140%] scale-0 bg-text_yellow px-1 w-[10rem] right-0 duration-300 origin-top-right flex flex-col items-center gap-2 py-4 rounded-lg">
-              <LoveTriangle className="absolute top-0 -translate-y-[90%] right-4 w-4"/>
+              <LoveTriangle className="absolute top-0 -translate-y-[90%] right-4 w-4" />
               <Link
                 href="/profile"
                 className="px-12 py-2 hover:bg-neutral-200 duration-300 rounded-md"
@@ -67,10 +67,10 @@ export default function Navbar() {
                   Home
                 </Link>
                 <Link
-                  href="/leaderboard"
+                  href="/activity-log"
                   className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
                 >
-                  Leaderboard
+                  Activity Log
                 </Link>
                 <Link
                   href="/rules"
