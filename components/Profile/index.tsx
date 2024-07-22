@@ -83,12 +83,11 @@ export default function Profile() {
 								className="aspect-video w-full max-w-[400px] mx-auto"
 							>
 								<iframe
-									src={reel.url}
-									title={`Video ${idx + 1}`}
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-									allowFullScreen
-									className="w-full h-full rounded-lg"
-								/>
+									src={`https://www.instagram.com/reel/C6tS7YePA2I/embed`}
+									width={250}
+									height={400}
+									style={{ position: 'absolute', top: 0, left: 0 }}
+								></iframe>
 							</div>
 						))}
 					</div>

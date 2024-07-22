@@ -20,8 +20,6 @@ export default function LeaderboardPage() {
         type="text"
         placeholder="Search..."
         className="px-4 w-full bg-transparent focus:outline-none"
-        
-        
       />
       
     </div>

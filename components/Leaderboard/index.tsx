@@ -20,7 +20,7 @@ export default async function Leaderboard() {
                 ]}
                 rows={data.map((user, idx) => [
                     idx + 1,
-                    <Image key={`user-${idx}`} src={user.photoURL} alt="photo" width={30} height={30} className="ml-0 mb-[-9px] md:ml-2" />,
+                    <Image key={`user-${idx}`} src={user.photoURL} alt="photo" width={30} height={30} className="ml-0 mb-[-9px] md:ml-2 rounded-full" />,
                     <span key={`name-${idx}`}>{user.name}</span>,
                     <div key={`images-${idx}`} className="flex justify-center">{renderTicks(user.imageCount, 'image')}</div>,
                     <div key={`reels-${idx}`}>{renderTicks(user.reelCount, 'reel')}</div>,
