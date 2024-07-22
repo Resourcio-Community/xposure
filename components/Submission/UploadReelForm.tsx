@@ -44,11 +44,11 @@ export default function UploadReelForm() {
         if (name === 'reel' && !value.includes('youtube')) {
             setError([...error, id]);
             return;
-        }else{
-            if(error.includes(id)){
-                setError(error.filter(item=>item!==id)) 
+        } else {
+            if (error.includes(id)) {
+                setError(error.filter(item => item !== id))
             }
-        } 
+        }
         if (section) {
             setEligible([...eligible, section]);
         }
@@ -91,8 +91,11 @@ export default function UploadReelForm() {
             <div className='flex justify-center pt-16'>
                 <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reload/click anywhere on the page.</h1>
                 <Preloader width="5rem" height="5rem" color="#FFE39C" bgHeight='50vh' />
-            </div>)
-    } else if (loading === false) { return <Toast /> }
+            </div>
+        )
+    } else if (loading === false) {
+        return <Toast />
+    }
     return (
         typeof reelCount === 'number' ?
             <div className=' pt-14 space-y-16 animate-fade'>
@@ -158,10 +161,10 @@ export default function UploadReelForm() {
                             </div>
                         ))}
                     </div>
-                    <button type="submit" disabled={error.length!==0 ||reelCount>=2} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 disabled:bg-text_yellow/30 rounded-md`}>Submit</button>
+                    <button type="submit" disabled={error.length !== 0 || reelCount >= 2} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 disabled:bg-text_yellow/30 rounded-md`}>Submit</button>
                 </form >
             </div >
             :
-            <><Preloader width="5rem" height="5rem" color="#FFE39C" /></>
+            <Preloader width="5rem" height="5rem" color="#FFE39C" />
     );
 };

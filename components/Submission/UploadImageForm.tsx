@@ -113,13 +113,15 @@ export default function UploadImageForm() {
   };
 
   if (loading) {
-
     return (
       <div className='flex justify-center pt-16'>
         <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reload/click anywhere on the page.</h1>
         <Preloader width="5rem" height="5rem" color="#FFE39C" bgHeight='50vh' />
-      </div>)
-  } else if (loading === false) { return <Toast /> }
+      </div>
+    )
+  } else if (loading === false) {
+    return <Toast />
+  }
   return (
     typeof photoCount === 'number' ?
       <div className=' pt-10 space-y-12 animate-fade'>
@@ -195,7 +197,7 @@ export default function UploadImageForm() {
               </div>
             ))}
           </div>
-          <button type="submit" disabled={photoCount>=3} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 rounded-md`}>Submit</button>
+          <button type="submit" disabled={photoCount >= 3} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 rounded-md`}>Submit</button>
         </form>
       </div>
       :
