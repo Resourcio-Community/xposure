@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    dangerouslyAllowSVG:true,
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: 'https',

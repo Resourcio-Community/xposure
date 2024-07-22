@@ -1,19 +1,20 @@
 "use server";
-import { cache } from 'react'
+import { unstable_cache } from 'next/cache';
 import { DBUser, ILeaderBoard, ImageReelCount, UserFetched } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 
-export const fetchUser = cache(async (email: string): Promise<UserFetched | null> => {
+export async function fetchUser(email: string): Promise<UserFetched | null> {
   try {
     await ConnectDB();
 
     const user = await User.findOne({ email }, { _id: 0, payments: 0 });
+
     return JSON.parse(JSON.stringify(user));
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
-})
+}
 
 interface ImageReel {
   url: string;
@@ -116,9 +117,7 @@ export async function manipulateUser({
   }
 }
 
-export async function getImageReelCountForAnUser(
-  email: string
-): Promise<Array<ImageReelCount> | []> {
+export async function getImageReelCountForAnUser(email: string): Promise<Array<ImageReelCount> | []> {
   try {
     await ConnectDB();
 
@@ -140,7 +139,7 @@ export async function getImageReelCountForAnUser(
   }
 }
 
-export const getLeaderboard = cache(async (): Promise<Array<ILeaderBoard> | []> => {
+export const getLeaderboard = unstable_cache(async (): Promise<Array<ILeaderBoard> | []> => {
   try {
     await ConnectDB();
 
@@ -159,4 +158,9 @@ export const getLeaderboard = cache(async (): Promise<Array<ILeaderBoard> | []> 
   } catch (error: any) {
     throw new Error(error.message);
   }
-})
+},
+  ['activity-log'],
+  {
+    revalidate: 60
+  }
+)

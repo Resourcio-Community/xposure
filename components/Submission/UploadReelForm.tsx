@@ -32,7 +32,6 @@ export default function UploadReelForm() {
             } else {
                 setReelCount(0);
             }
-
         }
         !authLoading && reelCountFunc()
     }, [authLoading])
