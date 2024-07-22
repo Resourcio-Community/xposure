@@ -3,9 +3,11 @@ import Table from "./Table";
 import Image from "next/image";
 import { revalidateTag } from "next/cache";
 
+export const revalidate = 60
+
 export default async function ActivityLog() {
     const data = await getLeaderboard();
-    revalidateTag('activity-log')
+    // revalidateTag('activity-log')
 
     return (
         <div className="flex overflow-scroll">

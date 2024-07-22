@@ -1,9 +1,10 @@
 "use server";
+import { cache } from 'react'
 import { DBUser, ILeaderBoard, ImageReelCount, UserFetched } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 
-export async function fetchUser(email: string): Promise<UserFetched | null> {
+export const fetchUser = cache(async (email: string): Promise<UserFetched | null> => {
   try {
     await ConnectDB();
 
@@ -12,7 +13,7 @@ export async function fetchUser(email: string): Promise<UserFetched | null> {
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
-}
+})
 
 interface ImageReel {
   url: string;
@@ -34,6 +35,7 @@ function validateImageObject(
   }
   return data;
 }
+
 function validateReelObject(
   url: string,
   category: string,
@@ -138,7 +140,7 @@ export async function getImageReelCountForAnUser(
   }
 }
 
-export async function getLeaderboard(): Promise<Array<ILeaderBoard> | []> {
+export const getLeaderboard = cache(async (): Promise<Array<ILeaderBoard> | []> => {
   try {
     await ConnectDB();
 
@@ -157,4 +159,4 @@ export async function getLeaderboard(): Promise<Array<ILeaderBoard> | []> {
   } catch (error: any) {
     throw new Error(error.message);
   }
-}
+})
