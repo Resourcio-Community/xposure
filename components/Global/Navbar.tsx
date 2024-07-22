@@ -16,9 +16,9 @@ export default function Navbar() {
 
   return (
     <div className="flex w-full justify-between fixed top-0 px-10 z-50 backdrop-blur-lg">
-      <div className="py-4">
+      <Link href={'/'} className="py-4">
         <Image src="/assets/logo.svg" alt="logo" width={60} height={60} />
-      </div>
+      </Link>
 
       <div className={`gap-7 text-sm font-poppins font-light text-white ${user ? 'pl-0' : 'pl-28'} items-center tracking-wide md:flex hidden`}>
         <Link href="/" className="hover:text-text_yellow">
