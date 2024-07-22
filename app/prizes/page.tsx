@@ -2,7 +2,7 @@ import ArrowDotted from "@/public/assets/arrow.svg";
 
 export default function PrizesPage() {
   return (
-    <div className="w-full min-h-80 text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
+    <div className="w-full min-h-[80vh] text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8">
       <h1 className=" text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl">
         PRIZES
       </h1>
@@ -23,10 +23,10 @@ export default function PrizesPage() {
           Participation certificates for each participant. (Digital)
         </div>
       </div>
-      <div className="w-full flex justify-end pr-10">
+      <div className="w-full md:w-[50rem] flex justify-end pr-16">
         <a
           href="/rules"
-          className="text-neutral-200 flex items-center gap-2 pb-2 justify-center"
+          className="text-neutral-200 flex items-center gap-2 justify-center"
         >
           Rules and Guidelines
           <ArrowDotted />
