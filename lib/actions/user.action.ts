@@ -4,7 +4,7 @@ import { DBUser, ILeaderBoard, ImageReelCount, UserFetched } from "@/types";
 import { ConnectDB } from "../mongoose/connect";
 import User from "../mongoose/models/user.model";
 
-export async function fetchUser(email: string): Promise<UserFetched | null> {
+export const fetchUser = unstable_cache(async (email: string): Promise<UserFetched | null> => {
   try {
     await ConnectDB();
 
@@ -14,7 +14,12 @@ export async function fetchUser(email: string): Promise<UserFetched | null> {
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
-}
+},
+  ['user-profile'],
+  {
+    revalidate: 60
+  }
+)
 
 interface ImageReel {
   url: string;
@@ -161,6 +166,6 @@ export const getLeaderboard = unstable_cache(async (): Promise<Array<ILeaderBoar
 },
   ['activity-log'],
   {
-    revalidate: 60
+    revalidate: 60 // later change it to 3600
   }
 )
