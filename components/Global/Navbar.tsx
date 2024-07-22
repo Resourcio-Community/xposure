@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import LoveTriangle from '@/public/triangleLove.svg';
 
 export default function Navbar() {
   const router = useRouter();
@@ -50,18 +51,11 @@ export default function Navbar() {
               className="rounded-full"
               unoptimized
             />
-            <div className="absolute group-hover:scale-100 top-[110%] scale-0 bg-text_yellow/90 px-1 w-[10rem] right-0 duration-300 origin-top-right flex flex-col items-center gap-2 py-4">
-              <Image
-                src={user.photoURL || ""}
-                width={60}
-                height={60}
-                alt="user"
-                className="rounded-full"
-                unoptimized
-              />
+            <div className="absolute group-hover:scale-100 top-[140%] scale-0 bg-text_yellow px-1 w-[10rem] right-0 duration-300 origin-top-right flex flex-col items-center gap-2 py-4 rounded-lg">
+              <LoveTriangle className="absolute top-0 -translate-y-[90%] right-4 w-4"/>
               <Link
                 href="/profile"
-                className="px-12 py-2 hover:bg-neutral-200 duration-300"
+                className="px-12 py-2 hover:bg-neutral-200 duration-300 rounded-md"
               >
                 Profile
               </Link>
@@ -104,7 +98,7 @@ export default function Navbar() {
                   logOut()
                   router.push('/')
                 }}
-                className="px-12 py-2 hover:bg-red-400 duration-300"
+                className="px-12 py-2 hover:bg-red-400 duration-300 rounded-md"
               >
                 Logout
               </button>

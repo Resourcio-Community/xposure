@@ -80,24 +80,31 @@ export default function Profile() {
 							Videos
 						</h2>
 						<div className="flex flex-wrap gap-16 rounded-md justify-center md:justify-start">
-							{profile.reels.map((reel, idx) => (
-								<div
-									key={idx}
-									className="aspect-video w-fit"
-								>
-									<iframe
-										src={reel.url}
-										width={250}
-										height={400}
-										className="rounded-lg"
-									></iframe>
-								</div>
-							))}
+							{
+								profile.reels.length?
+									profile.reels.map((reel, idx) => (
+										<div
+											key={idx}
+											className="aspect-video w-fit"
+										>
+											<iframe
+												src={reel.url}
+												width={250}
+												height={400}
+												className="rounded-lg"
+											></iframe>
+										</div>
+									))
+									:
+									<>
+										<h1 className="text-lg">Nothing uploaded yet. &nbsp;{':('}</h1>
+									</>
+								}
 						</div>
 					</div>
 
 					<div className="mt-24">
-						<Pf />
+						{/* <Pf /> */}
 					</div>
 				</div>
 			</div>
