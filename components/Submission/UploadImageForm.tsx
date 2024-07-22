@@ -116,7 +116,7 @@ export default function UploadImageForm() {
 
     return (
       <div className='flex justify-center pt-16'>
-        <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reaload/click anywhere on the page.</h1>
+        <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reload/click anywhere on the page.</h1>
         <Preloader width="5rem" height="5rem" color="#FFE39C" bgHeight='50vh' />
       </div>)
   } else if (loading === false) { return <Toast /> }
@@ -195,7 +195,7 @@ export default function UploadImageForm() {
               </div>
             ))}
           </div>
-          <button type="submit" className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
+          <button type="submit" disabled={photoCount>=3} className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
         </form>
       </div>
       :
