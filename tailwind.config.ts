@@ -22,6 +22,15 @@ const config: Config = {
         poppins: ["poppins", "sans-serif"],
         Cinzel_Decorative: ["Cinzel Decorative", "serif"],
       },
+      keyframes:{
+        zoom:{
+          '0%':{opacity:'1',scale:'1'},
+          '100%':{opacity:'0',scale:'2.5'}
+        }
+      },
+      animation:{
+        'zoomin':"zoom 2s ease-in-out",
+      }
     },
   },
   plugins: [

@@ -19,7 +19,7 @@ export default function Profile() {
 	const { user, authLoading } = useAuthContext();
 
 	const [isLoading, setLoading] = useState(true)
-	const [profile, setProfile] = useState<UserFetched | null>(null)
+	const [profile, setProfile] = useState<UserFetched | null | undefined>(undefined)
 
 	if (!authLoading && !user) {
 		router.push('/')
@@ -36,69 +36,75 @@ export default function Profile() {
 	}, [authLoading])
 
 
-	if (isLoading && !profile) return <Preloader width="5rem" height="5rem" color="#FFE39C" />
-	if (!profile) return <div className="text-white text-xl w-full h-[80vh] flex items-center justify-center">Submit to initiate your profile</div>
+	if (isLoading) { return <Preloader width="5rem" height="5rem" color="#FFE39C" /> }
+	else if (profile === null) {
+		return (
+			<div className="text-white text-xl w-full h-[80vh] flex items-center justify-center animate-fade delay-1000">Submit to initiate your profile</div>
+		)
+	} else if (profile !== null && profile !== undefined) {
+		return (
+			<div className="text-white w-full min-h-screen flex flex-col items-center pt-28 pb-20 gap-8 animate-fade">
+				<div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
+					<Head
+						source={profile.photoURL}
+						title={profile.name}
+						description="#photographer #content creator"
+					/>
 
-	return (
-		<div className="text-white w-full min-h-screen flex flex-col items-center pt-28 pb-20 gap-8">
-			<div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-				<Head
-					source={profile.photoURL}
-					title={profile.name}
-					description="#photographer #content creator"
-				/>
-
-				<div className="mt-16">
-					<h2 className="text-3xl font-bold mb-8 text-center sm:text-left">
-						Images
-					</h2>
-					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-						{profile.images.map((img, idx) => (
-							<div
-								key={idx}
-								className="aspect-square relative w-full max-w-[200px] mx-auto"
-							>
-								<Image
-									src={img.url}
-									alt={`Image ${idx + 1}`}
-									layout="fill"
-									objectFit="cover"
-									className="rounded-lg"
-									placeholder="blur"
-									blurDataURL={rgbDataURL(128, 128, 128)}
-								/>
-							</div>
-						))}
+					<div className="mt-16 space-y-8">
+						<h2 className="text-3xl font-bold text-center sm:text-left">
+							Images
+						</h2>
+						<div className="flex flex-wrap gap-4 justify-center md:justify-start">
+							{profile.images.map((img, idx) => (
+								<div
+									key={idx}
+									className="relative w-fit"
+								>
+									<Image
+										src={img.url}
+										alt={`Image ${idx + 1}`}
+										width={350}
+										height={250}
+										className="rounded-lg object-contain"
+										placeholder="blur"
+										blurDataURL={rgbDataURL(128, 128, 128)}
+									/>
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
 
-				<div className="mt-16">
-					<h2 className="text-3xl font-bold mb-8 text-center sm:text-left">
-						Videos
-					</h2>
-					<div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-						{profile.reels.map((reel, idx) => (
-							<div
-								key={idx}
-								className="aspect-video w-full max-w-[400px] mx-auto"
-							>
-								<iframe
-									src={`https://www.instagram.com/reel/C6tS7YePA2I/embed`}
-									width={250}
-									height={400}
-									style={{ position: 'absolute', top: 0, left: 0 }}
-								></iframe>
-							</div>
-						))}
+					<div className="mt-8">
+						<h2 className="text-3xl font-bold mb-8 text-center sm:text-left">
+							Videos
+						</h2>
+						<div className="flex flex-wrap gap-16 rounded-md justify-center md:justify-start">
+							{profile.reels.map((reel, idx) => (
+								<div
+									key={idx}
+									className="aspect-video w-fit"
+								>
+									<iframe
+										src={reel.url}
+										width={250}
+										height={400}
+										className="rounded-lg"
+									></iframe>
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
 
-				<div className="mt-24">
-					<Pf />
+					<div className="mt-24">
+						<Pf />
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+
+		)
+	}
+
 }
 
 function Pf() {

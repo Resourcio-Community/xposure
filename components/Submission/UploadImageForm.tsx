@@ -8,7 +8,7 @@ import { upload } from '@/utils/uploadFile';
 import { calculateImagePrice } from '@/utils/price';
 import { processPayment } from '@/utils/payment';
 import Preloader from "@/components/Global/Preloader";
-
+import Toast from '@/components/Global/Toast';
 
 export default function UploadImageForm() {
 
@@ -18,6 +18,7 @@ export default function UploadImageForm() {
   const [fileName1, setFileName1] = useState<string | null>(null)
   const [fileName2, setFileName2] = useState<string | null>(null)
   const [fileName3, setFileName3] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>();
 
   const [formData, setFormData] = useState<ImageFormDataObject>({
     section1: { section: null, image: null, category: null, theme: null },
@@ -81,13 +82,16 @@ export default function UploadImageForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
     const resultArr = imageObjectFormat(formData);
     const toBePaid = calculateImagePrice(photoCount || 0, resultArr.length)
 
     if (user && user.name && user.email && user.email && toBePaid) {
+      setLoading(true);
       const paymentID = await processPayment(user.name, user.email, toBePaid)
-      if (!paymentID) return
+      if (!paymentID) {
+        setLoading(undefined);
+        return
+      }
       else {
         const downloadURLs = await upload(resultArr, user.email);
         const updatedFormData = { ...formData };
@@ -99,14 +103,23 @@ export default function UploadImageForm() {
           };
         });
         const data = finalImageObjectFormat(updatedFormData, user.name, user.email, user.photoURL!, paymentID)
-        const res = await manipulateUser(data)
-        alert(res)
-        location.reload()
+        await manipulateUser(data)
+        setLoading(false)
+        setTimeout(() => {
+          location.reload()
+        }, 1800)
       }
     }
   };
 
+  if (loading) {
 
+    return (
+      <div className='flex justify-center pt-16'>
+        <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reaload/click anywhere on the page.</h1>
+        <Preloader width="5rem" height="5rem" color="#FFE39C" bgHeight='50vh' />
+      </div>)
+  } else if (loading === false) { return <Toast /> }
   return (
     typeof photoCount === 'number' ?
       <div className=' pt-10 space-y-12 animate-fade'>
@@ -184,6 +197,8 @@ export default function UploadImageForm() {
           </div>
           <button type="submit" className={`bg-text_yellow w-fit text-black px-6 py-1 hover:bg-text_yellow/80 duration-300`}>Submit</button>
         </form>
-      </div> : <><Preloader width="5rem" height="5rem" color="#FFE39C" /></>
+      </div>
+      :
+      <Preloader width="5rem" height="5rem" color="#FFE39C" />
   );
 };

@@ -26,7 +26,7 @@ export default function Home() {
         <div className="border-l border-dashed border-text_yellow h-20 hidden md:flex"></div>
         <div className="border-l border-text_yellow h-20 flex flex-col justify-end pl-3 gap-4">
           <h1 className="text-neutral-200">Unleash your creative vision</h1>
-          <div className="md:border-b md:border-text_yellow flex w-fit items-center pt-2 md:hidden">
+          {/* <div className="md:border-b md:border-text_yellow flex w-fit items-center pt-2 md:hidden">
             <a
               href="/gallery"
               className="text-neutral-200 flex items-center gap-2 pb-2 justify-center"
@@ -34,11 +34,11 @@ export default function Home() {
               Gallery
               <ArrowDotted />
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="absolute top-[100vh] -translate-y-[110%] w-fit right-10 hidden md:flex text-sm md:text-base">
-        <div className="md:border-b md:border-text_yellow h-20 flex items-end pl-3 w-fit">
+        {/* <div className="md:border-b md:border-text_yellow h-20 flex items-end pl-3 w-fit">
           <a
             href="/gallery"
             className="text-neutral-200 flex items-center gap-2 pb-2 justify-center"
@@ -46,7 +46,7 @@ export default function Home() {
             Gallery
             <ArrowDotted />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
