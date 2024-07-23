@@ -18,21 +18,12 @@ export default function About() {
           ABOUT
         </div>
         <div className="flex text-md w-[70%] justify-center items-center text-white">
-          Welcome to Xposure, an exhilarating event hosted by Resourcio
-          Community from July 18-20, where creativity meets competition! Dive
-          into our diverse categories of Mobile and Camera Photography, as well
-          as Reel Making, and capture the magic of nature, travel, and
-          technology. With themes like &quot;Nature in Night,&quot; &quot;Travel
-          & Tourist Photography,&quot; and &quot;Explore Your
-          City/Village,&quot; there&apos;s something for every visual
-          storyteller. Join us for a chance to win amazing prizes and showcase
-          your talent. Participate, create, and let your work shine on the grand
-          stage of Xposure!
+          Welcome to Exposure, our Photography & Videography Event which is taking place on 29/07/24, a vibrant celebration of creativity, artistry, and the shared passion for capturing the world through the lens. Hosted by the Resourcio Community, this event brings together photographers of all levels from aspiring amateurs to seasoned professionals to showcase their talent, learn from one another, and connect over a shared love for photography.
         </div>
       </div>
       <div className="flex justify-between w-[70%] text-white md:flex-row flex-col items-center">
         <div className="flex flex-col justify-start items-center border-b-[0.5px] py-2 border-white">
-          Date of event : 18 - 20th July
+          Date of event : 29th July - 3rd August
         </div>
         <Link
           href="/rules"

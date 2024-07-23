@@ -33,7 +33,6 @@ export const useAuth = () => {
 			return;
 		}
 
-		setAuthLoading(true)
 		const formattedUser = formatAuthUser(authState); 
 		setUser(formattedUser);
 		setAuthLoading(false);

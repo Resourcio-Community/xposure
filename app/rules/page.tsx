@@ -6,12 +6,12 @@ export default function Rules() {
   const [activeTab, setActiveTab] = useState("themes");
 
   return (
-    <div className="text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8 px-4 sm:px-0">
-      <h1 className="text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-6xl text-center">
+    <div className="text-neutral-200 flex flex-col items-center pt-28 pb-20 gap-8 px-4 sm:px-0 text-wrap">
+      <h1 className="text-text_yellow font-Cinzel_Decorative font-bold mb-8 text-accent text-4xl md:text-6xl text-center">
         RULES & GUIDELINES
       </h1>
 
-      <div className="flex space-x-8 text-lg">
+      <div className="flex space-x-8 md:text-lg justify-center">
         <button
           className={`${
             activeTab === "themes" ? "border-b-4 border-text_yellow" : ""
@@ -39,7 +39,7 @@ export default function Rules() {
       </div>
 
       {activeTab === "themes" && (
-        <div className="text-lg max-w-[50rem] space-y-4 px-4 sm:px-0">
+        <div className="text-lg max-w-[50rem] space-y-4 px-4 sm:px-0 animate-fade">
           <h2 className="text-2xl font-bold mb-4 text-text_yellow">Themes</h2>
           <h3 className="text-xl font-semibold">Photography</h3>
           <ul className="list-decimal list-inside space-y-2 ml-4">
@@ -63,7 +63,7 @@ export default function Rules() {
               special moments with your city life.
             </li>
             <li>
-              <b>B roll of any Nature Element - Cinematics Shot</b>: The term
+              <b>B roll of any Nature Element - Cinematic Shot</b>: The term
               B-roll originates from the early days of film, when editors
               inserted supplemental footage or B-roll, into the main footage or
               A-roll, to hide visible lines where two pieces of film were
@@ -75,11 +75,11 @@ export default function Rules() {
       )}
 
       {activeTab === "photography" && (
-        <div className="text-lg max-w-[50rem] space-y-4 px-2 sm:px-0">
-          <h2 className="text-2xl font-bold mb-4 text-text_yellow">
+        <div className="text-lg w-full md:max-w-[50rem] space-y-4 px-4 sm:px-0 flex flex-col animate-fade">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 text-text_yellow">
             Photography Guidelines
           </h2>
-          <ol className="list-decimal list-inside space-y-2">
+          <ol className="list-decimal list-inside space-y-2 w-[80%]">
             <li>
               Categories: <b>Mobile Photography, Camera Photography.</b>
             </li>
@@ -143,7 +143,7 @@ export default function Rules() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    https://linktr.ee/resourciocommunity22
+                    Link Tree(social media links)
                   </Link>
                   ).
                 </li>
@@ -201,7 +201,7 @@ export default function Rules() {
       )}
 
       {activeTab === "reels" && (
-        <div className="text-lg max-w-[50rem] space-y-4 px-2 sm:px-0">
+        <div className="text-lg w-full md:max-w-[50rem] space-y-4 px-2 sm:px-0 animate-fade">
           <h2 className="text-2xl font-bold mb-4 text-text_yellow">
             Reels Guidelines
           </h2>
@@ -257,7 +257,7 @@ export default function Rules() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    https://linktr.ee/resourciocommunity22
+                    Link Tree(social media links)
                   </Link>
                   ).
                 </li>

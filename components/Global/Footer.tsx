@@ -14,21 +14,21 @@ export default function Footer() {
   return (
     <div className="w-full pt-6 justify-between border-t-[0.5px] border-text_yellow bottom-0 flex-col md:flex-row items-center overflow-hidden">
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-6">
-        <a href="/privacy-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
+        <Link href="/privacy-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
           Privacy Policy
-        </a>
-        <a href="terms-conditions" className="underline text-text_yellow/70 hover:text-text_yellow">
+        </Link>
+        <Link href="terms-conditions" className="underline text-text_yellow/70 hover:text-text_yellow">
           Terms & conditions
-        </a>
-        <a href="/refund-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
+        </Link>
+        <Link href="/refund-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
           Refund policy
-        </a>
-        <a href="/shipping-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
+        </Link>
+        <Link href="/shipping-policy" className="underline text-text_yellow/70 hover:text-text_yellow">
           Shipping policy
-        </a>
-        <a href="/contact-us" className="underline text-text_yellow/70 hover:text-text_yellow">
+        </Link>
+        <Link href="/contact-us" className="underline text-text_yellow/70 hover:text-text_yellow">
           Contact us
-        </a>
+        </Link>
       </div>
       <div className="flex justify-between space-x-5 w-full bottom-0 flex-col md:flex-row items-center md:items-end">
         <div className="flex justify-start mx-5 my-2">

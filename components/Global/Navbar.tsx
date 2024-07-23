@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import LoveTriangle from '@/public/triangleLove.svg';
 
 export default function Navbar() {
   const router = useRouter();
@@ -16,16 +17,16 @@ export default function Navbar() {
 
   return (
     <div className="flex w-full justify-between fixed top-0 px-10 z-50 backdrop-blur-lg">
-      <div className="py-4">
+      <Link href={'/'} className="py-4">
         <Image src="/assets/logo.svg" alt="logo" width={60} height={60} />
-      </div>
+      </Link>
 
       <div className={`gap-7 text-sm font-poppins font-light text-white ${user ? 'pl-0' : 'pl-28'} items-center tracking-wide md:flex hidden`}>
         <Link href="/" className="hover:text-text_yellow">
           Home
         </Link>
-        {/* <Link href="/leaderboard" className="hover:text-text_yellow">
-          Leaderboard
+        {/* <Link href="/activity-log" className="hover:text-text_yellow">
+          Activity Log
         </Link> */}
         <Link href="/rules" className="hover:text-text_yellow">
           Rules
@@ -50,18 +51,11 @@ export default function Navbar() {
               className="rounded-full"
               unoptimized
             />
-            <div className="absolute group-hover:scale-100 top-[110%] scale-0 bg-text_yellow/90 px-1 w-[10rem] right-0 duration-300 origin-top-right flex flex-col items-center gap-2 py-4">
-              <Image
-                src={user.photoURL || ""}
-                width={60}
-                height={60}
-                alt="user"
-                className="rounded-full"
-                unoptimized
-              />
+            <div className="absolute group-hover:scale-100 top-[140%] scale-0 bg-text_yellow px-1 w-[10rem] right-0 duration-300 origin-top-right flex flex-col items-center gap-2 py-4 rounded-lg">
+              <LoveTriangle className="absolute top-0 -translate-y-[85%] right-4 w-4" />
               <Link
                 href="/profile"
-                className="px-12 py-2 hover:bg-neutral-200 duration-300"
+                className="px-12 py-2 hover:bg-neutral-200 duration-300 rounded-md"
               >
                 Profile
               </Link>
@@ -72,12 +66,12 @@ export default function Navbar() {
                 >
                   Home
                 </Link>
-                <Link
-                  href="/leaderboard"
+                {/* <Link
+                  href="/activity-log"
                   className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
                 >
-                  Leaderboard
-                </Link>
+                  Activity Log
+                </Link> */}
                 <Link
                   href="/rules"
                   className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
@@ -90,21 +84,21 @@ export default function Navbar() {
                 >
                   Prizes
                 </Link>
-                {user && (
+                {/* {user && (
                   <Link
                     href="/submission"
                     className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
                   >
                     Submission
                   </Link>
-                )}
+                )} */}
               </div>
               <button
                 onClick={() => {
                   logOut()
                   router.push('/')
                 }}
-                className="px-12 py-2 hover:bg-red-400 duration-300"
+                className="px-12 py-2 hover:bg-red-400 duration-300 rounded-md"
               >
                 Logout
               </button>
