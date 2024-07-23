@@ -36,7 +36,7 @@ export default function Profile() {
 	}, [authLoading])
 
 
-	if (isLoading) return <Preloader width="5rem" height="5rem" color="#FFE39C" />
+	if (isLoading) return <Preloader bgHeight="80vh" width="5rem" height="5rem" color="#FFE39C" />
 	else if (profile === null) {
 		return (
 			<div className="text-white text-xl w-full h-[80vh] flex items-center justify-center animate-fade delay-1000">Submit to initiate your profile</div>
@@ -111,7 +111,9 @@ export default function Profile() {
 
 		)
 	}
-
+	else {
+		return <div className="min-h-[80vh]"></div>
+	}
 }
 
 function Pf() {
