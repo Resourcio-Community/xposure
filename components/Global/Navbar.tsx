@@ -55,6 +55,7 @@ export default function Navbar() {
               <LoveTriangle className="absolute top-0 -translate-y-[85%] right-4 w-4" />
               <Link
                 href="/profile"
+                prefetch={true}
                 className="px-12 py-2 hover:bg-neutral-200 duration-300 rounded-md"
               >
                 Profile
