@@ -18,7 +18,6 @@ export default function Profile() {
 	const router = useRouter();
 	const { user, authLoading } = useAuthContext();
 
-	const [isLoading, setLoading] = useState(true)
 	const [profile, setProfile] = useState<UserFetched | null | undefined>(undefined)
 
 	if (!authLoading && !user) {
@@ -32,12 +31,10 @@ export default function Profile() {
 			setProfile(data)
 		}
 		!authLoading && getProfile()
-		!authLoading && setLoading(false)
 	}, [authLoading])
 
 
-	if (isLoading) return <Preloader bgHeight="80vh" width="5rem" height="5rem" color="#FFE39C" />
-	else if (profile === null) {
+	if (profile === null) {
 		return (
 			<div className="text-white text-xl w-full h-[80vh] flex items-center justify-center animate-fade delay-1000">Submit to initiate your profile</div>
 		)
@@ -96,9 +93,7 @@ export default function Profile() {
 										</div>
 									))
 									:
-									<>
-										<h1 className="text-lg">Nothing uploaded yet. &nbsp;{':('}</h1>
-									</>
+									<h1 className="text-lg">Nothing uploaded yet. &nbsp;{':('}</h1>
 							}
 						</div>
 					</div>
@@ -108,11 +103,10 @@ export default function Profile() {
 					</div>
 				</div>
 			</div>
-
 		)
 	}
 	else {
-		return <div className="min-h-[80vh]"></div>
+		return <Preloader bgHeight="80vh" width="5rem" height="5rem" color="#FFE39C" />
 	}
 
 }
