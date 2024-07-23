@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ArrowDotted from "@/public/assets/arrow.svg";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -26,27 +27,27 @@ export default function Home() {
         <div className="border-l border-dashed border-text_yellow h-20 hidden md:flex"></div>
         <div className="border-l border-text_yellow h-20 flex flex-col justify-end pl-3 gap-4">
           <h1 className="text-neutral-200">Unleash your creative vision</h1>
-          {/* <div className="md:border-b md:border-text_yellow flex w-fit items-center pt-2 md:hidden">
-            <a
+          <div className="md:border-b md:border-text_yellow flex w-fit items-center pt-2 md:hidden">
+            <Link
               href="/gallery"
               className="text-neutral-200 flex items-center gap-2 pb-2 justify-center"
             >
               Gallery
               <ArrowDotted />
-            </a>
-          </div> */}
+            </Link>
+          </div>
         </div>
       </div>
       <div className="absolute top-[100vh] -translate-y-[110%] w-fit right-10 hidden md:flex text-sm md:text-base">
-        {/* <div className="md:border-b md:border-text_yellow h-20 flex items-end pl-3 w-fit">
-          <a
+        <div className="md:border-b md:border-text_yellow h-20 flex items-end pl-3 w-fit">
+          <Link
             href="/gallery"
             className="text-neutral-200 flex items-center gap-2 pb-2 justify-center"
           >
             Gallery
             <ArrowDotted />
-          </a>
-        </div> */}
+          </Link>
+        </div>
       </div>
     </div>
   );

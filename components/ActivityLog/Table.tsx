@@ -13,7 +13,7 @@ export default function Table({ label, columns, rows }: TableProps) {
           <thead>
             <tr className="border-b border-neutral-300 text-text_yellow font-poppins text-sm md:text-[23px] font-bold">
               {columns.map((v, i) => (
-                <th key={i} className="px-4 md:px-8 py-3 md:py-7 font-normal text-left">
+                <th key={i} className="px-4 md:px-8 py-3 md:py-7 font-normal text-center">
                   {v}
                 </th>
               ))}
@@ -26,7 +26,7 @@ export default function Table({ label, columns, rows }: TableProps) {
                 className="border-b border-neutral-300 "
               >
                 {r.map((v, i) => (
-                  <td key={i} className="px-4 md:px-8 py-3 md:py-7 align-text-top">
+                  <td key={i} className="px-4 md:px-8 py-3 md:py-7">
                     {v}
                   </td>
                 ))}
