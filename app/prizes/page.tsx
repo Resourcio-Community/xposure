@@ -10,7 +10,7 @@ export default function PrizesPage() {
       <div className="flex gap-4 flex-wrap justify-center">
         <div className="border w-80 h-32 p-4 flex justify-center text-center items-center border-dashed rounded-md border-text_yellow">
           Winners from each of the 3 themes in photography and each of the 2
-          themes in reel making are eligible for prizes.
+          themes in short making are eligible for prizes.
         </div>
         <div className="border w-80 h-32 p-4 flex justify-center text-center items-center border-dashed rounded-md border-text_yellow">
           Prizes worth Rs 4k to be distributed.

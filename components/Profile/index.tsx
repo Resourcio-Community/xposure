@@ -74,7 +74,7 @@ export default function Profile() {
 
 					<div className="mt-8">
 						<h2 className="text-3xl font-bold mb-8 text-center sm:text-left">
-							Videos
+							Shorts
 						</h2>
 						<div className="flex flex-wrap gap-16 rounded-md justify-center md:justify-start">
 							{

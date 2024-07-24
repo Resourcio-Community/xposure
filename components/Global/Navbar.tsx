@@ -33,7 +33,6 @@ const NAV_LINKS: INavLink[] = [
 export default function Navbar() {
   const router = useRouter();
   const { signInWithGoogle, user, logOut } = useAuthContext();
-  const [showMobileNavbar, setShowMobileNavbar] = useState(false)
 
   const handleGoogleSignIn = async () => {
     const result = await signInWithGoogle();
@@ -41,9 +40,7 @@ export default function Navbar() {
     router.push("/");
   };
 
-  const showHideDropDown = () => {
-    setShowMobileNavbar(prev => !prev)
-  }
+
 
   return (
     <div className="flex w-full justify-between fixed top-0 px-6 md:px-10 z-50 backdrop-blur-lg">
@@ -71,28 +68,25 @@ export default function Navbar() {
               width={40}
               height={40}
               alt="user"
-              className="rounded-full"
+              className="rounded-full "
               unoptimized
-              onClick={showHideDropDown}
             />
-            <div className={`absolute group-hover:scale-100 top-[140%] scale-0 px-1 w-[10rem] flex flex-col items-center bg-text_yellow right-0 duration-300 origin-top-right gap-2 py-4 rounded-lg ${!showMobileNavbar} ? '' : ''`}>
-              <LoveTriangle className="absolute top-0 -translate-y-[85%] right-4 w-4" />
+            <div className={`absolute  group-hover:scale-100 top-[110%] scale-0 px-1 w-[10rem] flex flex-col items-center bg-text_yellow right-0 duration-300 origin-top-right gap-2 py-4 rounded-lg`}>
               <Link
                 href="/profile"
                 prefetch={true}
                 className="px-12 py-2 hover:bg-neutral-200 duration-300 rounded-md"
-                onClick={showHideDropDown}
               >
                 Profile
               </Link>
               <div className="md:hidden flex flex-col items-center gap-2 mt-4">
                 {NAV_LINKS.map((item, idx) => (
-                  <Link href={item.url} key={idx} className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center" onClick={showHideDropDown}>
+                  <Link href={item.url} key={idx} className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center">
                     {item.name}
                   </Link>
                 ))}
                 {user && (
-                  <Link href="/submission" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center" onClick={showHideDropDown}>
+                  <Link href="/submission" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center" >
                     Submission
                   </Link>
                 )}
