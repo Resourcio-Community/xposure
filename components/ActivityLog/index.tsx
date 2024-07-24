@@ -13,7 +13,7 @@ export default async function ActivityLog() {
                     "Avatar",
                     "Participant Name",
                     "Photographs",
-                    "Reels",
+                    "Shorts",
                 ]}
                 rows={data.map((user, idx) => [
                     <Image key={`user-${idx}`} src={user.photoURL} alt="photo" width={30} height={30} className="ml-0 mb-[-9px] md:ml-2 rounded-full" />,

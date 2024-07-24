@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="flex w-full flex-col py-28">
       <div className="flex font-poppins text-white text-sm md:text-xl items-center justify-center pt-20 font-light tracking-widest">
-        A photography & reel making contest
+        A photography & shorts making contest
       </div>
       <div className="flex flex-col justify-center items-center">
         <div className="flex font-Cinzel_Decorative text-text_yellow text-[7vmax] items-center justify-center font-bold tracking-widest">

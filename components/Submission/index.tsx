@@ -46,7 +46,7 @@ export default function Submission() {
           className={selectedButton === 'REELS' ? activeTab : inActiveTab}
           onClick={handleReelClick}
         >
-          REELS
+          SHORTS
         </button>
       </div>
 

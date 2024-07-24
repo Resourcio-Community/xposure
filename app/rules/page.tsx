@@ -34,7 +34,7 @@ export default function Rules() {
           } pb-2 hover:text-text_yellow`}
           onClick={() => setActiveTab("reels")}
         >
-          Reels Guidelines
+          Shorts Guidelines
         </button>
       </div>
 
@@ -56,10 +56,10 @@ export default function Rules() {
               the natural world.
             </li>
           </ul>
-          <h3 className="text-xl font-semibold mt-4">Reels</h3>
+          <h3 className="text-xl font-semibold mt-4">Shorts</h3>
           <ul className="list-decimal list-inside space-y-2 ml-4">
             <li>
-              <b>Explore your city/ village</b>: Creating Reels about your
+              <b>Explore your city/ village</b>: Creating Shorts about your
               special moments with your city life.
             </li>
             <li>
@@ -203,29 +203,29 @@ export default function Rules() {
       {activeTab === "reels" && (
         <div className="text-lg w-full md:max-w-[50rem] space-y-4 px-2 sm:px-0 animate-fade">
           <h2 className="text-2xl font-bold mb-4 text-text_yellow">
-            Reels Guidelines
+            Shorts Guidelines
           </h2>
           <ol className="list-decimal list-inside space-y-2">
             <li>
-              Reel Dimensions: <b>9:16</b>.
+              Short Dimensions: <b>9:16</b>.
             </li>
             <li>
-              Reel length: Minimum <b>30</b> seconds, maximum <b>45</b> seconds.
+              Short length: Minimum <b>30</b> seconds, maximum <b>45</b> seconds.
             </li>
             <li>
-              <b>Watermark Requirement</b>: Mandatory for all reels.
+              <b>Watermark Requirement</b>: Mandatory for all shorts.
             </li>
             <li>
               Entry Fee:
               <ul className="space-y-2 list-inside ml-6">
                 <li>
-                  Reel Making (Max 2 reels, total fee: Rs. 60):
+                  Short Making (Max 2 shorts, total fee: Rs. 60):
                   <ul
                     className="space-y-1 list-inside ml-6"
                     style={{ listStyleType: "lower-roman" }}
                   >
-                    <li>1st Reel: Rs. 40</li>
-                    <li>2nd Reel: Rs. 20</li>
+                    <li>1st Short: Rs. 40</li>
+                    <li>2nd Short: Rs. 20</li>
                   </ul>
                 </li>
               </ul>
@@ -246,8 +246,8 @@ export default function Rules() {
                 className="space-y-1 list-inside ml-6"
                 style={{ listStyleType: "lower-roman" }}
               >
-                <li>Reel must have a watermark.</li>
-                <li>Post the reel on any social media platform.</li>
+                <li>Short must have a watermark.</li>
+                <li>Post the short on any social media platform.</li>
                 <li>
                   {" "}
                   Tag Resourcio Community on social media (
@@ -262,7 +262,7 @@ export default function Rules() {
                   ).
                 </li>
                 <li>
-                  Submit the posted reel <b>Link</b> via Submission Form on the
+                  Submit the posted short <b>Link</b> via Submission Form on the
                   website.
                 </li>
                 <li>
@@ -272,10 +272,10 @@ export default function Rules() {
               </ul>
             </li>
             <li>
-              <b>Winners</b>: One Winner per Reel theme, selected by judges.
+              <b>Winners</b>: One Winner per Short theme, selected by judges.
             </li>
             <li>
-              <b>Submission Format</b>: Reels must be in the highest possible
+              <b>Submission Format</b>: Shorts must be in the highest possible
               resolution.
             </li>
             <li>
@@ -289,11 +289,11 @@ export default function Rules() {
                   lead to direct disqualification.
                 </li>
                 <li>
-                  Your reel must respect intellectual property rights and not
+                  Your short must respect intellectual property rights and not
                   violate privacy or publicity rights.
                 </li>
                 <li>
-                  Your reel must not promote illegal activities or violations of
+                  Your short must not promote illegal activities or violations of
                   any law.
                 </li>
               </ul>
