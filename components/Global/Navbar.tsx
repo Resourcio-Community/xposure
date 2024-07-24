@@ -16,10 +16,10 @@ const NAV_LINKS: INavLink[] = [
     name: 'Home',
     url: '/'
   },
-  {
-    name: 'Activity Log',
-    url: '/activity-log'
-  },
+  // {
+  //   name: 'Activity Log',
+  //   url: '/activity-log'
+  // },
   {
     name: 'Rules',
     url: '/rules'
@@ -57,11 +57,11 @@ export default function Navbar() {
             {item.name}
           </Link>
         ))}
-        {user && (
+{/*         {user && (
           <Link href="/submission" className="hover:text-text_yellow">
             Submission
           </Link>
-        )}
+        )} */}
       </div>
       <div className="flex items-center">
         {user ? (
@@ -91,11 +91,11 @@ export default function Navbar() {
                     {item.name}
                   </Link>
                 ))}
-                {user && (
+{/*                 {user && (
                   <Link href="/submission" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center" onClick={showHideDropDown}>
                     Submission
                   </Link>
-                )}
+                )} */}
               </div>
               <button
                 onClick={() => {
