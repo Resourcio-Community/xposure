@@ -4,10 +4,36 @@ import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import LoveTriangle from '@/public/triangleLove.svg';
+import { useState } from "react";
+
+interface INavLink {
+  name: string;
+  url: string;
+}
+
+const NAV_LINKS: INavLink[] = [
+  {
+    name: 'Home',
+    url: '/'
+  },
+  {
+    name: 'Activity Log',
+    url: '/activity-log'
+  },
+  {
+    name: 'Rules',
+    url: '/rules'
+  },
+  {
+    name: 'Prizes',
+    url: '/prizes'
+  },
+]
 
 export default function Navbar() {
   const router = useRouter();
   const { signInWithGoogle, user, logOut } = useAuthContext();
+  const [showMobileNavbar, setShowMobileNavbar] = useState(false)
 
   const handleGoogleSignIn = async () => {
     const result = await signInWithGoogle();
@@ -15,25 +41,22 @@ export default function Navbar() {
     router.push("/");
   };
 
+  const showHideDropDown = () => {
+    setShowMobileNavbar(prev => !prev)
+  }
+
   return (
-    <div className="flex w-full justify-between fixed top-0 px-10 z-50 backdrop-blur-lg">
-      <Link href={'/'} className="py-4">
-        <Image src="/assets/logo.svg" alt="logo" width={60} height={60} />
+    <div className="flex w-full justify-between fixed top-0 px-6 md:px-10 z-50 backdrop-blur-lg">
+      <Link href='/' className="py-4">
+        <Image src="/assets/logo.svg" alt="logo" width={50} height={50} className="w-10 h-10 md:w-14 md:h-14" />
       </Link>
 
       <div className={`gap-7 text-sm font-poppins font-light text-white ${user ? 'pl-0' : 'pl-28'} items-center tracking-wide md:flex hidden`}>
-        <Link href="/" className="hover:text-text_yellow">
-          Home
-        </Link>
-        <Link href="/activity-log" className="hover:text-text_yellow">
-          Activity Log
-        </Link>
-        <Link href="/rules" className="hover:text-text_yellow">
-          Rules
-        </Link>
-        <Link href="/prizes" className="hover:text-text_yellow">
-          Prizes
-        </Link>
+        {NAV_LINKS.map((item, idx) => (
+          <Link href={item.url} key={idx} className="hover:text-text_yellow">
+            {item.name}
+          </Link>
+        ))}
         {user && (
           <Link href="/submission" className="hover:text-text_yellow">
             Submission
@@ -44,52 +67,32 @@ export default function Navbar() {
         {user ? (
           <div className="relative group">
             <Image
-              src={user.photoURL || ""}
-              width={39}
-              height={39}
+              src={user.photoURL!}
+              width={40}
+              height={40}
               alt="user"
               className="rounded-full"
               unoptimized
+              onClick={showHideDropDown}
             />
-            <div className="absolute group-hover:scale-100 top-[140%] scale-0 bg-text_yellow px-1 w-[10rem] right-0 duration-300 origin-top-right flex flex-col items-center gap-2 py-4 rounded-lg">
+            <div className={`absolute group-hover:scale-100 top-[140%] scale-0 px-1 w-[10rem] flex flex-col items-center bg-text_yellow right-0 duration-300 origin-top-right gap-2 py-4 rounded-lg ${!showMobileNavbar} ? '' : ''`}>
               <LoveTriangle className="absolute top-0 -translate-y-[85%] right-4 w-4" />
               <Link
                 href="/profile"
                 prefetch={true}
                 className="px-12 py-2 hover:bg-neutral-200 duration-300 rounded-md"
+                onClick={showHideDropDown}
               >
                 Profile
               </Link>
               <div className="md:hidden flex flex-col items-center gap-2 mt-4">
-                <Link
-                  href="/"
-                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/activity-log"
-                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
-                >
-                  Activity Log
-                </Link>
-                <Link
-                  href="/rules"
-                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
-                >
-                  Rules
-                </Link>
-                <Link
-                  href="/prizes"
-                  className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
-                >
-                  Prizes
-                </Link>
+                {NAV_LINKS.map((item, idx) => (
+                  <Link href={item.url} key={idx} className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center" onClick={showHideDropDown}>
+                    {item.name}
+                  </Link>
+                ))}
                 {user && (
-                  <Link
-                    href="/submission"
-                    className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center"
-                  >
+                  <Link href="/submission" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center" onClick={showHideDropDown}>
                     Submission
                   </Link>
                 )}
