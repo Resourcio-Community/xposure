@@ -106,7 +106,7 @@ export default function Profile() {
 		)
 	}
 	else {
-		return <Preloader bgHeight="80vh" width="5rem" height="5rem" color="#FFE39C" />
+		return <Preloader bgHeight="80vh" width="4rem" height="4rem" color="#FFE39C" />
 	}
 }
 
