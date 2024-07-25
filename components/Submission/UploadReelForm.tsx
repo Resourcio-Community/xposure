@@ -61,7 +61,6 @@ export default function UploadReelForm() {
         });
     };
 
-
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         const resultArr = reelObjectFormat(formData);
@@ -85,16 +84,17 @@ export default function UploadReelForm() {
         }
     };
 
+
     if (loading) {
         return (
             <div className='flex justify-center pt-16'>
-                <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reload/click anywhere on the page.</h1>
-                <Preloader width="5rem" height="5rem" color="#FFE39C" bgHeight='50vh' />
+                <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reload/Click anywhere on the page.</h1>
+                <Preloader width="4rem" height="4rem" color="#FFE39C" bgHeight='50vh' />
             </div>
         )
-    } else if (loading === false) {
-        return <Toast />
     }
+    else if (loading === false) return <Toast />
+
     return (
         typeof reelCount === 'number' ?
             <div className=' pt-14 space-y-16 animate-fade'>
@@ -164,6 +164,6 @@ export default function UploadReelForm() {
                 </form >
             </div >
             :
-            <Preloader width="5rem" height="5rem" color="#FFE39C" />
+            <Preloader width="4rem" height="4rem" color="#FFE39C" />
     );
 };

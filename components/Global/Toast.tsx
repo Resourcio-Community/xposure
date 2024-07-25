@@ -1,8 +1,7 @@
 import Lottie from 'react-lottie';
 import Animation from '@/public/Animation.json'
 
-function Toast() {
-
+export default function Toast() {
 
     return (
         // <div className='absolute z-[1000000] top-0 left-0 h-svh w-svw bg-background_black flex justify-center items-center '>
@@ -28,5 +27,3 @@ function Toast() {
 
     )
 }
-
-export default Toast
