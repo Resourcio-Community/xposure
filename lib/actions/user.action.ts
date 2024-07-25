@@ -17,7 +17,7 @@ export const fetchUser = unstable_cache(async (email: string): Promise<UserFetch
 },
   ['user-profile'],
   {
-    revalidate: 60 // change it to 120 later
+    revalidate: 120
   }
 )
 
