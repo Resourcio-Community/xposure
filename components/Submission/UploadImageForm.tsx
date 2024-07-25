@@ -27,7 +27,7 @@ export default function UploadImageForm() {
   });
 
   useEffect(() => {
-    async function imageCount() {
+    async function imageCountFunc() {
       if (!user) return
       const photoReelCount = await getImageReelCountForAnUser(user.email as string);
       if (photoReelCount.length !== 0) {
@@ -36,7 +36,7 @@ export default function UploadImageForm() {
         setPhotoCount(0)
       }
     }
-    !authLoading && imageCount()
+    !authLoading && imageCountFunc()
   }, [authLoading])
 
 
@@ -112,16 +112,17 @@ export default function UploadImageForm() {
     }
   };
 
+
   if (loading) {
     return (
       <div className='flex justify-center pt-16'>
-        <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reload/click anywhere on the page.</h1>
-        <Preloader width="5rem" height="5rem" color="#FFE39C" bgHeight='50vh' />
+        <h1 className='absolute text-red-500 text-2xl'>Payment processing... Please DO NOT Reload/Click anywhere on the page.</h1>
+        <Preloader width="4rem" height="4rem" color="#FFE39C" bgHeight='50vh' />
       </div>
     )
-  } else if (loading === false) {
-    return <Toast />
   }
+  else if (loading === false) return <Toast />
+
   return (
     typeof photoCount === 'number' ?
       <div className=' pt-10 space-y-12 animate-fade'>
@@ -201,6 +202,6 @@ export default function UploadImageForm() {
         </form>
       </div>
       :
-      <Preloader width="5rem" height="5rem" color="#FFE39C" />
+      <Preloader width="4rem" height="4rem" color="#FFE39C" />
   );
 };
