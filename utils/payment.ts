@@ -2,7 +2,9 @@ import { createOrder } from "@/lib/payment/createOrder";
 
 export async function processPayment(name: string, email: string, amount: number) {
     return new Promise<string | null>(async (resolve, reject) => {
+        
         const orderId = await createOrder(amount, 'INR');
+
         const options = {
             key: process.env.NEXT_PUBLIC_RAZORPAY_ID,
             amount: amount * 100,
@@ -33,8 +35,8 @@ export async function processPayment(name: string, email: string, amount: number
                     reject(null)
                 }
             },
-            modal:{
-                ondismiss:()=>{
+            modal: {
+                ondismiss: () => {
                     window.location.replace('/submission');
                 }
             },
