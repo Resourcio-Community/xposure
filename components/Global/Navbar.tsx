@@ -15,10 +15,10 @@ const NAV_LINKS: INavLink[] = [
     name: 'Home',
     url: '/'
   },
-  // {
-  //   name: 'Activity Log',
-  //   url: '/activity-log'
-  // },
+  {
+    name: 'Activity Log',
+    url: '/activity-log'
+  },
   {
     name: 'Rules',
     url: '/rules'
