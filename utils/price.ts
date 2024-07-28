@@ -5,11 +5,11 @@ export function calculateImagePrice(prevUploads: number, numOfDoc: number): numb
         case 0:
             switch (numOfDoc) {
                 case 1:
-                    return 1;
+                    return 25;
                 case 2:
-                    return 1;
+                    return 40;
                 case 3:
-                    return 1;
+                    return 50;
                 default:
                     break;
             }
@@ -17,9 +17,9 @@ export function calculateImagePrice(prevUploads: number, numOfDoc: number): numb
         case 1:
             switch (numOfDoc) {
                 case 1:
-                    return 1;
+                    return 15;
                 case 2:
-                    return 1;
+                    return 25;
                 default:
                     break;
             }
@@ -27,7 +27,7 @@ export function calculateImagePrice(prevUploads: number, numOfDoc: number): numb
         case 2:
             switch (numOfDoc) {
                 case 1:
-                    return 1;
+                    return 10;
                 default:
                     break;
             }
