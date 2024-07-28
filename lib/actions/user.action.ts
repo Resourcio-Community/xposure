@@ -17,7 +17,7 @@ export const fetchUser = unstable_cache(async (email: string): Promise<UserFetch
 },
   ['user-profile'],
   {
-    revalidate: 120
+    revalidate: 150
   }
 )
 
@@ -166,6 +166,6 @@ export const getLeaderboard = unstable_cache(async (): Promise<Array<ILeaderBoar
 },
   ['activity-log'],
   {
-    revalidate: 60 // later change it to 3600
+    revalidate: 3600
   }
 )
