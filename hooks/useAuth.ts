@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import {
 	User,
-	onAuthStateChanged,
 	signInWithPopup,
 	signOut,
 	signInWithEmailAndPassword,
