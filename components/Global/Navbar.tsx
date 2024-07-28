@@ -53,11 +53,11 @@ export default function Navbar() {
             {item.name}
           </Link>
         ))}
-        {/* {user && (
+        {user && (
           <Link href="/submission" className="hover:text-text_yellow">
             Submission
           </Link>
-        )} */}
+        )}
       </div>
       {authLoading
         ? (
