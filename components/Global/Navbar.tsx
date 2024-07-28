@@ -90,11 +90,11 @@ export default function Navbar() {
                         {item.name}
                       </Link>
                     ))}
-                    {/* {user && (
+                    {user && (
                       <Link href="/submission" className="px-4 py-2 hover:bg-neutral-200 duration-300 w-full text-center" >
                         Submission
                       </Link>
-                    )} */}
+                    )}
                   </div>
                   <button
                     onClick={() => {
