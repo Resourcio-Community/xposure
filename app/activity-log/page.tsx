@@ -1,6 +1,6 @@
 import ActivityLog from '@/components/ActivityLog';
 
-export default function ActicityLogPage() {
+export default function ActivityLogPage() {
 
   return (
     <div className="min-h-screen text-neutral-200 flex flex-col items-center pt-28 gap-0 md:gap-8">
