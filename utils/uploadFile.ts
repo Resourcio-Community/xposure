@@ -1,6 +1,6 @@
 import { imageRef } from '@/lib/firebase/storage';
 import { ImageUploadFormat } from '@/types';
-import { UploadMetadata, getDownloadURL, uploadBytesResumable, getMetadata } from 'firebase/storage';
+import { UploadMetadata, getDownloadURL, uploadBytes, getMetadata } from 'firebase/storage';
 
 interface UploadedFile {
     metadata: string;
@@ -11,36 +11,32 @@ export async function upload(items: ImageUploadFormat[], email: string) {
     const imageArr: UploadedFile[] = [];
     const promises = items.map((item) => {
         const metaData: UploadMetadata = { customMetadata: { name: item.label! } };
-        const fileName = new Date().getTime().toString();
+        const fileName = new Date().getTime().toString() + '_' + item.file?.name;
+
         if (email) {
             const storageRef = imageRef(email, fileName);
-            const uploadTask = uploadBytesResumable(storageRef, item.file!, metaData);
+            const uploadTask = uploadBytes(storageRef, item.file!, metaData);
 
             return new Promise<void>((resolve, reject) => {
-                uploadTask.on(
-                    "state_changed",
-                    (snapshot) => {
-                        const progress =
-                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        // console.log(progress);
-                    },
+                uploadTask.then(async (snapshot) => {
+                    // console.log(snapshot)
+                    try {
+                        const downloadURL = await getDownloadURL(storageRef);
+                        const metadata = await getMetadata(storageRef);
+
+                        imageArr.push({
+                            metadata: metadata.customMetadata?.name || "",
+                            url: downloadURL
+                        });
+                        resolve();
+                    } catch (err) {
+                        reject(err);
+                    }
+                },
                     (err) => {
                         console.log(err);
                         reject(err);
                     },
-                    async () => {
-                        try {
-                            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                            const metadata = await getMetadata(uploadTask.snapshot.ref);
-                            imageArr.push({
-                                metadata: metadata.customMetadata?.name || "",
-                                url: downloadURL
-                            });
-                            resolve();
-                        } catch (err) {
-                            reject(err);
-                        }
-                    }
                 );
             });
         }

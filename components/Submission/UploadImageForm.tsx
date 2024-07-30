@@ -94,6 +94,7 @@ export default function UploadImageForm() {
       }
       else {
         const downloadURLs = await upload(resultArr, user.email);
+
         const updatedFormData = { ...formData };
         downloadURLs.forEach((item) => {
           const key = item.metadata as keyof ImageFormDataObject;
