@@ -15,9 +15,9 @@ export const fetchUser = unstable_cache(async (email: string): Promise<UserFetch
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
 },
-  ['user-profile'],
+  ['xposure-user-profile'],
   {
-    revalidate: 150
+    revalidate: 120
   }
 )
 
@@ -164,7 +164,7 @@ export const getLeaderboard = unstable_cache(async (): Promise<Array<ILeaderBoar
     throw new Error(error.message);
   }
 },
-  ['activity-log'],
+  ['xposure-activity-log'],
   {
     revalidate: 3600
   }

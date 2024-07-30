@@ -16,7 +16,15 @@ export default async function ActivityLog() {
                     "Shorts",
                 ]}
                 rows={data.map((user, idx) => [
-                    <Image key={`user-${idx}`} src={user.photoURL} alt="photo" width={30} height={30} className="ml-0 mb-[-9px] md:ml-2 rounded-full" />,
+                    <Image
+                        key={`user-${idx}`}
+                        src={user.photoURL}
+                        alt="photo"
+                        width={30}
+                        height={30}
+                        className="ml-0 mb-[-9px] md:ml-2 rounded-full"
+                        unoptimized
+                    />,
                     <span key={`name-${idx}`}>{user.name}</span>,
                     <div className="flex justify-center" key={`images-${idx}`}>{renderTicks(user.imageCount, 'image')}</div>,
                     <div className="flex justify-center" key={`reels-${idx}`}>{renderTicks(user.reelCount, 'reel')}</div>,
