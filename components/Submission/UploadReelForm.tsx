@@ -153,9 +153,9 @@ export default function UploadReelForm() {
                                     onChange={(e) => handleChange(e, `section${section}` as keyof ReelFormDataObject)}
                                     className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                                 >
-                                    <option value="">Select an category</option>
+                                    <option value="">Select an theme</option>
                                     <option value="Explore your city/ village">Explore your city/ village</option>
-                                    <option value="B roll of any Nature Element - Cinematic Shot">B roll of any Nature Element - Cinematic Shot</option>
+                                    <option value="B roll of any Nature Element - Cinematic Shot">A viewport to your daily life: Shoot your daily life inside a reel.</option>
                                 </select>
                             </div>
                         ))}
