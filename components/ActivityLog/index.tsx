@@ -6,31 +6,29 @@ export default async function ActivityLog() {
     const data = await getLeaderboard();
 
     return (
-        <div className="flex overflow-y-scroll">
-            <Table
-                label="Placement Details"
-                columns={[
-                    "Avatar",
-                    "Participant Name",
-                    "Photographs",
-                    "Shorts",
-                ]}
-                rows={data.map((user, idx) => [
+        <Table
+            columns={[
+                "Avatar",
+                "Participant Name",
+                "Photographs",
+                "Shorts",
+            ]}
+            rows={data.map((user, idx) => [
+                <div key={`user-${idx}`} className="flex justify-center">
                     <Image
-                        key={`user-${idx}`}
                         src={user.photoURL}
                         alt="photo"
                         width={30}
                         height={30}
-                        className="ml-0 mb-[-9px] md:ml-2 rounded-full"
+                        className="rounded-full"
                         unoptimized
-                    />,
-                    <span key={`name-${idx}`}>{user.name}</span>,
-                    <div className="flex justify-center" key={`images-${idx}`}>{renderTicks(user.imageCount, 'image')}</div>,
-                    <div className="flex justify-center" key={`reels-${idx}`}>{renderTicks(user.reelCount, 'reel')}</div>,
-                ])}
-            />
-        </div>
+                    />
+                </div>,
+                <span key={`name-${idx}`}>{user.name}</span>,
+                <div key={`images-${idx}`}>{renderTicks(user.imageCount, 'image')}</div>,
+                <div key={`reels-${idx}`}>{renderTicks(user.reelCount, 'reel')}</div>,
+            ])}
+        />
     );
 }
 
@@ -55,5 +53,5 @@ function renderTicks(count: number, type: string) {
             }
         }
     }
-    return <div className="flex gap-2">{ticks}</div>;
+    return <div className="flex justify-center gap-2">{ticks}</div>;
 };
