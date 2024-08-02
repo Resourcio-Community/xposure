@@ -23,7 +23,7 @@ export default function About() {
       </div>
       <div className="flex justify-between w-[70%] text-white md:flex-row flex-col items-center">
         <div className="flex flex-col justify-start items-center border-b-[0.5px] py-2 border-white">
-          Date of event : 29th July - 3rd August
+          Date of event : 29th July - 7th August
         </div>
         <Link
           href="/rules"
