@@ -160,7 +160,7 @@ export default function UploadReelForm() {
                             </div>
                         ))}
                     </div>
-                    <button type="submit" disabled={error.length !== 0 || reelCount >= 2} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 disabled:bg-text_yellow/30 rounded-md`}>Submit</button>
+{/*                     <button type="submit" disabled={error.length !== 0 || reelCount >= 2} className={`bg-text_yellow w-fit text-black px-8 py-2 hover:bg-text_yellow/80 duration-300 disabled:bg-text_yellow/30 rounded-md`}>Submit</button> */}
                 </form >
             </div >
             :
